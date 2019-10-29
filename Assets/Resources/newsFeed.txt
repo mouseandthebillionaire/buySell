@@ -1,0 +1,74 @@
+
+1>Scientists find mystery element dubbed ???.>up#
+1>Mystery Element ??? Tastes fantastic!>up#
+1>Element ??? endorsed by famous celebrity.>up#
+1>??? Element might cause diarrhea!>down#
+1>Nutritionists say Mystery Element ??? makes you fat.>down#
+1>ME??? is sentient! Hates being tasted!>down#
+2>Apples are still delicious!>up#
+2>Apples are still delicious!>up#
+2>Apples are still delicious!>up#
+2>Apples are still delicious!>down#
+2>Apples are still delicious!>down#
+2>Apples are still delicious!>down#
+3>Diamonds good!>up#
+3>Diamonds good!>up#
+3>Diamonds good!>up#
+3>Diamonds bad!>down#
+3>Diamonds bad!>down#
+3>Diamonds bad!>down#
+4>Gold becoming more rare after rapper buys it all!>up#
+4>Namibia motherload turned out to be fools gold.>up#
+4>Alchemist’s scam revealed! All that glitters isn’t gold.>up#
+4>Gold, Silver Prices Lifted By Uptick In Risk Aversion>up#
+4>8 tons of gold disappeared from Fort Knox.>up#
+4>The Midas Touch: Alchemy works!!!>down#
+4>Eureka! Motherload struck in Namibia.>down#
+4>Gold coins - not a lucrative as we thought.>down#
+4>Gold’s logistical nightmare has no solution.>down#
+4>Gold no longer recommended for fillings.>down#
+4>Government says Gold is still valuable>stable#
+4>Pros and cons of stash your cash in gold bars>stable#
+5>Famous celebrity caught drinking juice!>up#
+5>Juice fast! The diet craze we can’t get enough of.>up#
+5>More new candy themed holidays for 2019!>up#
+5>Candy, a new efficient home building material?>up#
+5>Delicious new candy has no calories!>up#
+5>It’s still not OK to take candy from strangers.>down#
+5>Raining gumdrops: stunt that wasn’t so sweet>down#
+5>Lifesize Candyland is a sticky mess.>down#
+5>Candy still causes cavities!>down#
+5>No calorie candy causes involuntary eye twitch.>down#
+5>Get paid to drink juice? Yes it’s true.>stable#
+5>Top worldwide consumer of candy is still Sweden.>stable#
+6>Moms good!>up#
+6>Moms good!>up#
+6>Moms good!>up#
+6>Moms bad!>down#
+6>Moms bad!>down#
+6>Moms bad!>down#
+7>Scientists say pizza makes people super fat!>down#
+7>Pizza in space! ISS Astronauts know how to party.>up#
+7>Pizza delivery hero stops home invasion.>up#
+7>Pizza tattoos are making everyone hungry.>up#
+7>Pizza brings families together a slice at a time.>up#
+7>Pizza is perfect food hot or cold.>up#
+7>Mozzarella shortage is bad for pizza.>down#
+7>54 cheese pizza is too much cheese.>down#
+7>Freak storm destroys all tomato crops.>down#
+7>Scientists say pizza makes people super fat!>down#
+7>Dipping sauce craze drowns pizza’s appeal.>down#
+7>Chicago vs. New York style pizza face off!>stable#
+7>Confirmed: St. Louis Style pizza is officially bad.>stable#
+8>Tacos good!>up#
+8>Tacos good!>up#
+8>Tacos good!>up#
+8>Tacos bad!>down#
+8>Tacos bad!>down#
+8>Tacos bad!>down#
+9>Wishes good!>up#
+9>Wishes good!>up#
+9>Wishes good!>up#
+9>Wishes bad!>down#
+9>Wishes bad!>down#
+9>Wishes bad!>down#
