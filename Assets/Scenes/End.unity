@@ -691,6 +691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winner: {fileID: 280786420}
+  delayTime: 120
 --- !u!1 &2063586816
 GameObject:
   m_ObjectHideFlags: 0

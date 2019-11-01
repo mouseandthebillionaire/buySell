@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TraderLogin : MonoBehaviour {
     public KeyCode enter;
     public Button b;
+    public Color logged_onColor;
 
     private bool entered;
     
@@ -21,7 +23,7 @@ public class TraderLogin : MonoBehaviour {
     {
         if (Input.GetKeyDown(enter)) {
             if (!entered) {
-                b.image.color = Color.green;
+                b.image.color = logged_onColor;
                 Login.S.AddTrader();
                 entered = true;
             }
