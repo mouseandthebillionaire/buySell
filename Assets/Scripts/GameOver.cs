@@ -1,11 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using System.Collections;
 using UnityEngine.UI;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+
 using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour {
-    public Text         winner;
+    public Text         winner, snarkText;
+    private TextAsset   snarkCollection;
+    private string[]    snark;
+
     private float       timePassed;
     public float        delayTime;
 
@@ -13,7 +19,13 @@ public class GameOver : MonoBehaviour {
     
     // Start is called before the first frame update
     void Start() {
-        winner.text = teamName[GlobalVariables.S.winner];
+        StartCoroutine(GetSnarkFromFile());
+
+        //Debug
+        winner.text = teamName[0];
+        
+        // Actual
+//        winner.text = teamName[GlobalVariables.S.winner];
         timePassed = 0;
     }
 
@@ -31,5 +43,15 @@ public class GameOver : MonoBehaviour {
             SceneManager.LoadScene("Menu");
         }
 
+    }
+    
+    IEnumerator GetSnarkFromFile() {
+        snarkCollection = Resources.Load("endSnark") as TextAsset;
+        snark = snarkCollection.text.Split ('#');
+        
+        int i = UnityEngine.Random.Range(0, snark.Length - 1);
+        snarkText.text = snark[i];
+
+        yield return null;
     }
 }

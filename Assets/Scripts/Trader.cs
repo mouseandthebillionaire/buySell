@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 
 public class Trader : MonoBehaviour {
-    public float				playerFunds;
+    public float				playerFunds, earnedFunds;
     public int                  traderNum;
     public Color                traderColor;
     
@@ -15,9 +15,13 @@ public class Trader : MonoBehaviour {
     private float[]				stockPrice = new float[9];
     public int                  stockSelected;
     public Text					fundsDisplay, portfolioDisplay;
+    public Text[]               transactionUI;
     public Text[]				holdingsDisplay;
     public Text                 traderTransaction;
     private String              ttt;
+    
+    // Transaction UI
+    public GameObject           t_UI;
     
     // Audio
     public AudioSource          buy_sound, sP_sound, sL_sound;
@@ -52,11 +56,12 @@ public class Trader : MonoBehaviour {
     }
 
     void Update() {
-
+        Transaction(1);
+        
         for (int i = 0; i < stockKeys.Length; i++) {
             if (Input.GetKey(stockKeys[i])) {
                 stockSelected = i;
-                Debug.Log(stockSelected);
+                t_UI.SetActive(true);
                 //StartCoroutine("NoVoiceHack");
             }
             
@@ -115,6 +120,7 @@ public class Trader : MonoBehaviour {
             float netGain = sellPrice - stockPrice[_stockNum];
             ttt = "Sold " + GameManager.S.tradingStocks[_stockNum].displayName.text + " at " + sellPrice * 100f + " / Earned " + netGain * 100f;
             playerFunds += sellPrice;
+            earnedFunds += (netGain * 100f);
             hasStock[_stockNum] = false;
             
             if (netGain > 0) {
@@ -133,14 +139,17 @@ public class Trader : MonoBehaviour {
     
     private void UpdateDisplay() {		
         float displayFunds = playerFunds * 100;
-        float portfolioFunds = displayFunds;
-        GlobalVariables.S.traderWorth[traderNum] = displayFunds;
+        //float portfolioFunds = displayFunds;
+        // Overall funds
+        //GlobalVariables.S.traderWorth[traderNum] = displayFunds;
+        
+        // Ammount earned
+        GlobalVariables.S.traderWorth[traderNum] = earnedFunds;
 
         for (int i = 0; i < GameManager.S.tradingStocks.Length; i++) {
             if (hasStock[i]) {
                 float displayPrice = stockPrice[i] * 100;
                 Debug.Log("Stock:" + i + ":" + displayPrice);
-                portfolioFunds += displayPrice;
                 holdingsDisplay[i].text = "$" + displayPrice.ToString("F2");
             }
             else {
@@ -151,7 +160,17 @@ public class Trader : MonoBehaviour {
 
         traderTransaction.text = ttt;
         fundsDisplay.text = "Available: $" + displayFunds.ToString("F2");
-        portfolioDisplay.text = "Portfolio: $" + portfolioFunds.ToString("F2");
+        portfolioDisplay.text = "Earned: $" + earnedFunds.ToString("F2");
 
     }
+    
+    // Transaction UI
+    private void Transaction(int _numSelected) {
+        int numSelected = _numSelected - 1;
+        Stock _stb = GameManager.S.tradingStocks[numSelected];
+        transactionUI[0].text = _numSelected + "-" + _stb.stockName;
+        transactionUI[1].text = "$" + _stb.stockValue.ToString("F1");
+        transactionUI[2].text = "$" + _stb.stockValue.ToString("F1");
+    }
+    
 }
