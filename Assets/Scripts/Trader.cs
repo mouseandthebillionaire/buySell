@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,8 @@ public class Trader : MonoBehaviour {
     public int                  stockSelected;
     public Text					fundsDisplay, portfolioDisplay;
     public Text[]               transactionUI;
+    public GameObject           transactionWheel;
+    public Color[]              transactionColors;
     public Text[]				holdingsDisplay;
     public Text                 traderTransaction;
     private String              ttt;
@@ -48,6 +51,7 @@ public class Trader : MonoBehaviour {
     
     public void Start() {
         playerFunds = 10f;
+        stockSelected = 99;
         UpdateDisplay();
         for (int i = 0; i < GameManager.S.tradingStocks.Length; i++) {
             hasStock[i] = false;
@@ -57,16 +61,15 @@ public class Trader : MonoBehaviour {
     }
 
     void Update() {
-        Transaction(1);
-        
         for (int i = 0; i < stockKeys.Length; i++) {
             if (Input.GetKey(stockKeys[i])) {
-                stockSelected = i;
-                t_UI.SetActive(true);
-                //StartCoroutine("NoVoiceHack");
+                Transaction(i);
             }
             
         }
+        
+        // make sure the price displayed is always up-to-date
+        transactionUI[2].text = "$" + GameManager.S.tradingStocks[stockSelected].stockValue.ToString("F1");
 
         if (stockSelected != 99) {
             //if (Input.GetKey(buyKey)) Buy(stockSelected);
@@ -79,21 +82,28 @@ public class Trader : MonoBehaviour {
 
     public void PhoneSlam(int stock) {
         int _stockNum = stock;
+        Debug.Log("we selling?");
 
-        if(hasStock[_stockNum]) Sell(_stockNum);
-        else Buy(_stockNum);
+        if (hasStock[_stockNum]) {
+            StartCoroutine(TransactionProcessing(_stockNum, "sell"));
+        }
+        else {
+            
+            StartCoroutine(TransactionProcessing(_stockNum, "buy"));
 
-        stockSelected = 99;
-    }
-    
-    public IEnumerator NoVoiceHack() {
-        yield return new WaitForSeconds(1);
-        
-        if(hasStock[stockSelected]) Sell(stockSelected);
-        else Buy(stockSelected);
+        }
 
         stockSelected = 99;
     }
+//    
+//    public IEnumerator NoVoiceHack() {
+//        yield return new WaitForSeconds(1);
+//        
+//        if(hasStock[stockSelected]) Sell(stockSelected);
+//        else Buy(stockSelected);
+//
+//        stockSelected = 99;
+//    }
     
     public void Buy(int stock) {
         int _stockNum = stock;
@@ -105,11 +115,11 @@ public class Trader : MonoBehaviour {
         stockPrice[_stockNum] = _stb.stockValue;
         hasStock[_stockNum] = true;
 
-        // Stock is influenced by the following
+        // Stock is influenced by...
         // a) traderLuck
-        // b) stock bought vs sold?
+        // b) add something else?
         
-        float dirChance = Random.value;
+        float dirChance = UnityEngine.Random.value;
         if (dirChance < traderLuck) {
             GameManager.S.EffectStock("up", _stockNum);
         } else {
@@ -125,6 +135,7 @@ public class Trader : MonoBehaviour {
         int _stockNum = stock;
         
         if (hasStock[_stockNum]) {
+            
             Stock _stb = GameManager.S.tradingStocks[_stockNum];
             float sellPrice = _stb.stockValue;
             float netGain = sellPrice - stockPrice[_stockNum];
@@ -134,18 +145,20 @@ public class Trader : MonoBehaviour {
             hasStock[_stockNum] = false;
             
             if (netGain > 0) {
+                transactionWheel.GetComponent<Image>().color = transactionColors[1];
                 sP_sound.Play();
                 // increase the trader's 'luck' as they become more successful
                 traderLuck += 0.05f;
             }
             else {
+                transactionWheel.GetComponent<Image>().color = transactionColors[2];
                 sL_sound.Play();
                 // decrease the trader's 'luck' as they become less successful
                 traderLuck -= 0.05f;
             }
             
             // There's always a 50% chance that a Stock will go up/down after a sale
-            float dirChance = Random.value;
+            float dirChance = UnityEngine.Random.value;
             if (dirChance < 0.5f) {
                 GameManager.S.EffectStock("up", _stockNum);
             } else {
@@ -187,11 +200,27 @@ public class Trader : MonoBehaviour {
     
     // Transaction UI
     private void Transaction(int _numSelected) {
-        int numSelected = _numSelected - 1;
-        Stock _stb = GameManager.S.tradingStocks[numSelected];
-        transactionUI[0].text = _numSelected + "-" + _stb.stockName;
-        transactionUI[1].text = "$" + _stb.stockValue.ToString("F1");
-        transactionUI[2].text = "$" + _stb.stockValue.ToString("F1");
+        
+        stockSelected = _numSelected;
+        Stock _stb = GameManager.S.tradingStocks[stockSelected];
+        t_UI.SetActive(true);
+        transactionUI[0].text = _numSelected+1 + "-" + _stb.stockName;
+        if (hasStock[stockSelected]) {
+            transactionUI[1].text = "$" + stockPrice[stockSelected].ToString("F1");
+        }
+        else {
+            transactionUI[1].text = "--";
+        }
+    }
+
+    private IEnumerator TransactionProcessing(int _stockNum, string action) {
+        transactionWheel.GetComponent<Image>().color = transactionColors[0];
+        Animator a = t_UI.GetComponent<Animator>();
+        a.Play("transactionProcessing");
+        yield return new WaitForSeconds(1);
+        if(action == "buy") Buy(_stockNum);
+        if(action == "sell") Sell(_stockNum);
+   
     }
     
 }
