@@ -82,15 +82,6 @@ public class Stock : MonoBehaviour {
 		StartCoroutine(Fluctuate());
 
 	}
-//	
-//	// Update is called once per frame
-//	void Update () {
-//		// Track the Value
-//		TrackValue();
-//		// Make the line
-//		//MakePixel();
-//
-//	}
 	
 	public void MakePixel(){
 

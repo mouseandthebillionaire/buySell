@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UI;
-
 
 public class Trader : MonoBehaviour {
     public float				playerFunds, earnedFunds;
     public int                  traderNum;
     public Color                traderColor;
+    private float               traderLuck = 0.5f; // trader starts with average luck
     
 	
     public bool[]				hasStock = new bool[9];
@@ -104,9 +105,18 @@ public class Trader : MonoBehaviour {
         stockPrice[_stockNum] = _stb.stockValue;
         hasStock[_stockNum] = true;
 
-        GameManager.S.EffectStock("up", _stockNum);
+        // Stock is influenced by the following
+        // a) traderLuck
+        // b) stock bought vs sold?
+        
+        float dirChance = Random.value;
+        if (dirChance < traderLuck) {
+            GameManager.S.EffectStock("up", _stockNum);
+        } else {
+            GameManager.S.EffectStock("down", _stockNum);
+        }
+        
         UpdateDisplay();
-
         buy_sound.Play();
 
     }
@@ -125,12 +135,23 @@ public class Trader : MonoBehaviour {
             
             if (netGain > 0) {
                 sP_sound.Play();
+                // increase the trader's 'luck' as they become more successful
+                traderLuck += 0.05f;
             }
             else {
                 sL_sound.Play();
+                // decrease the trader's 'luck' as they become less successful
+                traderLuck -= 0.05f;
             }
             
-            GameManager.S.EffectStock("down", _stockNum);
+            // There's always a 50% chance that a Stock will go up/down after a sale
+            float dirChance = Random.value;
+            if (dirChance < 0.5f) {
+                GameManager.S.EffectStock("up", _stockNum);
+            } else {
+                GameManager.S.EffectStock("down", _stockNum);
+            }
+            
             UpdateDisplay();
         } else {
             ttt = "Tried to sell a stock they didn't actually own";
