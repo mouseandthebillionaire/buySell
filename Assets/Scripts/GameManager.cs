@@ -8,9 +8,14 @@ public class GameManager : MonoBehaviour {
 
 	public Stock[]		tradingStocks;
 	// set codes manually right now
-	public string[]		stockCodes = new [] {"41", "32", "77", "14", "13", "99", "68", "24", "81"};
+	public string[,]	stockCodes = new [,] {
+		{"1", "2", "3", "4", "5", "6", "7", "8", "9"},
+		{"41", "32", "77", "14", "13", "99", "68", "24", "81"},
+		{"187", "576", "369", "562", "714", "917", "213", "143", "818"}
+	};
 	public float		tradingSpeed;
 	public float		gameLength;
+	public int			gameRound;
 	public float		interrupt = 11;
 	public GameObject	minigame;
 	public GameObject	countdown;
@@ -30,11 +35,12 @@ public class GameManager : MonoBehaviour {
 	void Start() {
 		resetTime = Time.time;
 		
+		
+		
 		// set all the stocks manually for now
-		SetStockCodes();
-		
-		GlobalVariables.S.gameState = 2;
-		
+		SetStockCodes(gameRound);
+
+		GlobalVariables.S.Reset();
 		
 	}
 	
@@ -53,9 +59,9 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
-	private void SetStockCodes() {
+	private void SetStockCodes(int _round) {
 		for (int i = 0; i < tradingStocks.Length; i++) {
-			tradingStocks[i].SetStockCode(stockCodes[i]);
+			tradingStocks[i].SetStockCode(stockCodes[_round, i]);
 		}
 	}
 

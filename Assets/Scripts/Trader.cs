@@ -80,7 +80,7 @@ public class Trader : MonoBehaviour {
                     }
                 }
                 // only get the the last two digits the user has entered
-                inputString = inputString.Substring(inputString.Length-2, 2);
+                inputString = inputString.Substring(inputString.Length-GlobalVariables.S.stockCodeLength, GlobalVariables.S.stockCodeLength);
 
                 // make sure the price displayed is always up-to-date
                 //transactionUI[2].text = "$" + GameManager.S.tradingStocks[stockSelected].stockValue.ToString("F1");
@@ -130,7 +130,7 @@ public class Trader : MonoBehaviour {
         int stockEntered = 99;
 
         for(int i=0; i < GameManager.S.stockCodes.Length; i++){
-            if (codeEntered == GameManager.S.stockCodes[i]){
+            if (codeEntered == GameManager.S.stockCodes[GameManager.S.gameRound, i]){
                 stockExists = true;
                 stockEntered = i;
             }

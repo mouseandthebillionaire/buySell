@@ -8,6 +8,7 @@ public class GlobalVariables : MonoBehaviour {
     public float[]         traderWorth;
     public int             winner;
     public bool            trading = true;
+    public int             stockCodeLength;          
     public int             gameState; // 0 = menu, 1 = loading, 2 = playing, 3 = minigame, 4 = gameOver
     
     public static GlobalVariables S;
@@ -35,5 +36,10 @@ public class GlobalVariables : MonoBehaviour {
             }
         }
         Debug.Log("The winner is " + winner);
+    }
+
+    public void Reset() {
+        stockCodeLength = 3;
+        gameState = 2;
     }
 }
