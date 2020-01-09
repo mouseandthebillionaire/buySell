@@ -1,12 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GlobalVariables : MonoBehaviour {
 
     public float[]         traderWorth;
-    public int             winner;          
-    public int             gameState; // 0 = menu, 1 = loading, 2 = playing, 3 = gameOver
+    public int             winner;
+    public bool            trading = true;
+    public int             gameState; // 0 = menu, 1 = loading, 2 = playing, 3 = minigame, 4 = gameOver
     
     public static GlobalVariables S;
     

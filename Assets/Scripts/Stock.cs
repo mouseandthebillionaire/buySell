@@ -69,6 +69,8 @@ public class Stock : MonoBehaviour {
 		InvokeRepeating("UpdateStock", 0.25f, 1f);
 		// Get Number Icon
 
+		lr.sortingLayerName = "Stocks";
+		lr.sortingOrder = 20;
 		stockNumberIcon = lr.GetComponentInChildren<SpriteRenderer>();
 		string spriteLoc = "_stockNumberIcons/stockNumber_" + stockNumber;
 		Sprite s = Resources.Load<Sprite>(spriteLoc);

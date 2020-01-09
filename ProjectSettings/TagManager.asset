@@ -14,7 +14,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Popup
   - 
   - 
   - 
@@ -47,4 +47,7 @@ TagManager:
     locked: 0
   - name: Stocks
     uniqueID: 426412267
+    locked: 0
+  - name: Popup
+    uniqueID: 1470432631
     locked: 0

@@ -24,20 +24,17 @@ public class Trader : MonoBehaviour {
     public Text                 traderTransaction;
     private String              ttt;
     
+    
     // Transaction UI
     public GameObject           t_UI;
     
     // Audio
-    public AudioSource          buy_sound, sP_sound, sL_sound;
+    public AudioSource          buy_sound, sP_sound, sL_sound;  
     
-    
-    
-    // Temp
-    public KeyCode[]			stockKeys;
-    public KeyCode buyKey;
-    public KeyCode sellKey;
+    // Original Input Setup - One key to Select / Hanging Up Buys & Sells
+    private KeyCode[]			stockKeys;
     public KeyCode bsKey;
-    
+
     
     public static Trader        S;
     
@@ -50,6 +47,20 @@ public class Trader : MonoBehaviour {
     }
     
     public void Start() {
+        // Set the stockKeys
+        if (traderNum == 0) {
+            stockKeys = new []
+                {KeyCode.Q, KeyCode.W, KeyCode.E, KeyCode.R, KeyCode.T, KeyCode.Y, KeyCode.U, KeyCode.I, KeyCode.O};
+        } else if (traderNum == 1) {
+            stockKeys = new []
+                {KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.J, KeyCode.K, KeyCode.L};
+        } else if (traderNum == 2) {
+            stockKeys = new[] {
+                KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V, KeyCode.B, KeyCode.N, KeyCode.M, KeyCode.Comma,
+                KeyCode.Period
+            };
+        }
+        
         playerFunds = 10f;
         stockSelected = 99;
         UpdateDisplay();
@@ -61,22 +72,31 @@ public class Trader : MonoBehaviour {
     }
 
     void Update() {
-        for (int i = 0; i < stockKeys.Length; i++) {
-            if (Input.GetKey(stockKeys[i])) {
-                Transaction(i);
+        if(GlobalVariables.S.trading){
+                for (int i = 0; i < stockKeys.Length; i++) {
+                    if (Input.GetKey(stockKeys[i])) {
+                        Transaction(i);
+                    }
+
+                }
+
+                // make sure the price displayed is always up-to-date
+                transactionUI[2].text = "$" + GameManager.S.tradingStocks[stockSelected].stockValue.ToString("F1");
+
+                if (stockSelected != 99) {
+                    //if (Input.GetKey(buyKey)) Buy(stockSelected);
+                    //if (Input.GetKey(sellKey)) Sell(stockSelected);
+
+                    // Slam down the phone to buy OR sell
+                    if (Input.GetKey(bsKey)) PhoneSlam(stockSelected);    
+                }
+        // otherwise, we're in a minigame       
+        } else {
+            for (int i = 0; i < stockKeys.Length; i++) {
+                if (Input.GetKeyDown(stockKeys[i])) {
+                    Minigame.S.ReceiveKey(traderNum, i);
+                }
             }
-            
-        }
-        
-        // make sure the price displayed is always up-to-date
-        transactionUI[2].text = "$" + GameManager.S.tradingStocks[stockSelected].stockValue.ToString("F1");
-
-        if (stockSelected != 99) {
-            //if (Input.GetKey(buyKey)) Buy(stockSelected);
-            //if (Input.GetKey(sellKey)) Sell(stockSelected);
-
-            // Slam down the phone to buy OR sell
-            if (Input.GetKey(bsKey)) PhoneSlam(stockSelected);
         }
     }
 
@@ -95,15 +115,6 @@ public class Trader : MonoBehaviour {
 
         stockSelected = 99;
     }
-//    
-//    public IEnumerator NoVoiceHack() {
-//        yield return new WaitForSeconds(1);
-//        
-//        if(hasStock[stockSelected]) Sell(stockSelected);
-//        else Buy(stockSelected);
-//
-//        stockSelected = 99;
-//    }
     
     public void Buy(int stock) {
         int _stockNum = stock;

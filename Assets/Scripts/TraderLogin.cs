@@ -15,7 +15,7 @@ public class TraderLogin : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         panel = GetComponentInChildren<Image>();
-        panel.color = new Color(1, 1, 1, 0.25f);
+        panel.color = new Color(1, 1, 1, 0.5f);
         entered = false;
     }
 
