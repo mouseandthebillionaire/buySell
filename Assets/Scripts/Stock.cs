@@ -13,6 +13,7 @@ public class Stock : MonoBehaviour {
 
 	public string			stockName;
 	private int				stockNumber;
+	public string			stockCode; // each stock has a unique 2-digit code that needs to be dialed
 
 	private List<float> 	valueHistory = new List<float>();
 	public float			value;

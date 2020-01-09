@@ -31,8 +31,8 @@ public class Trader : MonoBehaviour {
     // Audio
     public AudioSource          buy_sound, sP_sound, sL_sound;  
     
-    // Original Input Setup - One key to Select / Hanging Up Buys & Sells
-    private KeyCode[]			stockKeys;
+    // Input Setup 2.0 - Two keys to Select / Hanging Up Buys & Sells
+    private KeyCode[]			inputKeys; // QWERTY values of each phone's keypad
     public KeyCode bsKey;
 
     
@@ -49,13 +49,13 @@ public class Trader : MonoBehaviour {
     public void Start() {
         // Set the stockKeys
         if (traderNum == 0) {
-            stockKeys = new []
+            inputKeys = new []
                 {KeyCode.Q, KeyCode.W, KeyCode.E, KeyCode.R, KeyCode.T, KeyCode.Y, KeyCode.U, KeyCode.I, KeyCode.O};
         } else if (traderNum == 1) {
-            stockKeys = new []
+            inputKeys = new []
                 {KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.J, KeyCode.K, KeyCode.L};
         } else if (traderNum == 2) {
-            stockKeys = new[] {
+            inputKeys = new[] {
                 KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V, KeyCode.B, KeyCode.N, KeyCode.M, KeyCode.Comma,
                 KeyCode.Period
             };
