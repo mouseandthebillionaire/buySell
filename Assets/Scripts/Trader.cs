@@ -127,25 +127,20 @@ public class Trader : MonoBehaviour {
     public void PhoneSlammed(string codeEntered) {
 
         bool stockExists = false;
-        int stockSelected = 99;
+        int stockEntered = 99;
 
         for(int i=0; i < GameManager.S.stockCodes.Length; i++){
             if (codeEntered == GameManager.S.stockCodes[i]){
                 stockExists = true;
-                stockSelected = i;
+                stockEntered = i;
             }
         }
 
         if (stockExists) {
-            Debug.Log("The user wants to buy/sell stock #" + stockSelected);
-            if (hasStock[stockSelected]) {
-                Buy(stockSelected);
-                StartCoroutine(TransactionProcessing(stockSelected, "sell"));
-            }
-            else {
-                Sell(stockSelected);
-                StartCoroutine(TransactionProcessing(stockSelected, "buy"));
-            }         
+            Debug.Log("The user wants to buy/sell stock #" + stockEntered);
+            Transaction(stockEntered);
+            if(hasStock[stockEntered]) {StartCoroutine(TransactionProcessing(stockEntered, "sell"));}
+            else StartCoroutine(TransactionProcessing(stockEntered, "buy"));         
         } else {
             Debug.Log("Not a valid Stock Code!");
         }
@@ -247,11 +242,11 @@ public class Trader : MonoBehaviour {
     // Transaction UI
     private void Transaction(int _numSelected) {
         
-        stockSelected = _numSelected;
-        Stock _stb = GameManager.S.tradingStocks[stockSelected];
+        int stockToProcess = _numSelected;
+        Stock _stb = GameManager.S.tradingStocks[stockToProcess];
         t_UI.SetActive(true);
         transactionUI[0].text = _numSelected+1 + "-" + _stb.stockName;
-        if (hasStock[stockSelected]) {
+        if (hasStock[stockToProcess]) {
             transactionUI[1].text = "$" + stockPrice[stockSelected].ToString("F1");
         }
         else {
