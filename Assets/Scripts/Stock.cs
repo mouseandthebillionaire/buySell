@@ -97,6 +97,10 @@ public class Stock : MonoBehaviour {
 
 	}
 
+	public void SetStockCode(string _code) {
+		stockCode = _code;
+	}
+
 	public void UpdateStock() {
 		stockHistory.RemoveAt(0);
 		if((stockValue + variance) > maxValue || (stockValue + variance) < minValue) Debug.Log("Too much");

@@ -33,7 +33,8 @@ public class Trader : MonoBehaviour {
     
     // Input Setup 2.0 - Two keys to Select / Hanging Up Buys & Sells
     private KeyCode[]			inputKeys; // QWERTY values of each phone's keypad
-    public KeyCode bsKey;
+    public string               inputString = "--"; 
+    public KeyCode              bsKey;
 
     
     public static Trader        S;
@@ -73,47 +74,81 @@ public class Trader : MonoBehaviour {
 
     void Update() {
         if(GlobalVariables.S.trading){
-                for (int i = 0; i < stockKeys.Length; i++) {
-                    if (Input.GetKey(stockKeys[i])) {
-                        Transaction(i);
+                for (int i = 0; i < inputKeys.Length; i++) {
+                    if (Input.GetKeyDown(inputKeys[i])) {
+                        inputString += (i + 1).ToString();
                     }
-
                 }
+                // only get the the last two digits the user has entered
+                inputString = inputString.Substring(inputString.Length-2, 2);
 
                 // make sure the price displayed is always up-to-date
-                transactionUI[2].text = "$" + GameManager.S.tradingStocks[stockSelected].stockValue.ToString("F1");
+                //transactionUI[2].text = "$" + GameManager.S.tradingStocks[stockSelected].stockValue.ToString("F1");
 
-                if (stockSelected != 99) {
-                    //if (Input.GetKey(buyKey)) Buy(stockSelected);
-                    //if (Input.GetKey(sellKey)) Sell(stockSelected);
-
-                    // Slam down the phone to buy OR sell
-                    if (Input.GetKey(bsKey)) PhoneSlam(stockSelected);    
-                }
+                // version of PhoneSlam that takes an inputString
+                if (Input.GetKeyDown(bsKey)) PhoneSlammed(inputString);  
+                
+                
+                // Single key value denotes stockSelected
+//                if (stockSelected != 99) {
+//                    //if (Input.GetKey(buyKey)) Buy(stockSelected);
+//                    //if (Input.GetKey(sellKey)) Sell(stockSelected);
+//
+//                    // Slam down the phone to buy OR sell
+//                    if (Input.GetKey(bsKey)) PhoneSlam(stockSelected);    
+//                }
         // otherwise, we're in a minigame       
         } else {
-            for (int i = 0; i < stockKeys.Length; i++) {
-                if (Input.GetKeyDown(stockKeys[i])) {
+            for (int i = 0; i < inputKeys.Length; i++) {
+                if (Input.GetKeyDown(inputKeys[i])) {
                     Minigame.S.ReceiveKey(traderNum, i);
                 }
             }
         }
     }
 
-    public void PhoneSlam(int stock) {
-        int _stockNum = stock;
-        Debug.Log("we selling?");
+//    public void PhoneSlam(int stock) {
+//        int _stockNum = stock;
+//        Debug.Log("we selling?");
+//
+//        if (hasStock[_stockNum]) {
+//            StartCoroutine(TransactionProcessing(_stockNum, "sell"));
+//        }
+//        else {
+//            
+//            StartCoroutine(TransactionProcessing(_stockNum, "buy"));
+//
+//        }
+//
+//        stockSelected = 99;
+//    }
 
-        if (hasStock[_stockNum]) {
-            StartCoroutine(TransactionProcessing(_stockNum, "sell"));
+    // version of PhoneSlam that takes an inputString
+    public void PhoneSlammed(string codeEntered) {
+
+        bool stockExists = false;
+        int stockSelected = 99;
+
+        for(int i=0; i < GameManager.S.stockCodes.Length; i++){
+            if (codeEntered == GameManager.S.stockCodes[i]){
+                stockExists = true;
+                stockSelected = i;
+            }
         }
-        else {
-            
-            StartCoroutine(TransactionProcessing(_stockNum, "buy"));
 
+        if (stockExists) {
+            Debug.Log("The user wants to buy/sell stock #" + stockSelected);
+            if (hasStock[stockSelected]) {
+                Buy(stockSelected);
+                StartCoroutine(TransactionProcessing(stockSelected, "sell"));
+            }
+            else {
+                Sell(stockSelected);
+                StartCoroutine(TransactionProcessing(stockSelected, "buy"));
+            }         
+        } else {
+            Debug.Log("Not a valid Stock Code!");
         }
-
-        stockSelected = 99;
     }
     
     public void Buy(int stock) {

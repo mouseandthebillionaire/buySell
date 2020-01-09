@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
 	public Stock[]		tradingStocks;
+	// set codes manually right now
+	public string[]		stockCodes = new [] {"41", "32", "77", "14", "13", "99", "68", "24", "81"};
 	public float		tradingSpeed;
 	public float		gameLength;
 	public float		interrupt = 11;
@@ -27,7 +29,13 @@ public class GameManager : MonoBehaviour {
 
 	void Start() {
 		resetTime = Time.time;
+		
+		// set all the stocks manually for now
+		SetStockCodes();
+		
 		GlobalVariables.S.gameState = 2;
+		
+		
 	}
 	
 	// Update is called once per frame
@@ -43,6 +51,12 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 		
+	}
+
+	private void SetStockCodes() {
+		for (int i = 0; i < tradingStocks.Length; i++) {
+			tradingStocks[i].SetStockCode(stockCodes[i]);
+		}
 	}
 
 	public void EffectStock(string direction, int stockNum) {
