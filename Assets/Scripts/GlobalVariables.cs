@@ -2,13 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
 
 public class GlobalVariables : MonoBehaviour {
 
     public float[]         traderWorth;
     public int             winner;
     public bool            trading = true;
-    public int             stockCodeLength;          
+    public int             numRounds = 3;
+    public int             stockCodeLength;
+
+    public string[,]	   stockCodes  = new string[,] {
+        {"1", "2", "3", "4", "5", "6", "7", "8", "9"},
+        {"13", "37", "28", "87", "42", "91", "71", "57", "65"},
+        {"143", "256", "312", "417", "562", "671", "714", "818", "945"}
+    };
     public int             gameState; // 0 = menu, 1 = loading, 2 = playing, 3 = minigame, 4 = gameOver
     
     public static GlobalVariables S;
@@ -23,6 +31,11 @@ public class GlobalVariables : MonoBehaviour {
        } else {
            DestroyObject(gameObject);
        }
+       
+    }
+
+    public void Start() {
+        Reset();
     }
     
     
@@ -39,7 +52,24 @@ public class GlobalVariables : MonoBehaviour {
     }
 
     public void Reset() {
-        stockCodeLength = 3;
+        
+        stockCodeLength = 1;
+                
+//        // Randomized Codes
+//        // fill the possible stock codes for the current game
+//        for (int i = 0; i < numRounds; i++) {
+//            for (int j = 0; j < 9; j++) {
+//                string randomizedCode = "";
+//                for (int k = 0; k < stockCodeLength; k++) {
+//                    float f = UnityEngine.Random.Range(0, 9);
+//                    randomizedCode += f.ToString();
+//                }
+//                Debug.Log("Set " + i + " / Code " + j + " = " + randomizedCode);
+//                stockCodes[i, j] = randomizedCode;
+//            }
+//            stockCodeLength++;
+//        }
+
         gameState = 2;
     }
 }

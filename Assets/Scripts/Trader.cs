@@ -125,12 +125,12 @@ public class Trader : MonoBehaviour {
 
     // version of PhoneSlam that takes an inputString
     public void PhoneSlammed(string codeEntered) {
-
+        
         bool stockExists = false;
         int stockEntered = 99;
 
-        for(int i=0; i < GameManager.S.stockCodes.Length; i++){
-            if (codeEntered == GameManager.S.stockCodes[GameManager.S.gameRound, i]){
+        for(int i=0; i < GlobalVariables.S.stockCodes.GetLength(1); i++){
+            if (codeEntered == GlobalVariables.S.stockCodes[GameManager.S.gameRound, i]){
                 stockExists = true;
                 stockEntered = i;
             }
@@ -241,13 +241,13 @@ public class Trader : MonoBehaviour {
     
     // Transaction UI
     private void Transaction(int _numSelected) {
-        
+                
         int stockToProcess = _numSelected;
         Stock _stb = GameManager.S.tradingStocks[stockToProcess];
         t_UI.SetActive(true);
         transactionUI[0].text = _numSelected+1 + "-" + _stb.stockName;
         if (hasStock[stockToProcess]) {
-            transactionUI[1].text = "$" + stockPrice[stockSelected].ToString("F1");
+            transactionUI[1].text = "$" + stockPrice[stockToProcess].ToString("F1");
         }
         else {
             transactionUI[1].text = "--";

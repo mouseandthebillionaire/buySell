@@ -1160,6 +1160,9 @@ MonoBehaviour:
   - 0
   - 0
   winner: 0
+  trading: 1
+  numRounds: 3
+  stockCodeLength: 2
   gameState: 0
 --- !u!4 &1558835596
 Transform:
