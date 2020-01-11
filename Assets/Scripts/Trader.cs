@@ -31,9 +31,10 @@ public class Trader : MonoBehaviour {
     // Audio
     public AudioSource          buy_sound, sP_sound, sL_sound;  
     
-    // Original Input Setup - One key to Select / Hanging Up Buys & Sells
-    private KeyCode[]			stockKeys;
-    public KeyCode bsKey;
+    // Input Setup 2.0 - Two keys to Select / Hanging Up Buys & Sells
+    private KeyCode[]			inputKeys; // QWERTY values of each phone's keypad
+    public string               inputString = "--"; 
+    public KeyCode              bsKey;
 
     
     public static Trader        S;
@@ -49,13 +50,13 @@ public class Trader : MonoBehaviour {
     public void Start() {
         // Set the stockKeys
         if (traderNum == 0) {
-            stockKeys = new []
+            inputKeys = new []
                 {KeyCode.Q, KeyCode.W, KeyCode.E, KeyCode.R, KeyCode.T, KeyCode.Y, KeyCode.U, KeyCode.I, KeyCode.O};
         } else if (traderNum == 1) {
-            stockKeys = new []
+            inputKeys = new []
                 {KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.J, KeyCode.K, KeyCode.L};
         } else if (traderNum == 2) {
-            stockKeys = new[] {
+            inputKeys = new[] {
                 KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V, KeyCode.B, KeyCode.N, KeyCode.M, KeyCode.Comma,
                 KeyCode.Period
             };
@@ -73,47 +74,76 @@ public class Trader : MonoBehaviour {
 
     void Update() {
         if(GlobalVariables.S.trading){
-                for (int i = 0; i < stockKeys.Length; i++) {
-                    if (Input.GetKey(stockKeys[i])) {
-                        Transaction(i);
+                for (int i = 0; i < inputKeys.Length; i++) {
+                    if (Input.GetKeyDown(inputKeys[i])) {
+                        inputString += (i + 1).ToString();
                     }
-
                 }
+                // only get the the last two digits the user has entered
+                inputString = inputString.Substring(inputString.Length-GlobalVariables.S.stockCodeLength, GlobalVariables.S.stockCodeLength);
 
                 // make sure the price displayed is always up-to-date
-                transactionUI[2].text = "$" + GameManager.S.tradingStocks[stockSelected].stockValue.ToString("F1");
+                //transactionUI[2].text = "$" + GameManager.S.tradingStocks[stockSelected].stockValue.ToString("F1");
 
-                if (stockSelected != 99) {
-                    //if (Input.GetKey(buyKey)) Buy(stockSelected);
-                    //if (Input.GetKey(sellKey)) Sell(stockSelected);
-
-                    // Slam down the phone to buy OR sell
-                    if (Input.GetKey(bsKey)) PhoneSlam(stockSelected);    
-                }
+                // version of PhoneSlam that takes an inputString
+                if (Input.GetKeyDown(bsKey)) PhoneSlammed(inputString);  
+                
+                
+                // Single key value denotes stockSelected
+//                if (stockSelected != 99) {
+//                    //if (Input.GetKey(buyKey)) Buy(stockSelected);
+//                    //if (Input.GetKey(sellKey)) Sell(stockSelected);
+//
+//                    // Slam down the phone to buy OR sell
+//                    if (Input.GetKey(bsKey)) PhoneSlam(stockSelected);    
+//                }
         // otherwise, we're in a minigame       
         } else {
-            for (int i = 0; i < stockKeys.Length; i++) {
-                if (Input.GetKeyDown(stockKeys[i])) {
+            for (int i = 0; i < inputKeys.Length; i++) {
+                if (Input.GetKeyDown(inputKeys[i])) {
                     Minigame.S.ReceiveKey(traderNum, i);
                 }
             }
         }
     }
 
-    public void PhoneSlam(int stock) {
-        int _stockNum = stock;
-        Debug.Log("we selling?");
+//    public void PhoneSlam(int stock) {
+//        int _stockNum = stock;
+//        Debug.Log("we selling?");
+//
+//        if (hasStock[_stockNum]) {
+//            StartCoroutine(TransactionProcessing(_stockNum, "sell"));
+//        }
+//        else {
+//            
+//            StartCoroutine(TransactionProcessing(_stockNum, "buy"));
+//
+//        }
+//
+//        stockSelected = 99;
+//    }
 
-        if (hasStock[_stockNum]) {
-            StartCoroutine(TransactionProcessing(_stockNum, "sell"));
+    // version of PhoneSlam that takes an inputString
+    public void PhoneSlammed(string codeEntered) {
+        
+        bool stockExists = false;
+        int stockEntered = 99;
+
+        for(int i=0; i < GlobalVariables.S.stockCodes.GetLength(1); i++){
+            if (codeEntered == GlobalVariables.S.stockCodes[GameManager.S.gameRound, i]){
+                stockExists = true;
+                stockEntered = i;
+            }
         }
-        else {
-            
-            StartCoroutine(TransactionProcessing(_stockNum, "buy"));
 
+        if (stockExists) {
+            Debug.Log("The user wants to buy/sell stock #" + stockEntered);
+            Transaction(stockEntered);
+            if(hasStock[stockEntered]) {StartCoroutine(TransactionProcessing(stockEntered, "sell"));}
+            else StartCoroutine(TransactionProcessing(stockEntered, "buy"));         
+        } else {
+            Debug.Log("Not a valid Stock Code!");
         }
-
-        stockSelected = 99;
     }
     
     public void Buy(int stock) {
@@ -211,13 +241,13 @@ public class Trader : MonoBehaviour {
     
     // Transaction UI
     private void Transaction(int _numSelected) {
-        
-        stockSelected = _numSelected;
-        Stock _stb = GameManager.S.tradingStocks[stockSelected];
+                
+        int stockToProcess = _numSelected;
+        Stock _stb = GameManager.S.tradingStocks[stockToProcess];
         t_UI.SetActive(true);
         transactionUI[0].text = _numSelected+1 + "-" + _stb.stockName;
-        if (hasStock[stockSelected]) {
-            transactionUI[1].text = "$" + stockPrice[stockSelected].ToString("F1");
+        if (hasStock[stockToProcess]) {
+            transactionUI[1].text = "$" + stockPrice[stockToProcess].ToString("F1");
         }
         else {
             transactionUI[1].text = "--";
