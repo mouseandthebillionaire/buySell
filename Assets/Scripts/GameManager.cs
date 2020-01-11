@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-	public Stock[]		tradingStocks;
-	// set codes manually right now
+	//public Stock[]		tradingStocks;
 
 	public float		tradingSpeed;
 	public float		gameLength;
@@ -33,7 +32,7 @@ public class GameManager : MonoBehaviour {
 		gameRound = 1;		
 		
 		// set all the stocks codes
-		SetStockCodes(gameRound);
+		//SetStockCodes(gameRound);
 
 		//GlobalVariables.S.Reset();
 		
@@ -54,31 +53,31 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
-	private void SetStockCodes(int _round) {
-		
-		for (int i = 0; i < tradingStocks.Length; i++) {
-			tradingStocks[i].SetStockCode(GlobalVariables.S.stockCodes[_round, i]);
-		}
-
-		GlobalVariables.S.stockCodeLength = (gameRound + 1);
-	}
-
-	public void EffectStock(string direction, int stockNum) {
-		if (direction == "up") {
-			//tradingStocks[stockNum].Change("up");
-			tradingStocks[stockNum].SupplyChange("up");
-		}
-
-		if (direction == "down") {
-			//tradingStocks[stockNum].Change("down");
-			tradingStocks[stockNum].SupplyChange("down");
-		}
-		// else we send stable
-		else {
-			return;
-		}
-		
-	}
+//	private void SetStockCodes(int _round) {
+//		
+//		for (int i = 0; i < tradingStocks.Length; i++) {
+//			tradingStocks[i].SetStockCode(GlobalVariables.S.stockCodes[_round, i]);
+//		}
+//
+//		GlobalVariables.S.stockCodeLength = (gameRound + 1);
+//	}
+//
+//	public void EffectStock(string direction, int stockNum) {
+//		if (direction == "up") {
+//			//tradingStocks[stockNum].Change("up");
+//			tradingStocks[stockNum].SupplyChange("up");
+//		}
+//
+//		if (direction == "down") {
+//			//tradingStocks[stockNum].Change("down");
+//			tradingStocks[stockNum].SupplyChange("down");
+//		}
+//		// else we send stable
+//		else {
+//			return;
+//		}
+//		
+//	}
 
 	public IEnumerator LaunchMinigame() {
 		interruptTime = Time.time;

@@ -119,7 +119,7 @@ public class NewsFeed : MonoBehaviour {
         // Wait a few seconds to send to the Game Manager
         yield return new WaitForSeconds(3f);
         // Make the change!
-        GameManager.S.EffectStock(stockDir, stockNum);
+        StockManager.S.EffectStock(stockDir, stockNum);
     }
 
 }

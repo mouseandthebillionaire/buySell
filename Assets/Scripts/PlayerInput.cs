@@ -22,7 +22,7 @@ public class PlayerInput : MonoBehaviour {
 	void Start () {
 		S = this;
 		playerFunds = 10f;
-		for (int i = 0; i < GameManager.S.tradingStocks.Length; i++) {
+		for (int i = 0; i < StockManager.S.tradingStocks.Length; i++) {
 			hasStock[i] = false;
 			UpdateDisplay();
 		}
@@ -30,7 +30,7 @@ public class PlayerInput : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		for (int i = 0; i < GameManager.S.tradingStocks.Length; i++) {
+		for (int i = 0; i < StockManager.S.tradingStocks.Length; i++) {
 			if (Input.GetKeyDown(buyKeys[i])) {
 				Buy(i);
 			}
@@ -52,7 +52,7 @@ public class PlayerInput : MonoBehaviour {
 	}
 
 	public void Buy(int _stockNum) {
-		Stock _stb = GameManager.S.tradingStocks[_stockNum];
+		Stock _stb = StockManager.S.tradingStocks[_stockNum];
 		float purchasePrice = _stb.value;
 		playerFunds -= purchasePrice;
 		stockPrice[_stockNum] = _stb.value;
@@ -62,7 +62,7 @@ public class PlayerInput : MonoBehaviour {
 	
 	public void Sell(int _stockNum) {
 		if (hasStock[_stockNum]) {
-			Stock _stb = GameManager.S.tradingStocks[_stockNum];
+			Stock _stb = StockManager.S.tradingStocks[_stockNum];
 			float sellPrice = _stb.value;
 			float netGain = sellPrice - stockPrice[_stockNum];
 			playerFunds += netGain;
@@ -78,8 +78,8 @@ public class PlayerInput : MonoBehaviour {
 
 		string displayTextString = "";
 
-		for (int i = 0; i < GameManager.S.tradingStocks.Length; i++) {
-			displayTextString += GameManager.S.tradingStocks[i].displayName.text;
+		for (int i = 0; i < StockManager.S.tradingStocks.Length; i++) {
+			displayTextString += StockManager.S.tradingStocks[i].displayName.text;
 			if (hasStock[i]) {
 				float displayPrice = stockPrice[i] * 100;
 				displayTextString += " atttt $" + displayPrice.ToString("F2");

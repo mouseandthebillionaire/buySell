@@ -65,7 +65,7 @@ public class Trader : MonoBehaviour {
         playerFunds = 10f;
         stockSelected = 99;
         UpdateDisplay();
-        for (int i = 0; i < GameManager.S.tradingStocks.Length; i++) {
+        for (int i = 0; i < StockManager.S.tradingStocks.Length; i++) {
             hasStock[i] = false;
         }
 
@@ -137,7 +137,6 @@ public class Trader : MonoBehaviour {
         }
 
         if (stockExists) {
-            Debug.Log("The user wants to buy/sell stock #" + stockEntered);
             Transaction(stockEntered);
             if(hasStock[stockEntered]) {StartCoroutine(TransactionProcessing(stockEntered, "sell"));}
             else StartCoroutine(TransactionProcessing(stockEntered, "buy"));         
@@ -149,7 +148,7 @@ public class Trader : MonoBehaviour {
     public void Buy(int stock) {
         int _stockNum = stock;
 
-        Stock _stb = GameManager.S.tradingStocks[_stockNum];
+        Stock _stb = StockManager.S.tradingStocks[_stockNum];
         float purchasePrice = _stb.stockValue;
 
         playerFunds -= purchasePrice;
@@ -162,9 +161,9 @@ public class Trader : MonoBehaviour {
         
         float dirChance = UnityEngine.Random.value;
         if (dirChance < traderLuck) {
-            GameManager.S.EffectStock("up", _stockNum);
+            StockManager.S.EffectStock("up", _stockNum);
         } else {
-            GameManager.S.EffectStock("down", _stockNum);
+            StockManager.S.EffectStock("down", _stockNum);
         }
         
         UpdateDisplay();
@@ -177,10 +176,10 @@ public class Trader : MonoBehaviour {
         
         if (hasStock[_stockNum]) {
             
-            Stock _stb = GameManager.S.tradingStocks[_stockNum];
+            Stock _stb = StockManager.S.tradingStocks[_stockNum];
             float sellPrice = _stb.stockValue;
             float netGain = sellPrice - stockPrice[_stockNum];
-            ttt = "Sold " + GameManager.S.tradingStocks[_stockNum].displayName.text + " at " + sellPrice * 100f + " / Earned " + netGain * 100f;
+            ttt = "Sold " + StockManager.S.tradingStocks[_stockNum].displayName.text + " at " + sellPrice * 100f + " / Earned " + netGain * 100f;
             playerFunds += sellPrice;
             earnedFunds += (netGain * 100f);
             hasStock[_stockNum] = false;
@@ -201,9 +200,9 @@ public class Trader : MonoBehaviour {
             // There's always a 50% chance that a Stock will go up/down after a sale
             float dirChance = UnityEngine.Random.value;
             if (dirChance < 0.5f) {
-                GameManager.S.EffectStock("up", _stockNum);
+                StockManager.S.EffectStock("up", _stockNum);
             } else {
-                GameManager.S.EffectStock("down", _stockNum);
+                StockManager.S.EffectStock("down", _stockNum);
             }
             
             UpdateDisplay();
@@ -221,10 +220,9 @@ public class Trader : MonoBehaviour {
         // Ammount earned
         GlobalVariables.S.traderWorth[traderNum] = earnedFunds;
 
-        for (int i = 0; i < GameManager.S.tradingStocks.Length; i++) {
+        for (int i = 0; i < StockManager.S.tradingStocks.Length; i++) {
             if (hasStock[i]) {
                 float displayPrice = stockPrice[i] * 100;
-                Debug.Log("Stock:" + i + ":" + displayPrice);
                 holdingsDisplay[i].text = "$" + displayPrice.ToString("F2");
             }
             else {
@@ -243,7 +241,7 @@ public class Trader : MonoBehaviour {
     private void Transaction(int _numSelected) {
                 
         int stockToProcess = _numSelected;
-        Stock _stb = GameManager.S.tradingStocks[stockToProcess];
+        Stock _stb = StockManager.S.tradingStocks[stockToProcess];
         t_UI.SetActive(true);
         transactionUI[0].text = _numSelected+1 + "-" + _stb.stockName;
         if (hasStock[stockToProcess]) {
