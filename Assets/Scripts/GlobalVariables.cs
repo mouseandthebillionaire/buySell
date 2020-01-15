@@ -17,6 +17,13 @@ public class GlobalVariables : MonoBehaviour {
         {"13", "37", "28", "87", "42", "91", "71", "57", "65"},
         {"143", "256", "312", "417", "562", "671", "714", "818", "945"}
     };
+
+    public KeyCode[,]      inputKeys = new KeyCode[,] {
+        {KeyCode.Q, KeyCode.W, KeyCode.E, KeyCode.R, KeyCode.T, KeyCode.Y, KeyCode.U, KeyCode.I, KeyCode.O},
+        {KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.J, KeyCode.K, KeyCode.L},
+        {KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V, KeyCode.B, KeyCode.N, KeyCode.M, KeyCode.Comma, KeyCode.Period}
+    };
+
     public int             gameState; // 0 = menu, 1 = loading, 2 = playing, 3 = minigame, 4 = gameOver
     
     public static GlobalVariables S;
@@ -25,7 +32,6 @@ public class GlobalVariables : MonoBehaviour {
     // Start is called before the first frame update
     void Awake()
     {
-       DontDestroyOnLoad(this);
        if (S == null) {
            S = this;
        } else {

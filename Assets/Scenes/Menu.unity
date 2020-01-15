@@ -696,7 +696,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1074512190
 GameObject:
@@ -727,21 +727,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 546a2ba5147d743a98cea59713153bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tradingStocks:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   tradingSpeed: 0.0125
   gameLength: 60
   gameRound: 0
   interrupt: 21
-  minigame: {fileID: 0}
   countdown: {fileID: 0}
   countdownText: {fileID: 0}
   blip: {fileID: 0}
@@ -759,7 +748,7 @@ Transform:
   - {fileID: 1210038709}
   - {fileID: 1558835596}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1116528708
 GameObject:
@@ -821,7 +810,7 @@ RectTransform:
   - {fileID: 1678392056}
   - {fileID: 185343876}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1078,7 +1067,7 @@ PrefabInstance:
     - target: {fileID: 2193876963029239386, guid: 3319b066be82c468cbff20bc561e1701,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2193876963029239386, guid: 3319b066be82c468cbff20bc561e1701,
         type: 3}
@@ -1516,7 +1505,7 @@ Transform:
   - {fileID: 1421444618}
   - {fileID: 898955819}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2124233179
 GameObject:

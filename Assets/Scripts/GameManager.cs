@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
 	public float		gameLength;
 	public int			gameRound;
 	public float		interrupt = 11;
-	public GameObject	minigame;
+	//public GameObject	minigame;
 	public GameObject	countdown;
 	public Text			countdownText;
 	private int			countdownLength = 3;
@@ -23,8 +23,15 @@ public class GameManager : MonoBehaviour {
 	public static GameManager S;
 
 	// Use this for initialization
-	void Awake () {
-		S = this;
+	void Awake()
+	{
+		DontDestroyOnLoad(this);
+		if (S == null) {
+			S = this;
+		} else {
+			DestroyObject(gameObject);
+		}
+       
 	}
 
 	void Start() {
@@ -53,37 +60,12 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
-//	private void SetStockCodes(int _round) {
-//		
-//		for (int i = 0; i < tradingStocks.Length; i++) {
-//			tradingStocks[i].SetStockCode(GlobalVariables.S.stockCodes[_round, i]);
-//		}
-//
-//		GlobalVariables.S.stockCodeLength = (gameRound + 1);
-//	}
-//
-//	public void EffectStock(string direction, int stockNum) {
-//		if (direction == "up") {
-//			//tradingStocks[stockNum].Change("up");
-//			tradingStocks[stockNum].SupplyChange("up");
-//		}
-//
-//		if (direction == "down") {
-//			//tradingStocks[stockNum].Change("down");
-//			tradingStocks[stockNum].SupplyChange("down");
-//		}
-//		// else we send stable
-//		else {
-//			return;
-//		}
-//		
-//	}
 
 	public IEnumerator LaunchMinigame() {
 		interruptTime = Time.time;
 		GlobalVariables.S.gameState = 3;
 		GlobalVariables.S.trading = false;
-		minigame.SetActive(true);
+		//minigame.SetActive(true);
 		Minigame.S.ButtonMasher();
 		
 		yield return new WaitForSeconds(10);
@@ -92,7 +74,7 @@ public class GameManager : MonoBehaviour {
 		
 		GlobalVariables.S.gameState = 2;
 		GlobalVariables.S.trading = true;
-		minigame.SetActive(false);
+		//minigame.SetActive(false);
 
 		yield return null;
 	}

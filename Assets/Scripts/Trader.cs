@@ -32,7 +32,7 @@ public class Trader : MonoBehaviour {
     public AudioSource          buy_sound, sP_sound, sL_sound;  
     
     // Input Setup 2.0 - Two keys to Select / Hanging Up Buys & Sells
-    private KeyCode[]			inputKeys; // QWERTY values of each phone's keypad
+    private KeyCode[]			inputKeys = new KeyCode[9]; // QWERTY values of each phone's keypad
     public string               inputString = "--"; 
     public KeyCode              bsKey;
 
@@ -49,19 +49,11 @@ public class Trader : MonoBehaviour {
     
     public void Start() {
         // Set the stockKeys
-        if (traderNum == 0) {
-            inputKeys = new []
-                {KeyCode.Q, KeyCode.W, KeyCode.E, KeyCode.R, KeyCode.T, KeyCode.Y, KeyCode.U, KeyCode.I, KeyCode.O};
-        } else if (traderNum == 1) {
-            inputKeys = new []
-                {KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.J, KeyCode.K, KeyCode.L};
-        } else if (traderNum == 2) {
-            inputKeys = new[] {
-                KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V, KeyCode.B, KeyCode.N, KeyCode.M, KeyCode.Comma,
-                KeyCode.Period
-            };
+        for (int i = 0; i < inputKeys.Length; i++) {
+            inputKeys[i] = GlobalVariables.S.inputKeys[traderNum, i];
         }
-        
+
+
         playerFunds = 10f;
         stockSelected = 99;
         UpdateDisplay();
@@ -101,7 +93,7 @@ public class Trader : MonoBehaviour {
         } else {
             for (int i = 0; i < inputKeys.Length; i++) {
                 if (Input.GetKeyDown(inputKeys[i])) {
-                    Minigame.S.ReceiveKey(traderNum, i);
+                    //Minigame.S.ReceiveKey(traderNum, i);
                 }
             }
         }
