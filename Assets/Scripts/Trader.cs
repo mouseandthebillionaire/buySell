@@ -33,7 +33,7 @@ public class Trader : MonoBehaviour {
     
     // Input Setup 2.0 - Two keys to Select / Hanging Up Buys & Sells
     private KeyCode[]			inputKeys = new KeyCode[9]; // QWERTY values of each phone's keypad
-    public string               inputString = "--"; 
+    public string               inputString = ""; 
     public KeyCode              bsKey;
 
     
@@ -52,6 +52,10 @@ public class Trader : MonoBehaviour {
         for (int i = 0; i < inputKeys.Length; i++) {
             inputKeys[i] = GlobalVariables.S.inputKeys[traderNum, i];
         }
+        // Set the length of code
+        for (int i = 0; i < GlobalVariables.S.stockCodeLength; i++) {
+            inputString += "-";
+        }
 
 
         playerFunds = 10f;
@@ -69,11 +73,12 @@ public class Trader : MonoBehaviour {
                 for (int i = 0; i < inputKeys.Length; i++) {
                     if (Input.GetKeyDown(inputKeys[i])) {
                         inputString += (i + 1).ToString();
+                        inputString = inputString.Substring(inputString.Length-GlobalVariables.S.stockCodeLength, GlobalVariables.S.stockCodeLength);
                     }
                 }
                 // only get the the last two digits the user has entered
-                inputString = inputString.Substring(inputString.Length-GlobalVariables.S.stockCodeLength, GlobalVariables.S.stockCodeLength);
 
+                
                 // make sure the price displayed is always up-to-date
                 //transactionUI[2].text = "$" + GameManager.S.tradingStocks[stockSelected].stockValue.ToString("F1");
 

@@ -10,8 +10,11 @@ public class GlobalVariables : MonoBehaviour {
     public int             winner;
     public bool            trading = true;
     public int             numRounds = 3;
-    public int             stockCodeLength;
 
+
+    [Header("Set Dynamically")] 
+    
+    public int             stockCodeLength; // Set by round #
     public string[,]	   stockCodes  = new string[,] {
         {"1", "2", "3", "4", "5", "6", "7", "8", "9"},
         {"13", "37", "28", "87", "42", "91", "71", "57", "65"},
@@ -58,9 +61,7 @@ public class GlobalVariables : MonoBehaviour {
     }
 
     public void Reset() {
-        
-        stockCodeLength = 1;
-                
+                        
 //        // Randomized Codes
 //        // fill the possible stock codes for the current game
 //        for (int i = 0; i < numRounds; i++) {

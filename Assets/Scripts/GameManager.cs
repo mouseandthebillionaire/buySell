@@ -36,10 +36,10 @@ public class GameManager : MonoBehaviour {
 
 	void Start() {
 		resetTime = Time.time;
-		gameRound = 1;		
-		
-		// set all the stocks codes
-		//SetStockCodes(gameRound);
+
+		//eventually the game will start in round 0, but for testing comment out to launch in different rounds
+		//stockCodeLength is dynamically set to gameRound + 1;
+		//gameRound = 0;		
 
 		//GlobalVariables.S.Reset();
 		
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Time.time - (resetTime + interruptTime) > interrupt) {
-			StartCoroutine("LaunchMinigame");
+			//StartCoroutine("LaunchMinigame");
 		}
 		
 		if (Time.time - resetTime > gameLength) {
@@ -61,22 +61,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 
-	public IEnumerator LaunchMinigame() {
-		interruptTime = Time.time;
-		GlobalVariables.S.gameState = 3;
-		GlobalVariables.S.trading = false;
-		//minigame.SetActive(true);
-		Minigame.S.ButtonMasher();
-		
-		yield return new WaitForSeconds(10);
-		
-		// Score minigame
-		
-		GlobalVariables.S.gameState = 2;
-		GlobalVariables.S.trading = true;
-		//minigame.SetActive(false);
-
-		yield return null;
+	public void LaunchMinigame() {
+		SceneManager.LoadScene("Betweener");
 	}
 	
 	public IEnumerator CountDown() {
