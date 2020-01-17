@@ -730,7 +730,7 @@ MonoBehaviour:
   tradingSpeed: 0.0125
   gameLength: 60
   gameRound: 0
-  interrupt: 21
+  roundLength: 10
   countdown: {fileID: 0}
   countdownText: {fileID: 0}
   blip: {fileID: 0}

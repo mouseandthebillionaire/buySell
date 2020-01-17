@@ -11,14 +11,14 @@ public class GameManager : MonoBehaviour {
 	public float		tradingSpeed;
 	public float		gameLength;
 	public int			gameRound;
-	public float		interrupt = 11;
+	public int			roundLength;
 	//public GameObject	minigame;
 	public GameObject	countdown;
 	public Text			countdownText;
 	private int			countdownLength = 3;
 	public AudioSource	blip;
 
-	private float		resetTime, interruptTime;
+	private float		resetTime;
 
 	public static GameManager S;
 
@@ -47,22 +47,35 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.time - (resetTime + interruptTime) > interrupt) {
-			//StartCoroutine("LaunchMinigame");
-		}
-		
-		if (Time.time - resetTime > gameLength) {
-			if (GlobalVariables.S.gameState == 2) {
-				StartCoroutine("CountDown");
-				GlobalVariables.S.gameState = 4;
+		if (GlobalVariables.S.trading) {
+			if (Time.time - resetTime > roundLength) {
+				GlobalVariables.S.trading = false;	
+				RoundOver();
+			}
+			
+			if (Time.time - resetTime > gameLength) {
+				if (GlobalVariables.S.gameState == 2) {
+					StartCoroutine("CountDown");
+					GlobalVariables.S.gameState = 4;
+				}
 			}
 		}
+
 		
 	}
 
 
-	public void LaunchMinigame() {
+	public void RoundOver() {
 		SceneManager.LoadScene("Betweener");
+	}
+
+	public void NextRound() {
+		Debug.Log("did this happen?");
+		gameRound++;
+		resetTime = Time.time;
+		GlobalVariables.S.trading = true;
+		SceneManager.LoadScene("Main");
+
 	}
 	
 	public IEnumerator CountDown() {
