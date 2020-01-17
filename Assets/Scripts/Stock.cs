@@ -28,7 +28,7 @@ public class Stock : MonoBehaviour {
 	public Text				displayName;
 	public Text				displayPrice;
 	private float			displayPriceAmount;
-	public Text				openingPrice;
+	public Text				currentCode;
 	public Color			stockColor;
 
 	public GameObject		lineGraphParent;
@@ -80,20 +80,11 @@ public class Stock : MonoBehaviour {
 		minValue = 1;
 		maxValue = 7;
 		stockValue = Random.Range(minValue, maxValue);
-		displayPriceAmount = stockPrice * 100f;
-		openingPrice.text = displayPriceAmount.ToString();
+		
+		// enter current code
+		currentCode.text = GlobalVariables.S.stockCodes[GameManager.S.gameRound, stockNumber - 1];
+		
 		StartCoroutine(Fluctuate());
-
-	}
-	
-	public void MakePixel(){
-
-		GameObject go;
-		go = Instantiate(LinePixel, new Vector2(400f, value - 3f), Quaternion.identity) as GameObject;
-		SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
-		sr.color = stockColor;
-		go.transform.SetParent(lineGraphParent.transform);
-		go.transform.localPosition = new Vector2(4.9f, value - 3f);
 
 	}
 
