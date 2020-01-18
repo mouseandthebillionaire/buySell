@@ -209,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 197869369, guid: 18ca300594dcd49bf95ffb4584f3ac07, type: 3}
       propertyPath: enter
-      value: 99
+      value: 57
       objectReference: {fileID: 0}
     - target: {fileID: 197869369, guid: 18ca300594dcd49bf95ffb4584f3ac07, type: 3}
       propertyPath: logged_onColor.r
@@ -730,7 +730,7 @@ MonoBehaviour:
   tradingSpeed: 0.0125
   gameLength: 60
   gameRound: 0
-  roundLength: 10
+  roundLength: 30
   countdown: {fileID: 0}
   countdownText: {fileID: 0}
   blip: {fileID: 0}
@@ -1280,6 +1280,7 @@ MonoBehaviour:
   winner: 0
   trading: 1
   numRounds: 3
+  numTraders: 3
   stockCodeLength: 1
   gameState: 0
 --- !u!4 &1558835596
@@ -1417,7 +1418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 197869369, guid: 18ca300594dcd49bf95ffb4584f3ac07, type: 3}
       propertyPath: enter
-      value: 100
+      value: 54
       objectReference: {fileID: 0}
     - target: {fileID: 197869369, guid: 18ca300594dcd49bf95ffb4584f3ac07, type: 3}
       propertyPath: logged_onColor.r
@@ -1672,6 +1673,10 @@ PrefabInstance:
     - target: {fileID: 197869369, guid: 18ca300594dcd49bf95ffb4584f3ac07, type: 3}
       propertyPath: logged_onColor.b
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 197869369, guid: 18ca300594dcd49bf95ffb4584f3ac07, type: 3}
+      propertyPath: enter
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 5595816553721976393, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,9 +29,9 @@ public class Trader : MonoBehaviour {
     public AudioSource          buy_sound, sP_sound, sL_sound;  
     
     // Input Setup 2.0 - Two keys to Select / Hanging Up Buys & Sells
-    private KeyCode[]			inputKeys = new KeyCode[9]; // QWERTY values of each phone's keypad
+    private KeyCode[]			inputKeys = new KeyCode[15]; // QWERTY values of each phone's keypad
     public string               inputString = ""; 
-    public KeyCode              bsKey;
+    private KeyCode              bsKey;
 
     
     public static Trader        S;
@@ -57,6 +54,8 @@ public class Trader : MonoBehaviour {
             inputString += "-";
         }
 
+        bsKey = inputKeys[11];
+
 
         playerFunds = 10f;
         stockSelected = 99;
@@ -70,10 +69,11 @@ public class Trader : MonoBehaviour {
 
     void Update() {
         if(GlobalVariables.S.trading){
-                for (int i = 0; i < inputKeys.Length; i++) {
+                for (int i = 0; i < inputKeys.Length-5; i++) {
                     if (Input.GetKeyDown(inputKeys[i])) {
-                        inputString += (i + 1).ToString();
+                        inputString += i.ToString();
                         inputString = inputString.Substring(inputString.Length-GlobalVariables.S.stockCodeLength, GlobalVariables.S.stockCodeLength);
+                        Debug.Log("The input string ends up as " + i);
                     }
                 }
                 // only get the the last two digits the user has entered
@@ -83,7 +83,10 @@ public class Trader : MonoBehaviour {
                 //transactionUI[2].text = "$" + GameManager.S.tradingStocks[stockSelected].stockValue.ToString("F1");
 
                 // version of PhoneSlam that takes an inputString
-                if (Input.GetKeyDown(bsKey)) PhoneSlammed(inputString);  
+                if (Input.GetKeyDown(bsKey)) {
+                    PhoneSlammed(inputString);
+                    inputString = "-";
+                }  
                 
                 
                 // Single key value denotes stockSelected
@@ -122,7 +125,7 @@ public class Trader : MonoBehaviour {
 
     // version of PhoneSlam that takes an inputString
     public void PhoneSlammed(string codeEntered) {
-        
+                
         bool stockExists = false;
         int stockEntered = 99;
 
@@ -135,6 +138,7 @@ public class Trader : MonoBehaviour {
 
         if (stockExists) {
             Transaction(stockEntered);
+            Debug.Log("Trying to buy stock " + stockEntered);
             if(hasStock[stockEntered]) {StartCoroutine(TransactionProcessing(stockEntered, "sell"));}
             else StartCoroutine(TransactionProcessing(stockEntered, "buy"));         
         } else {
