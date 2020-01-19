@@ -68,6 +68,12 @@ public class Trader : MonoBehaviour {
     }
 
     void Update() {
+        
+        // testing keypresses
+        if (Input.GetKeyDown(KeyCode.Exclaim)) {
+            Debug.Log("It DOES work!");
+        }
+        
         if(GlobalVariables.S.trading){
                 for (int i = 0; i < inputKeys.Length-5; i++) {
                     if (Input.GetKeyDown(inputKeys[i])) {
