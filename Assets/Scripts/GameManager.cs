@@ -16,10 +16,11 @@ public class GameManager : MonoBehaviour {
 	public GameObject	countdown;
 	public Text			countdownText;
 	private int			countdownLength = 3;
-	public AudioSource	blip;
+	private bool		countingDown;
+	public AudioSource	blip;	
 
 	private float		resetTime;
-
+	
 	public static GameManager S;
 
 	// Use this for initialization
@@ -35,62 +36,61 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Start() {
-		resetTime = Time.time;
-
-		//eventually the game will start in round 0, but for testing comment out to launch in different rounds
-		//stockCodeLength is dynamically set to gameRound + 1;
-		//gameRound = 0;		
-
-		//GlobalVariables.S.Reset();
-		
+		Reset();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (GlobalVariables.S.trading) {
-			if (Time.time - resetTime > roundLength) {
-				GlobalVariables.S.trading = false;	
-				RoundOver();
-			}
-			
-			if (Time.time - resetTime > gameLength) {
-				if (GlobalVariables.S.gameState == 2) {
-					StartCoroutine("CountDown");
-					GlobalVariables.S.gameState = 4;
-				}
+			if (Time.time - resetTime > roundLength && !countingDown) {
+				StartCoroutine("CountDown");	
 			}
 		}
 
-		
+	}
+
+	public void Reset() {
+		resetTime = Time.time;
+		countingDown = false;
+		gameRound = 0;
+		GlobalVariables.S.Reset();	
 	}
 
 
 	public void RoundOver() {
-		SceneManager.LoadScene("Betweener");
+		GlobalVariables.S.trading = false;
+		if (gameRound == GlobalVariables.S.numRounds - 1) {
+			SceneManager.LoadScene("End");
+		}
+		else {
+			SceneManager.LoadScene("Betweener");
+		}
 	}
 
 	public void NextRound() {
-		Debug.Log("did this happen?");
 		gameRound++;
+		GlobalVariables.S.stockCodeLength = gameRound + 1;
 		resetTime = Time.time;
+		countingDown = false;
+		countdownLength = 3;
 		GlobalVariables.S.trading = true;
 		SceneManager.LoadScene("Main");
 
 	}
 	
 	public IEnumerator CountDown() {
+		countingDown = true;
 		yield return new WaitForSeconds(1);
 		countdown.SetActive(true);
 		countdownText.text = countdownLength.ToString();
-		countdownLength -= 1;
 		blip.Play();
 		if (countdownLength > 0) {
 			StartCoroutine("CountDown");
 		}
 		else {
-			GlobalVariables.S.GetWinner();
-			yield return new WaitForSeconds(1);
-			SceneManager.LoadScene("End");
+			countdown.SetActive(false);
+			RoundOver();
 		}
+		countdownLength -= 1;
 	}
 }

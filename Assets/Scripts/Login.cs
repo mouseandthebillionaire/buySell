@@ -32,7 +32,6 @@ public class Login : MonoBehaviour {
         }
         else {
             yield return new WaitForSeconds(1);
-            Debug.Log("Load it!");
             SceneManager.LoadScene("Main");
         }
     }

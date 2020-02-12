@@ -1,75 +1,74 @@
-
-1>Scientists find mystery element dubbed ???.>up#
-1>Mystery Element ??? Tastes fantastic!>up#
-1>Element ??? endorsed by famous celebrity.>up#
-1>??? Element might cause diarrhea!>down#
-1>Nutritionists say Mystery Element ??? makes you fat.>down#
-1>ME??? is sentient! Hates being tasted!>down#
-2>Apples pie season is starting!>up#
-2>Apple picking is America's next extreme sport>up#
-2>"Apple of my Eye" topping the pop charts!>up#
-2>Apples are great, but still see a doctor!>down#
-2>Mushy apples on the rise!>down#
-2>Giant Worm invades the Big Apple!>down#
-3>Confirmed: Diamonds look great in tiaras!>up#
-3>Update: Diamond mines may be all empty?>up#
-3>Largest Diamond for sale, owner named Neil.>up#
-3>Diamonds not as sparkly as glitter?>down#
-3>What's this about Diamonds in Conflict?>down#
-3>Diamonds still a girls best friend?>down#
-4>Gold becoming more rare after rapper buys it all!>up#
-4>Namibia motherload turned out to be fools gold.>up#
-4>Alchemist’s scam revealed! All that glitters isn’t gold.>up#
-4>Gold, Silver Prices Lifted By Uptick In Risk Aversion>up#
-4>8 tons of gold disappeared from Fort Knox.>up#
-4>The Midas Touch: Alchemy works!!!>down#
-4>Eureka! Motherload struck in Namibia.>down#
-4>Gold coins - not a lucrative as we thought.>down#
-4>Gold’s logistical nightmare has no solution.>down#
-4>Gold no longer recommended for fillings.>down#
-4>Government says Gold is still valuable>stable#
-4>Pros and cons of stash your cash in gold bars>stable#
-5>Famous celebrity caught drinking juice!>up#
-5>Juice fast! The diet craze we can’t get enough of.>up#
-5>More new juice themed holidays for 2019!>up#
-5>Juice, a new efficient home building material?>up#
-5>Delicious new juice has no calories!>up#
-5>Juice-rain? stunt that wasn’t so sweet>down#
-5>Juice apparently causes cavities!>down#
-5>No calorie-juice causes involuntary eye twitch.>down#
-5>Get paid to drink juice? Yes it’s true.>stable#
-6>Mothers' day is next week, y'all!>up#
-6>Moms still there to kiss boo-boos!>up#
-6>Dad says to check with Mom!>up#
-6>Mom is the best!>up#
-6>Timeouts? No thanks moms!>down#
-6>Mom says we can't have a sleepover after all!>down#
-6>Mom is making asparagus for dinner again!>down#
-7>Scientists say pizza makes people super fat!>down#
-7>Pizza in space! ISS Astronauts know how to party.>up#
-7>Pizza delivery hero stops home invasion.>up#
-7>Pizza tattoos are making everyone hungry.>up#
-7>Pizza brings families together a slice at a time.>up#
-7>Pizza is perfect food hot or cold.>up#
-7>Mozzarella shortage is bad for pizza.>down#
-7>54 cheese pizza is too much cheese.>down#
-7>Freak storm destroys all tomato crops.>down#
-7>Scientists say pizza makes people super fat!>down#
-7>Dipping sauce craze drowns pizza’s appeal.>down#
-7>Chicago vs. New York style pizza face off!>stable#
-7>Confirmed: St. Louis Style pizza is officially bad.>stable#
-8>Taco Tuesday declared a world-wide holiday.>up#
-8>Tacos are official food of New New Mexico.>up#
-8>Fast Food Tacos are cheap and delicious!>up#
-8>Veggie Tacos?! uh....>down#
-8>Burritos: like Tacos but bigger!>down#
-8>This Taco has too much spicy stuff in it!>down#
-8>Tacos are so last week.>down#
-9>Wishing that money grows on trees works!>up#
-9>Wishing Wells also provide hydration!>up#
-9>"When you wish upon a Star", still a great song>up#
-9>Candy for dinner, I wish!>down#
-9>Turns out Wishes ARE like fishes!>down#
-9>Genie found granting only 2 wishes? No thanks!>down#
-9>People spending too much time Wishing>down#
-9>Wishing Wells turning up everywhere.>down#
+1>???>Scientists find mystery element dubbed ???.>up#
+1>???>Mystery Element ??? Tastes fantastic!>up#
+1>???>Element ??? endorsed by famous celebrity.>up#
+1>???>??? Element might cause diarrhea!>down#
+1>???>Nutritionists say Mystery Element ??? makes you fat.>down#
+1>???>ME??? is sentient! Hates being tasted!>down#
+2>APLS>Apples pie season is starting!>up#
+2>APLS>Apple picking is America's next extreme sport>up#
+2>APLS>"Apple of my Eye" topping the pop charts!>up#
+2>APLS>Apples are great, but still see a doctor!>down#
+2>APLS>Mushy apples on the rise!>down#
+2>APLS>Giant Worm invades the Big Apple!>down#
+3>DMND>Confirmed: Diamonds look great in tiaras!>up#
+3>DMND>Update: Diamond mines may be all empty?>up#
+3>DMND>Largest Diamond for sale, owner named Neil.>up#
+3>DMND>Diamonds not as sparkly as glitter?>down#
+3>DMND>What's this about Diamonds in Conflict?>down#
+3>DMND>Diamonds still a girls best friend?>down#
+4>GLD>Gold becoming more rare after rapper buys it all!>up#
+4>GLD>Namibia motherload turned out to be fools gold.>up#
+4>GLD>Alchemist’s scam revealed! All that glitters isn’t gold.>up#
+4>GLD>Gold, Silver Prices Lifted By Uptick In Risk Aversion>up#
+4>GLD>8 tons of gold disappeared from Fort Knox.>up#
+4>GLD>The Midas Touch: Alchemy works!!!>down#
+4>GLD>Eureka! Motherload struck in Namibia.>down#
+4>GLD>Gold coins - not a lucrative as we thought.>down#
+4>GLD>Gold’s logistical nightmare has no solution.>down#
+4>GLD>Gold no longer recommended for fillings.>down#
+4>GLD>Government says Gold is still valuable>stable#
+4>GLD>Pros and cons of stash your cash in gold bars>stable#
+5>JOOC>Famous celebrity caught drinking juice!>up#
+5>JOOC>Juice fast! The diet craze we can’t get enough of.>up#
+5>JOOC>More new juice themed holidays for 2019!>up#
+5>JOOC>Juice, a new efficient home building material?>up#
+5>JOOC>Delicious new juice has no calories!>up#
+5>JOOC>Juice-rain? stunt that wasn’t so sweet>down#
+5>JOOC>Juice apparently causes cavities!>down#
+5>JOOC>No calorie-juice causes involuntary eye twitch.>down#
+5>JOOC>Get paid to drink juice? Yes it’s true.>stable#
+6>MOMS>Mothers' day is next week, y'all!>up#
+6>MOMS>Moms still there to kiss boo-boos!>up#
+6>MOMS>Dad says to check with Mom!>up#
+6>MOMS>Mom is the best!>up#
+6>MOMS>Timeouts? No thanks moms!>down#
+6>MOMS>Mom says we can't have a sleepover after all!>down#
+6>MOMS>Mom is making asparagus for dinner again!>down#
+7>PZA>Scientists say pizza makes people super fat!>down#
+7>PZA>Pizza in space! ISS Astronauts know how to party.>up#
+7>PZA>Pizza delivery hero stops home invasion.>up#
+7>PZA>Pizza tattoos are making everyone hungry.>up#
+7>PZA>Pizza brings families together a slice at a time.>up#
+7>PZA>Pizza is perfect food hot or cold.>up#
+7>PZA>Mozzarella shortage is bad for pizza.>down#
+7>PZA>54 cheese pizza is too much cheese.>down#
+7>PZA>Freak storm destroys all tomato crops.>down#
+7>PZA>Scientists say pizza makes people super fat!>down#
+7>PZA>Dipping sauce craze drowns pizza’s appeal.>down#
+7>PZA>Chicago vs. New York style pizza face off!>stable#
+7>PZA>Confirmed: St. Louis Style pizza is officially bad.>stable#
+8>TKOS>Taco Tuesday declared a world-wide holiday.>up#
+8>TKOS>Tacos are official food of New New Mexico.>up#
+8>TKOS>Fast Food Tacos are cheap and delicious!>up#
+8>TKOS>Veggie Tacos?! uh....>down#
+8>TKOS>Burritos: like Tacos but bigger!>down#
+8>TKOS>This Taco has too much spicy stuff in it!>down#
+8>TKOS>Tacos are so last week.>down#
+9>WSHS>Wishing that money grows on trees works!>up#
+9>WSHS>Wishing Wells also provide hydration!>up#
+9>WSHS>"When you wish upon a Star", still a great song>up#
+9>WSHS>Candy for dinner, I wish!>down#
+9>WSHS>Turns out Wishes ARE like fishes!>down#
+9>WSHS>Genie found granting only 2 wishes? No thanks!>down#
+9>WSHS>People spending too much time Wishing>down#
+9>WSHS>Wishing Wells turning up everywhere.>down#

@@ -32,17 +32,21 @@ public class GameOver : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O) || Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown(KeyCode.Period)) {
-            SceneManager.LoadScene("Menu");
+        if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.Period)) {
+            Menu();
         }
 
         timePassed += Time.deltaTime;
-        Debug.Log(timePassed);
 
         if (timePassed >= delayTime) {
-            SceneManager.LoadScene("Menu");
+            Menu();
         }
 
+    }
+
+    private void Menu() {
+        GameManager.S.Reset();
+        SceneManager.LoadScene("Menu");
     }
     
     IEnumerator GetSnarkFromFile() {
