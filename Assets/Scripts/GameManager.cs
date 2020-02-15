@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour {
 	//public Stock[]		tradingStocks;
 
 	public float		tradingSpeed;
-	public float		gameLength;
 	public int			gameRound;
+	public float[]      roundWorth = new float[3];
 	public int			roundLength;
 	//public GameObject	minigame;
 	public GameObject	countdown;
@@ -53,23 +53,28 @@ public class GameManager : MonoBehaviour {
 		resetTime = Time.time;
 		countingDown = false;
 		gameRound = 0;
+		for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
+			roundWorth[i] = 0;
+		}
 		GlobalVariables.S.Reset();	
 	}
 
 
 	public void RoundOver() {
 		GlobalVariables.S.trading = false;
-		if (gameRound == GlobalVariables.S.numRounds - 1) {
-			SceneManager.LoadScene("End");
-		}
-		else {
-			SceneManager.LoadScene("Betweener");
-		}
+		SceneManager.LoadScene("Betweener");
 	}
 
 	public void NextRound() {
 		gameRound++;
 		GlobalVariables.S.stockCodeLength = gameRound + 1;
+		// Reset Trader's Current Worth
+		for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
+			roundWorth[i] = 0;
+			for(int j=0; j < 2; j++){
+				GlobalVariables.S.traderRoundStats[i, j] = 0;
+			}
+		}
 		resetTime = Time.time;
 		countingDown = false;
 		countdownLength = 3;

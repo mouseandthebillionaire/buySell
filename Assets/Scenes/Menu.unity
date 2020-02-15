@@ -1021,8 +1021,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tradingSpeed: 0.0125
-  gameLength: 120
   gameRound: 0
+  roundWorth:
+  - 0
+  - 0
+  - 0
   roundLength: 30
   countdown: {fileID: 970425369}
   countdownText: {fileID: 383234046}

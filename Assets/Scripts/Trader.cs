@@ -22,7 +22,7 @@ public class Trader : MonoBehaviour {
     public Text[]				holdingsDisplay;
     
     // Trader Statistics
-    private float				playerFunds, earnedFunds;
+    private float				totalEarnings, roundEarnings, playerFunds, earnedFunds;
     public int                  stocksBought, stocksSold;
     public Text                 stocksBoughtText, stocksSoldText;
     public Image                earningsMeter;
@@ -80,7 +80,8 @@ public class Trader : MonoBehaviour {
         
 
         // Set up player overall and round funds
-        playerFunds = GlobalVariables.S.traderWorth[traderNum];
+        totalEarnings = GlobalVariables.S.traderWorth[traderNum];
+        roundEarnings = GameManager.S.roundWorth[traderNum];
 
         earnedFunds = 0;
     }
@@ -115,16 +116,8 @@ public class Trader : MonoBehaviour {
                     PhoneSlammed(inputString);
                     inputString = "-";
                     codeInput.text = "#" + inputString;
-                }  
-                
-        // otherwise, we're in a minigame       
-        } else {
-            for (int i = 0; i < inputKeys.Length; i++) {
-                if (Input.GetKeyDown(inputKeys[i])) {
-                    //Minigame.S.ReceiveKey(traderNum, i);
-                }
-            }
-        }
+                }                  
+        } 
     }
 
     // version of PhoneSlam that takes an inputString
@@ -202,9 +195,9 @@ public class Trader : MonoBehaviour {
             float netGain = sellPrice - stockPrice[_stockNum];
             string stockName = s.stockName;
             
-            playerFunds += sellPrice;
+            roundEarnings += sellPrice;
             earnedFunds += (netGain * 100f);
-            GlobalVariables.S.traderWorth[traderNum] += earnedFunds;
+            GameManager.S.roundWorth[traderNum] += earnedFunds;
             
             int holdingsLocation = 0;
             for(int i=0; i<holdings.Count; i++) {
@@ -245,10 +238,6 @@ public class Trader : MonoBehaviour {
     }
     
     private void UpdateDisplay() {		
-        float displayFunds = playerFunds * 100;
-        //float portfolioFunds = displayFunds;
-        // Overall funds
-        
         // Ammount earned
         earningsMeter.fillAmount = earnedFunds / 200f;
 
