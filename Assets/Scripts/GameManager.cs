@@ -59,6 +59,10 @@ public class GameManager : MonoBehaviour {
 		GlobalVariables.S.Reset();	
 	}
 
+	public void StartGame() {
+		PrepForRound();
+	}
+
 
 	public void RoundOver() {
 		GlobalVariables.S.trading = false;
@@ -67,7 +71,11 @@ public class GameManager : MonoBehaviour {
 
 	public void NextRound() {
 		gameRound++;
-		GlobalVariables.S.stockCodeLength = gameRound + 1;
+		GlobalVariables.S.stockCodeLength = gameRound + 1;		
+		PrepForRound();
+	}
+
+	public void PrepForRound() {
 		// Reset Trader's Current Worth
 		for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
 			roundWorth[i] = 0;
@@ -80,7 +88,6 @@ public class GameManager : MonoBehaviour {
 		countdownLength = 3;
 		GlobalVariables.S.trading = true;
 		SceneManager.LoadScene("Main");
-
 	}
 	
 	public IEnumerator CountDown() {

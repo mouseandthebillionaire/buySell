@@ -73,7 +73,7 @@ public class Stock : MonoBehaviour {
 		lr.material = lr_mat[lr.transform.GetSiblingIndex()];
 		
 		stockNumberIcon = lr.GetComponentInChildren<SpriteRenderer>();
-		string spriteLoc = "_stockNumberIcons/stockNumber_" + stockNumber;
+		string spriteLoc = "_stockIcons/stockIcon_" + stockNumber;
 		Sprite s         = Resources.Load<Sprite>(spriteLoc);
 		stockNumberIcon.sprite = s;
 
