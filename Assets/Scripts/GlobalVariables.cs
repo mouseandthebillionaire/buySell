@@ -20,7 +20,7 @@ public class GlobalVariables : MonoBehaviour {
     public int[,]          traderRoundStats = new int[3, 2];
 
     [Header("Set Dynamically")] public int             stockCodeLength; // Set by round #
-
+    
     public string[,]	   stockCodes  = new string[,] {
         {"1", "2", "3", "4", "5", "6", "7", "8", "9"},
         {"13", "37", "28", "87", "42", "91", "71", "57", "65"},
@@ -30,6 +30,15 @@ public class GlobalVariables : MonoBehaviour {
     public string[]        stockNames = new string[] {
         "???", "APLS", "DMND", "GLD", "JOOC", "MOMS", "PZA", "TKOS", "WSHS"
     };
+    
+    public string[]        shortTeamNames = new string[] {
+        "NNF", "YU", "RRR"
+    };
+
+    public string[]        teamNames = new string[] {
+        "Necktie, Necktie and Fleece", "Young Upstarts", "Rose and Rosen Rose"
+    };
+
 
 // Input Keys
     // 0-9 tied to numbers
