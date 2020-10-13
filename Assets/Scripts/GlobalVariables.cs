@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
-using Random = System.Random;
 
 public class GlobalVariables : MonoBehaviour {
 
@@ -16,31 +12,30 @@ public class GlobalVariables : MonoBehaviour {
     public int             numTraders = 3;
     public Color[]         traderColors;
     
-    // Hold Round specific variables
+    // Hold Round specific variables [stocksBought / stocksSold]
     public int[,]          traderRoundStats = new int[3, 2];
 
-    [Header("Set Dynamically")] public int             stockCodeLength; // Set by round #
+    [Header("Set Dynamically")] 
+    public int             stockCodeLength; // Set by round #
     
-    public string[,]	   stockCodes  = new string[,] {
+    public string[,]	   stockCodes  = new string[3,9]{
         {"1", "2", "3", "4", "5", "6", "7", "8", "9"},
         {"13", "37", "28", "87", "42", "91", "71", "57", "65"},
         {"143", "256", "312", "417", "562", "671", "714", "818", "945"}
     };
 
-    public string[]        stockNames = new string[] {
+    public string[]        stockNames = new string[9]{
         "???", "APLS", "DMND", "GLD", "JOOC", "MOMS", "PZA", "TKOS", "WSHS"
     };
     
-    public string[]        shortTeamNames = new string[] {
-        "NNF", "YU", "RRR"
-    };
+    public string[]        shortTeamNames = new string[3]{"NNF", "YU", "RRR"};
 
-    public string[]        teamNames = new string[] {
+    public string[]        teamNames = new string[3]{
         "Necktie, Necktie and Fleece", "Young Upstarts", "Rose and Rosen Rose"
     };
 
 
-// Input Keys
+    // Input Keys
     // 0-9 tied to numbers
     // Star (10), Pound(11), Pickup(12), Hangup(13), Yell(14)
     
@@ -48,7 +43,7 @@ public class GlobalVariables : MonoBehaviour {
     public KeyCode[,]      inputKeys = new KeyCode[,] {
         {KeyCode.X, KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Q,    // 0-4
          KeyCode.W, KeyCode.E, KeyCode.A, KeyCode.S, KeyCode.D,                   // 5-9
-         KeyCode.Z, KeyCode.C, KeyCode.Alpha0, KeyCode.P, KeyCode.Semicolon},        // Star, Pound, Up, Down, Yell
+         KeyCode.Z, KeyCode.C, KeyCode.Alpha0, KeyCode.P, KeyCode.Semicolon},     // Star, Pound, Up, Down, Yell
         
         {KeyCode.B, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.R, 
          KeyCode.T, KeyCode.Y, KeyCode.F, KeyCode.G, KeyCode.H, 
@@ -78,23 +73,16 @@ public class GlobalVariables : MonoBehaviour {
     void Start() {
         Reset();
     }
-    
-    public void GetWinner() {
-        float max = traderWorth[0];
-        winner = 0;
-        for (int i = 1; i < traderWorth.Length; i++) {
-            if (traderWorth[i] > max) {
-                max = traderWorth[i];
-                winner = i;
-            }
-        }
-        Debug.Log("The winner is " + winner);
-    }
 
     public void Reset() {
         gameState = 2;
         for (int i = 0; i < numTraders; i++) {
-            traderWorth[i] = 0f;
+            // reset trader money to $0 at the start of every day
+            //FundManager.S.ResetWorth();
+            // OR keep their money the same by doing nothing
+            // OR pull an amount from an online XML file...
+            //FundManager.S.LoadWorth();
+            
             traderRoundStats[i, 0] = 0;
             traderRoundStats[i, 1] = 0;
             stockCodeLength = 1;

@@ -698,7 +698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winner: {fileID: 280786420}
   snarkText: {fileID: 2062811679}
-  delayTime: 120
+  delayTime: 15
 --- !u!1 &2062811677
 GameObject:
   m_ObjectHideFlags: 0

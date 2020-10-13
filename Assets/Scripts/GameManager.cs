@@ -41,6 +41,11 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// if gamestate == login screen and logins have all been completed
+			// if haven't played yet --- start info screen
+			// else start countdown to gameplay
+		
+		
 		if (GlobalVariables.S.trading) {
 			if (Time.time - resetTime > roundLength && !countingDown) {
 				StartCoroutine("CountDown");	

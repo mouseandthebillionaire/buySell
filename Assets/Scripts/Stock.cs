@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
-using IBM.Watson.DeveloperCloud.Logging;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -87,12 +86,20 @@ public class Stock : MonoBehaviour {
 	}
 
 	private void LoadStock() {
-		displayName = transform.GetChild(0).GetComponent<Text>();
-		displayPrice = transform.GetChild(4).GetComponent<Text>();
-		currentCode = transform.GetChild(2).GetComponent<Text>();
+		displayName = transform.GetChild(1).GetComponent<Text>();
+		displayPrice = transform.GetChild(2).transform.GetChild(1).GetComponent<Text>();
+		currentCode = transform.GetChild(3).transform.GetChild(1).GetComponent<Text>();
 		displayName.text = stockName;
 		// enter current code
 		currentCode.text = stockCode;
+		
+		// Set color
+		Image stockImage = transform.GetComponent<Image>();
+		stockImage.color = new Color(
+			stockImage.color.r, 
+			stockImage.color.g,
+			stockImage.color.b,
+			1f - stockNumber/10f);
 		
 		// Values
 		volatility = Random.Range(0.25f, 1.5f);

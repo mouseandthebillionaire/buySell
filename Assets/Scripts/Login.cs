@@ -43,6 +43,7 @@ public class Login : MonoBehaviour {
             traderCount += 1;
         }
         else {
+            // Build in 
             StartCoroutine("CountDown");
         }
        
