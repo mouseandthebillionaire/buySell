@@ -174,7 +174,7 @@ public class Trader : MonoBehaviour {
         Text name = go.transform.Find("stockName").GetComponent<Text>();
         name.text = s.stockName;
         Text value = go.transform.Find("stockAMT").GetComponent<Text>();
-        float displayPrice = purchasePrice * 100;
+        float displayPrice = purchasePrice;
         value.text = " AT $"+ displayPrice.ToString("F1");
   
         holdings.Add(go);
@@ -196,7 +196,9 @@ public class Trader : MonoBehaviour {
             string stockName = s.stockName;
             
             roundEarnings += sellPrice;
-            earnedFunds += (netGain * 100f);
+            // too high
+            //earnedFunds += (netGain * 100f);
+            earnedFunds += netGain;
             GameManager.S.roundWorth[traderNum] += earnedFunds;
             
             int holdingsLocation = 0;
@@ -239,7 +241,9 @@ public class Trader : MonoBehaviour {
     
     private void UpdateDisplay() {		
         // Ammount earned
-        earningsMeter.fillAmount = earnedFunds / 200f;
+        // too low with non inflated stocks
+        //earningsMeter.fillAmount = earnedFunds / 200f;
+        earningsMeter.fillAmount = earnedFunds / 10f;
 
         int holdingIndex = 0;
 

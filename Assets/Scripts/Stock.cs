@@ -2,8 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -14,7 +12,8 @@ public class Stock : MonoBehaviour {
 	public string			stockName;
 	public int				stockNumber;
 	public string			stockCode; // each stock has a unique code that needs to be dialed
-
+	private Image			stockImage;
+	
 	private List<float> 	valueHistory = new List<float>();
 	public float			value;
 	public float			volatility = 1;
@@ -94,12 +93,19 @@ public class Stock : MonoBehaviour {
 		currentCode.text = stockCode;
 		
 		// Set color
-		Image stockImage = transform.GetComponent<Image>();
-		stockImage.color = new Color(
-			stockImage.color.r, 
-			stockImage.color.g,
-			stockImage.color.b,
+		Image stockBackground = transform.GetComponent<Image>();
+		stockBackground.color = new Color(
+			stockBackground.color.r, 
+			stockBackground.color.g,
+			stockBackground.color.b,
 			1f - stockNumber/10f);
+		
+		// Set Icon
+		Transform si_transform = transform.Find("StockIcon");
+		Image stockIcon = si_transform.GetComponent<Image>();
+		string spriteLoc = "_stockIcons/stockIcon_" + stockNumber;
+		Sprite s         = Resources.Load<Sprite>(spriteLoc);
+		stockIcon.sprite = s;
 		
 		// Values
 		volatility = Random.Range(0.25f, 1.5f);
@@ -133,8 +139,10 @@ public class Stock : MonoBehaviour {
 
 		
 		stockHistory.Add(stockValue - 4f);
-		displayPriceAmount = stockValue * 100f;
-		displayPrice.text = "$" + displayPriceAmount.ToString("00");
+		// too high
+		//displayPriceAmount = stockValue * 100f;
+		displayPriceAmount = stockValue;
+		displayPrice.text = "$" + displayPriceAmount.ToString("0.0");
 
 		// Draw the Line
 		MakeLine();
@@ -172,9 +180,10 @@ public class Stock : MonoBehaviour {
 			valueHistory.RemoveAt(0);
 		}
 		
-		float dp = value * 100f;
-		displayPrice.text = "$" + dp.ToString("00");
-
+		// too high
+		//float dp = value * 100f;
+		float dp = value;
+		displayPrice.text = "$" + dp.ToString("0.0");
 	}
 	
 	private IEnumerator Fluctuate() {

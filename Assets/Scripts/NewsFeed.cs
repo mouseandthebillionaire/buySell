@@ -67,7 +67,9 @@ public class NewsFeed : MonoBehaviour {
                 newItemColl = feedItems[newItem].Split('>');
                 
                 // Add timestamp
-                string newItemText = (System.DateTime.Now.ToString("HH:m:ss") + "        \t");   
+                string newItemText = (System.DateTime.Now.ToString("HH:m:ss") + "\t\t");  
+                // Add Stock NAME
+                newItemText += newItemColl[1] + "\t\t";
                 // Add news item string
                 newItemText += newItemColl[2];
                 // Remove newlines

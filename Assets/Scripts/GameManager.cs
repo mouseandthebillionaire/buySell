@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Start() {
+		FundManager.S.LoadWorth();
 		Reset();
 	}
 	
