@@ -32,8 +32,7 @@ public class Login : MonoBehaviour {
         }
         else {
             yield return new WaitForSeconds(1);
-            Debug.Log("Load it!");
-            SceneManager.LoadScene("Main");
+            GameManager.S.StartGame();
         }
     }
 
@@ -44,6 +43,7 @@ public class Login : MonoBehaviour {
             traderCount += 1;
         }
         else {
+            // Build in 
             StartCoroutine("CountDown");
         }
        

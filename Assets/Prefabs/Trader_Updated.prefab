@@ -1432,14 +1432,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b584b7bbdb4fa48b49d6f181baa23ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerFunds: 0
-  earnedFunds: 0
   traderNum: 0
   traderColor: {r: 0, g: 0, b: 0, a: 0}
   hasStock: 000000000000000000
+  stockPrice: []
   stockSelected: 0
-  fundsDisplay: {fileID: 114311784029037686}
-  portfolioDisplay: {fileID: 3444007964370891601}
+  codeInput: {fileID: 0}
   transactionUI:
   - {fileID: 8416211786003244995}
   - {fileID: 1780128806049300572}
@@ -1459,13 +1457,17 @@ MonoBehaviour:
   - {fileID: 1752381239}
   - {fileID: 43359349}
   - {fileID: 394168912}
-  traderTransaction: {fileID: 5992486499591670970}
+  stocksBought: 0
+  stocksSold: 0
+  earningsMeter: {fileID: 0}
+  holdingsParent: {fileID: 0}
+  holdingPrefab: {fileID: 0}
+  holdings: []
   t_UI: {fileID: 5858654465964781701}
   buy_sound: {fileID: 0}
   sP_sound: {fileID: 0}
   sL_sound: {fileID: 0}
   inputString: --
-  bsKey: 112
 --- !u!114 &854194320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2874,7 +2876,7 @@ PrefabInstance:
     - target: {fileID: 5306471246347759312, guid: ca0ce807e63fc4e1791d57ffce17c080,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5539056452709088838, guid: ca0ce807e63fc4e1791d57ffce17c080,
         type: 3}

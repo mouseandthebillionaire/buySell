@@ -1,27 +1,37 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Net.Http.Headers;
+using System.Runtime.Serialization.Formatters;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Trader : MonoBehaviour {
-    public float				playerFunds, earnedFunds;
     public int                  traderNum;
     public Color                traderColor;
     private float               traderLuck = 0.5f; // trader starts with average luck
     
 	
-    public bool[]				hasStock = new bool[9];
-    private float[]				stockPrice = new float[9];
+    public bool[]				hasStock = new bool[GlobalVariables.S.roundStocks];
+    public float[]				stockPrice = new float[GlobalVariables.S.roundStocks];
     public int                  stockSelected;
-    public Text					fundsDisplay, portfolioDisplay;
+    public Text					codeInput;
     public Text[]               transactionUI;
     public GameObject           transactionWheel;
     public Color[]              transactionColors;
     public Text[]				holdingsDisplay;
-    public Text                 traderTransaction;
-    private String              ttt;
     
+    // Trader Statistics
+    private float				totalEarnings, roundEarnings, playerFunds, earnedFunds;
+    public int                  stocksBought, stocksSold;
+    public Text                 stocksBoughtText, stocksSoldText;
+    public Image                earningsMeter;
     
+    // Dynamically add stocks as they are bought
+    public GameObject           holdingsParent;
+    public GameObject           holdingPrefab;
+    public List<GameObject>     holdings = new List<GameObject>();
+        
     // Transaction UI
     public GameObject           t_UI;
     
@@ -30,8 +40,9 @@ public class Trader : MonoBehaviour {
     
     // Input Setup 2.0 - Two keys to Select / Hanging Up Buys & Sells
     private KeyCode[]			inputKeys = new KeyCode[15]; // QWERTY values of each phone's keypad
-    public string               inputString = ""; 
-    private KeyCode              bsKey;
+    public string               inputString = "";
+    public string               bonusString = "";
+    private KeyCode             bsKey;
 
     
     public static Trader        S;
@@ -45,6 +56,7 @@ public class Trader : MonoBehaviour {
     }
     
     public void Start() {
+
         // Set the stockKeys
         for (int i = 0; i < inputKeys.Length; i++) {
             inputKeys[i] = GlobalVariables.S.inputKeys[traderNum, i];
@@ -54,80 +66,59 @@ public class Trader : MonoBehaviour {
             inputString += "-";
         }
 
-        bsKey = inputKeys[11];
+        stocksBought = 0;
+        stocksSold = 0;
 
+        bsKey = inputKeys[14];
 
-        playerFunds = 10f;
         stockSelected = 99;
         UpdateDisplay();
         for (int i = 0; i < StockManager.S.tradingStocks.Length; i++) {
             hasStock[i] = false;
         }
+        
+        
 
-        GlobalVariables.S.traderWorth[traderNum] = playerFunds;
+        // Set up player overall and round funds
+        totalEarnings = GlobalVariables.S.traderWorth[traderNum];
+        roundEarnings = GameManager.S.roundWorth[traderNum];
+
+        earnedFunds = 0;
     }
 
-    void Update() {
+    void Update() {   
         
-        // testing keypresses
-        if (Input.GetKeyDown(KeyCode.Exclaim)) {
-            Debug.Log("It DOES work!");
-        }
+//        // Can we look for special any-length code entered outside the main loop
+//        for (int i = 0; i < inputKeys.Length-3; i++) {
+//            // Looking for pound
+//            if(Input.GetKeyDown(inputKeys[11]))
+//            if (Input.GetKeyDown(inputKeys[i])) {
+//                if(in)
+//                bonusString += i.ToString();
+//                // only get the the last two digits the user has entered
+//                inputString = inputString.Substring(inputString.Length-GlobalVariables.S.stockCodeLength, GlobalVariables.S.stockCodeLength);
+//                codeInput.text = "#" + inputString;
+//            }
+//        }
         
         if(GlobalVariables.S.trading){
                 for (int i = 0; i < inputKeys.Length-5; i++) {
                     if (Input.GetKeyDown(inputKeys[i])) {
                         inputString += i.ToString();
+                        // only get the the last two digits the user has entered
                         inputString = inputString.Substring(inputString.Length-GlobalVariables.S.stockCodeLength, GlobalVariables.S.stockCodeLength);
-                        Debug.Log("The input string ends up as " + i);
+                        codeInput.text = "#" + inputString;
                     }
                 }
-                // only get the the last two digits the user has entered
-
-                
-                // make sure the price displayed is always up-to-date
-                //transactionUI[2].text = "$" + GameManager.S.tradingStocks[stockSelected].stockValue.ToString("F1");
 
                 // version of PhoneSlam that takes an inputString
                 if (Input.GetKeyDown(bsKey)) {
                     PhoneSlammed(inputString);
                     inputString = "-";
-                }  
-                
-                
-                // Single key value denotes stockSelected
-//                if (stockSelected != 99) {
-//                    //if (Input.GetKey(buyKey)) Buy(stockSelected);
-//                    //if (Input.GetKey(sellKey)) Sell(stockSelected);
-//
-//                    // Slam down the phone to buy OR sell
-//                    if (Input.GetKey(bsKey)) PhoneSlam(stockSelected);    
-//                }
-        // otherwise, we're in a minigame       
-        } else {
-            for (int i = 0; i < inputKeys.Length; i++) {
-                if (Input.GetKeyDown(inputKeys[i])) {
-                    //Minigame.S.ReceiveKey(traderNum, i);
-                }
-            }
-        }
+                    codeInput.text = "#" + inputString;
+                }                  
+        } 
     }
-
-//    public void PhoneSlam(int stock) {
-//        int _stockNum = stock;
-//        Debug.Log("we selling?");
-//
-//        if (hasStock[_stockNum]) {
-//            StartCoroutine(TransactionProcessing(_stockNum, "sell"));
-//        }
-//        else {
-//            
-//            StartCoroutine(TransactionProcessing(_stockNum, "buy"));
-//
-//        }
-//
-//        stockSelected = 99;
-//    }
 
     // version of PhoneSlam that takes an inputString
     public void PhoneSlammed(string codeEntered) {
@@ -135,16 +126,16 @@ public class Trader : MonoBehaviour {
         bool stockExists = false;
         int stockEntered = 99;
 
-        for(int i=0; i < GlobalVariables.S.stockCodes.GetLength(1); i++){
-            if (codeEntered == GlobalVariables.S.stockCodes[GameManager.S.gameRound, i]){
-                stockExists = true;
-                stockEntered = i;
-            }
+        for(int i=0; i < GlobalVariables.S.roundStocks; i++){
+            
+                if (codeEntered == StockManager.S.roundStocks[i].GetComponent<Stock>().stockCode) {
+                    stockExists = true;
+                    stockEntered = i;                    
+                }
         }
 
         if (stockExists) {
             Transaction(stockEntered);
-            Debug.Log("Trying to buy stock " + stockEntered);
             if(hasStock[stockEntered]) {StartCoroutine(TransactionProcessing(stockEntered, "sell"));}
             else StartCoroutine(TransactionProcessing(stockEntered, "buy"));         
         } else {
@@ -155,12 +146,15 @@ public class Trader : MonoBehaviour {
     public void Buy(int stock) {
         int _stockNum = stock;
 
-        Stock _stb = StockManager.S.tradingStocks[_stockNum];
-        float purchasePrice = _stb.stockValue;
+        GameObject _stb = StockManager.S.roundStocks[_stockNum];
+        Stock s = _stb.GetComponent<Stock>();
+        float purchasePrice = s.stockValue;
 
         playerFunds -= purchasePrice;
-        stockPrice[_stockNum] = _stb.stockValue;
+        stockPrice[_stockNum] = purchasePrice;
         hasStock[_stockNum] = true;
+        stocksBought++;
+        GlobalVariables.S.traderRoundStats[traderNum, 0]++;
 
         // Stock is influenced by...
         // a) traderLuck
@@ -173,6 +167,18 @@ public class Trader : MonoBehaviour {
             StockManager.S.EffectStock("down", _stockNum);
         }
         
+        // Add the stock to the list of owned stocks
+
+        GameObject go = GameObject.Instantiate(holdingPrefab) as GameObject;
+        go.transform.parent = holdingsParent.transform;
+        Text name = go.transform.Find("stockName").GetComponent<Text>();
+        name.text = s.stockName;
+        Text value = go.transform.Find("stockAMT").GetComponent<Text>();
+        float displayPrice = purchasePrice;
+        value.text = " AT $"+ displayPrice.ToString("F1");
+  
+        holdings.Add(go);
+        
         UpdateDisplay();
         buy_sound.Play();
 
@@ -183,13 +189,26 @@ public class Trader : MonoBehaviour {
         
         if (hasStock[_stockNum]) {
             
-            Stock _stb = StockManager.S.tradingStocks[_stockNum];
-            float sellPrice = _stb.stockValue;
+            GameObject _stb = StockManager.S.roundStocks[_stockNum];
+            Stock s = _stb.GetComponent<Stock>();
+            float sellPrice = s.stockValue;
             float netGain = sellPrice - stockPrice[_stockNum];
-            ttt = "Sold " + StockManager.S.tradingStocks[_stockNum].displayName.text + " at " + sellPrice * 100f + " / Earned " + netGain * 100f;
-            playerFunds += sellPrice;
-            earnedFunds += (netGain * 100f);
-            hasStock[_stockNum] = false;
+            string stockName = s.stockName;
+            
+            roundEarnings += sellPrice;
+            // too high
+            //earnedFunds += (netGain * 100f);
+            earnedFunds += netGain;
+            GameManager.S.roundWorth[traderNum] += earnedFunds;
+            
+            int holdingsLocation = 0;
+            for(int i=0; i<holdings.Count; i++) {
+                if(holdings[i].transform.Find("stockName").GetComponent<Text>().text == stockName){
+                    holdingsLocation = i;
+                }
+            }
+            holdings.RemoveAt(holdingsLocation);
+            Destroy (holdingsParent.transform.GetChild (holdingsLocation).gameObject);
             
             if (netGain > 0) {
                 transactionWheel.GetComponent<Image>().color = transactionColors[1];
@@ -212,35 +231,38 @@ public class Trader : MonoBehaviour {
                 StockManager.S.EffectStock("down", _stockNum);
             }
             
+            hasStock[_stockNum] = false;
+            stocksSold++;
+            GlobalVariables.S.traderRoundStats[traderNum, 1]++;
+            
             UpdateDisplay();
-        } else {
-            ttt = "Tried to sell a stock they didn't actually own";
-        }
+        } 
     }
     
     private void UpdateDisplay() {		
-        float displayFunds = playerFunds * 100;
-        //float portfolioFunds = displayFunds;
-        // Overall funds
-        //GlobalVariables.S.traderWorth[traderNum] = displayFunds;
-        
         // Ammount earned
-        GlobalVariables.S.traderWorth[traderNum] = earnedFunds;
+        // too low with non inflated stocks
+        //earningsMeter.fillAmount = earnedFunds / 200f;
+        earningsMeter.fillAmount = earnedFunds / 10f;
 
-        for (int i = 0; i < StockManager.S.tradingStocks.Length; i++) {
-            if (hasStock[i]) {
-                float displayPrice = stockPrice[i] * 100;
-                holdingsDisplay[i].text = "$" + displayPrice.ToString("F2");
-            }
-            else {
-                holdingsDisplay[i].text = "$0";
-            }
+        int holdingIndex = 0;
 
+        foreach (GameObject go in holdings) {
+            go.transform.localPosition = new Vector3(90, -40 * holdingIndex, 0);
+            go.transform.localScale = new Vector3(1, 1, 1);
+            holdingIndex++;
         }
-
-        traderTransaction.text = ttt;
-        fundsDisplay.text = "Available: $" + displayFunds.ToString("F2");
-        portfolioDisplay.text = "Earned: $" + earnedFunds.ToString("F2");
+        
+        stocksBoughtText.text = "BOUGHT: " + stocksBought.ToString();
+        stocksSoldText.text = "| SOLD: " + stocksSold.ToString();
+              
+        
+        
+ 
+        // Show The Fund Amount that Each Trader Has
+        //traderTransaction.text = ttt;
+        //fundsDisplay.text = "Available: $" + displayFunds.ToString("F2");
+        //portfolioDisplay.text = "Earned: $" + earnedFunds.ToString("F2");
 
     }
     
@@ -248,14 +270,18 @@ public class Trader : MonoBehaviour {
     private void Transaction(int _numSelected) {
                 
         int stockToProcess = _numSelected;
-        Stock _stb = StockManager.S.tradingStocks[stockToProcess];
+        GameObject _stb = StockManager.S.roundStocks[_numSelected];
+        Stock s = _stb.GetComponent<Stock>();
         t_UI.SetActive(true);
-        transactionUI[0].text = _numSelected+1 + "-" + _stb.stockName;
+        transactionUI[0].text = s.stockName;
         if (hasStock[stockToProcess]) {
-            transactionUI[1].text = "$" + stockPrice[stockToProcess].ToString("F1");
+            transactionUI[1].text = "$" + s.stockValue.ToString("F1");
+            transactionUI[2].text = "$" + stockPrice[stockToProcess].ToString("F1");
         }
         else {
             transactionUI[1].text = "--";
+            transactionUI[2].text = "$" + s.stockValue.ToString("F1");
+
         }
     }
 
@@ -267,6 +293,10 @@ public class Trader : MonoBehaviour {
         if(action == "buy") Buy(_stockNum);
         if(action == "sell") Sell(_stockNum);
    
+    }
+
+    public void ClearInput() {
+        
     }
     
 }

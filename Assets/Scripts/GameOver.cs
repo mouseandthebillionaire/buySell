@@ -8,41 +8,44 @@ using UnityEngine.SceneManagement;
 using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour {
+    private int         winnerNum;
     public Text         winner, snarkText;
     private TextAsset   snarkCollection;
     private string[]    snark;
 
     private float       timePassed;
     public float        delayTime;
-
-    private string[] teamName = new string[] {"Necktie, Necktie and Fleece", "Young Upstarts", "Rose and Rosen Rose"};
     
     // Start is called before the first frame update
     void Start() {
         StartCoroutine(GetSnarkFromFile());
+     
 
         //Debug
-        winner.text = teamName[0];
+        winner.text = GlobalVariables.S.teamNames[GetWinner()];
+        winner.color = GlobalVariables.S.traderColors[winnerNum];
         
-        // Actual
-//        winner.text = teamName[GlobalVariables.S.winner];
         timePassed = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O) || Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown(KeyCode.Period)) {
-            SceneManager.LoadScene("Menu");
+        if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.Period)) {
+            Menu();
         }
 
         timePassed += Time.deltaTime;
-        Debug.Log(timePassed);
 
         if (timePassed >= delayTime) {
-            SceneManager.LoadScene("Menu");
+            Menu();
         }
 
+    }
+
+    private void Menu() {
+        GameManager.S.Reset();
+        SceneManager.LoadScene("Menu");
     }
     
     IEnumerator GetSnarkFromFile() {
@@ -53,5 +56,19 @@ public class GameOver : MonoBehaviour {
         snarkText.text = snark[i];
 
         yield return null;
+    }
+    
+        
+    public int GetWinner() {
+        float max = GlobalVariables.S.traderWorth[0];
+        winnerNum = 0;
+        for (int i = 1; i < GlobalVariables.S.traderWorth.Length; i++) {
+            if (GlobalVariables.S.traderWorth[i] > max) {
+                max = GlobalVariables.S.traderWorth[i];
+                winnerNum = i;
+            }
+        }
+
+        return winnerNum;
     }
 }

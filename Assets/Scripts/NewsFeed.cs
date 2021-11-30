@@ -16,8 +16,8 @@ public class NewsFeed : MonoBehaviour {
     private string[]         newItemColl;
     private Text            newsFeedText;
 
-    public float             newsUpdateTime = 2.5f;
-    public float             itemsToDisplay = 5;
+    private float            newsUpdateTime = 4f;
+    private int              itemsToDisplay = 3;
     
     private string url = "http://www.mouseandthebillionaire.com/games/gameFiles/buySell/newsFeed.txt";
     
@@ -65,11 +65,16 @@ public class NewsFeed : MonoBehaviour {
             for (int i = 0; i < itemsToDisplay; i++) {
                 int newItem = UnityEngine.Random.Range(0, feedItems.Length - 1);
                 newItemColl = feedItems[newItem].Split('>');
-                string newItemText = newItemColl[1];
-            
+                
+                // Add timestamp
+                string newItemText = (System.DateTime.Now.ToString("HH:m:ss") + "\t\t");  
+                // Add Stock NAME
+                newItemText += newItemColl[1] + "\t\t";
+                // Add news item string
+                newItemText += newItemColl[2];
                 // Remove newlines
                 newItemText = newItemText.Replace("\n", String.Empty);
-                newItemText += ("        \t" + System.DateTime.Now.ToString("HH:m:ss"));
+                
                 feedItemsDisplay.Add(newItemText);
                 newsFeedText.text = "";
             
@@ -87,16 +92,20 @@ public class NewsFeed : MonoBehaviour {
         if (feedItems != null) {
             int newItem = UnityEngine.Random.Range(0, feedItems.Length - 1);
             newItemColl = feedItems[newItem].Split('>');
-            string newItemText = newItemColl[1];
             
+            // Add timestamp
+            string newItemText = (System.DateTime.Now.ToString("HH:m:ss") + "\t\t");   
+            // Add Stock NAME
+            newItemText += newItemColl[1] + "\t\t";
+            // Add news item string
+            newItemText += newItemColl[2];
             // Remove newlines
             newItemText = newItemText.Replace("\n", String.Empty);
-            newItemText += ("        \t" + System.DateTime.Now.ToString("HH:m:ss"));
             
             StartCoroutine("EffectStock");            
             
             feedItemsDisplay.Add(newItemText);
-            if (feedItemsDisplay.Count > 5) {
+            if (feedItemsDisplay.Count > itemsToDisplay) {
                 feedItemsDisplay.RemoveAt(0);
             }
             newsFeedText.text = "";
@@ -115,11 +124,11 @@ public class NewsFeed : MonoBehaviour {
         // Get the stock affected
         int stockNum = int.Parse(newItemColl[0]) - 1;      
         // And how is it affected?
-        string stockDir = newItemColl[2];
+        string stockDir = newItemColl[3];
         // Wait a few seconds to send to the Game Manager
         yield return new WaitForSeconds(3f);
         // Make the change!
-        StockManager.S.EffectStock(stockDir, stockNum);
+        StartCoroutine(StockManager.S.EffectStock(stockDir, stockNum));
     }
 
 }

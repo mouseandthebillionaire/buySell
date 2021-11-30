@@ -2,8 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using IBM.Watson.DeveloperCloud.Logging;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -12,96 +10,145 @@ using Random = UnityEngine.Random;
 public class Stock : MonoBehaviour {
 
 	public string			stockName;
-	private int				stockNumber;
-	public string			stockCode; // each stock has a unique 2-digit code that needs to be dialed
-
+	public int				stockNumber;
+	public string			stockCode; // each stock has a unique code that needs to be dialed
+	private Image			stockImage;
+	
 	private List<float> 	valueHistory = new List<float>();
 	public float			value;
-	public int				direction;
 	public float			volatility = 1;
 	public float			stockPrice;
-	public float 			targetPrice;
-	public float			minPrice, maxPrice;
-	public float			movementSpeed;
-	public int				hotness;
-	public GameObject		LinePixel;
+	public float			hotness;
+	private int				cycleDir;
+	
 	public Text				displayName;
-	public Text				displayPrice;
+	private Text			displayPrice;
 	private float			displayPriceAmount;
-	public Text				currentCode;
+	private Text			currentCode;
 	public Color			stockColor;
-
-	public GameObject		lineGraphParent;
-	private GameObject		lineGraph;
 	
 	public int				stockState; // 0 - stable, 1 - growing, 2 - falling, 3 - cycling
 	
 	// try new stock method
 	public List <float>		stockHistory = new List<float>();
-	public LineRenderer		lr;
+	public LineRenderer		lrPrefab;
+	private LineRenderer	lr;
+	public Material[]		lr_mat;
 	public SpriteRenderer	stockNumberIcon;
 	public float			stockValue;
 	private float			variance;
 	public float			minValue, maxValue;
+
+	public static Stock		S;
+
+	
+	
+	void Awake() {
+		S = this;
+	}
 	
 	// Use this for initialization
 	void Start () {
-		stockNumber = transform.GetSiblingIndex();
-
-		//StartCoroutine(SwitchStates());
-		Stable();
-		displayName.color = stockColor;
-		lineGraph = GameObject.Find("LineGraph");
-		volatility = Random.Range(0.25f, 1.5f);
+		//displayName.color = stockColor;
 		stockPrice = Random.Range(0.5f, 4.5f);
-		targetPrice = stockPrice;
-//		minPrice = 0.5f;
-//		maxPrice = 4.5f;
-		//float opening = stockPrice * 100f;
-		//openingPrice.text = opening.ToString();
 		
-		// try new stock method
-		// randomly fill our list with stock prices
-		for (int i = 0; i < 14; i++) {
-			stockHistory.Add(Random.Range(-3, 4));
-			lr.SetPosition(i, new Vector3(i, stockHistory[i], 0));
-		}
-		// make a line instead of a pixel
-		InvokeRepeating("UpdateStock", 0.25f, 1f);
-		// Get Number Icon
-
-		lr.sortingLayerName = "Stocks";
-		lr.sortingOrder = 20;
-		stockNumberIcon = lr.GetComponentInChildren<SpriteRenderer>();
-		string spriteLoc = "_stockNumberIcons/stockNumber_" + stockNumber;
-		Sprite s = Resources.Load<Sprite>(spriteLoc);
-		stockNumberIcon.sprite = s;
-
-		minValue = 1;
-		maxValue = 7;
-		stockValue = Random.Range(minValue, maxValue);
-		
-		// enter current code
-		currentCode.text = GlobalVariables.S.stockCodes[GameManager.S.gameRound, stockNumber - 1];
-		
-		StartCoroutine(Fluctuate());
-
+		CreateLineChart();
+		LoadStock();
 	}
 
 	public void SetStockCode(string _code) {
 		stockCode = _code;
 	}
 
-	public void UpdateStock() {
+	private void CreateLineChart() {		
+		lr = Instantiate(lrPrefab) as LineRenderer;
+		lr.transform.SetParent(GameObject.Find("LineGraph").transform);
+		lr.sortingLayerName = "Stocks";
+		lr.sortingOrder = 20;
+		float offset = lr.transform.GetSiblingIndex() * 0.2f;
+		lr.transform.localScale = new Vector3(0.6f, 0.75f, 1);
+		lr.transform.localPosition = new Vector3(-4.5f + offset, .2f - offset, -1);
+		lr.material = lr_mat[lr.transform.GetSiblingIndex()];
+		
+		stockNumberIcon = lr.GetComponentInChildren<SpriteRenderer>();
+		string spriteLoc = "_stockIcons/stockIcon_" + stockNumber;
+		Sprite s         = Resources.Load<Sprite>(spriteLoc);
+		stockNumberIcon.sprite = s;
+
+		float startingPrice = 0;
+		
+		for (int i = 0; i < 14; i++) {
+			startingPrice += Random.Range(-0.25f, 0.25f);
+			stockHistory.Add(startingPrice);
+			lr.SetPosition(i, new Vector3(i, stockHistory[i], 0));
+		}
+	}
+
+	private void LoadStock() {
+		displayName = transform.GetChild(1).GetComponent<Text>();
+		displayPrice = transform.GetChild(2).transform.GetChild(1).GetComponent<Text>();
+		currentCode = transform.GetChild(3).transform.GetChild(1).GetComponent<Text>();
+		displayName.text = stockName;
+		// enter current code
+		currentCode.text = stockCode;
+		
+		// Set color
+		Image stockBackground = transform.GetComponent<Image>();
+		stockBackground.color = new Color(
+			stockBackground.color.r, 
+			stockBackground.color.g,
+			stockBackground.color.b,
+			1f - stockNumber/10f);
+		
+		// Set Icon
+		Transform si_transform = transform.Find("StockIcon");
+		Image stockIcon = si_transform.GetComponent<Image>();
+		string spriteLoc = "_stockIcons/stockIcon_" + stockNumber;
+		Sprite s         = Resources.Load<Sprite>(spriteLoc);
+		stockIcon.sprite = s;
+		
+		// Values
+		volatility = Random.Range(0.25f, 1.5f);
+		minValue = 1;
+		maxValue = 7;
+		hotness = 0f;
+		cycleDir = 1;
+		stockValue = Random.Range(minValue, maxValue);
+
+		// How is the stock going to behave?
+		int behavior = Random.Range(0, 2);
+		if (behavior == 0) StartCoroutine(Cycle());
+		if (behavior == 1) StartCoroutine(Fluctuate());
+	}
+	
+	public IEnumerator newsEffect(string moveDirection) {
+		hotness = Random.Range(2f, 6f);
+		if (moveDirection == "down") hotness *= -1;		
+		yield return null;
+	}
+
+	public IEnumerator UpdateStock() {
+		// remove oldest number
 		stockHistory.RemoveAt(0);
-		if((stockValue + variance) > maxValue || (stockValue + variance) < minValue) Debug.Log("Too much");
-		else stockValue = stockValue + variance;
+		
+		stockValue += (variance + hotness);
+		if (stockValue > maxValue) stockValue =  maxValue - 0.5f;
+		if (stockValue < minValue) stockValue = minValue + 0.5f;
+		
+		
+
+		
 		stockHistory.Add(stockValue - 4f);
-		displayPriceAmount = stockValue * 100f;
-		displayPrice.text = "$" + displayPriceAmount.ToString("00");
+		// too high
+		//displayPriceAmount = stockValue * 100f;
+		displayPriceAmount = stockValue;
+		displayPrice.text = "$" + displayPriceAmount.ToString("0.0");
 
-
+		// Draw the Line
 		MakeLine();
+		hotness = 0;
+		yield return new WaitForSeconds(volatility);
+	
 	}
 	
 	public void MakeLine() {
@@ -111,101 +158,13 @@ public class Stock : MonoBehaviour {
 		}
 	}
 
-	public void Stable() {
-		direction = 0;
-		hotness = 0;
+	// build out cyclical so that it fluctuated based on variability and depth is based on hotness
+
+	public IEnumerator Cyclical(float rate) {
+		yield return new WaitForSeconds(rate);
+		StartCoroutine(Cyclical(rate));
 	}
 
-	public void Move(float moveRate, string moveDirection, float destination) {
-		if (moveDirection == "up") {
-			direction = 1;
-			if (value > destination) {
-				stockState = 0;
-			}
-		}
-
-		if (moveDirection == "down"){
-			direction = -1;
-			if (value < destination) {
-				stockState = 0;
-			}
-		}
-
-		// 0.1f is fast movement
-		// 0.001f is very slow movement
-		movementSpeed = moveRate / 1000f;
-	}
-
-	public void SupplyChange(string moveDirection) {
-		if (moveDirection == "up") {
-			if (stockValue + 1f <= maxValue) stockValue+=1f;
-			else stockValue = maxValue;
-		}
-		if (moveDirection == "down") {
-			if (stockValue - 1f >= minValue) stockValue-=1f;
-			else stockValue = minValue;
-		}
-	}
-	
-	public void Change(string moveDirection) {
-		if (moveDirection == "up") {
-			if (stockPrice + 1 <= maxPrice) {
-				targetPrice = stockPrice + 1;
-			}
-			else {
-				targetPrice = maxPrice;
-			}
-			StartCoroutine("RaisePrice");
-		}
-
-		if (moveDirection == "down") {
-			if (stockPrice - 1 >= maxPrice) {
-				targetPrice = stockPrice - 1;
-			}
-			else {
-				targetPrice = minPrice;
-			}
-
-			StartCoroutine("LowerPrice");
-		}
-
-
-
-
-	}
-
-	private IEnumerator RaisePrice() {
-		while(stockPrice < targetPrice) {
-			stockPrice += 0.01f;
-			volatility += 0.001f;
-			yield return null;
-		}
-	}
-	
-	private IEnumerator LowerPrice() {
-		while(stockPrice > targetPrice) {
-			stockPrice -= 0.01f;
-			volatility += 0.001f;
-			yield return null;
-		}
-	}
-
-
-	public void Cyclical(float rate) {
-		movementSpeed = rate / 100f;
-		float cycleSpeed = movementSpeed * 25f;
-		float tempDirection = Mathf.Sin(Time.time * cycleSpeed);
-		if (tempDirection < 0f) direction = -1;
-		else direction = 1;
-	}
-
-	private IEnumerator SwitchStates() {
-		stockState = (int) Random.Range(0, 4);
-		float waitTime = Random.Range(5, 10);
-		yield return new WaitForSeconds(waitTime);
-		StartCoroutine(SwitchStates());
-
-	}
 
 	private void TrackValue() {	
 		
@@ -221,15 +180,39 @@ public class Stock : MonoBehaviour {
 			valueHistory.RemoveAt(0);
 		}
 		
-		float dp = value * 100f;
-		displayPrice.text = "$" + dp.ToString("00");
-
+		// too high
+		//float dp = value * 100f;
+		float dp = value;
+		displayPrice.text = "$" + dp.ToString("0.0");
 	}
-
+	
 	private IEnumerator Fluctuate() {
 		variance = (Random.Range(0f, 100f) - 50) / 100f;
+		//add the variance to the stock
+
+		StartCoroutine(UpdateStock());
+			
 		yield return new WaitForSeconds(volatility);
 		StartCoroutine(Fluctuate());
+	}
+	
+	private IEnumerator Cycle() {
+		float cycleDepth = 1f;
+		variance = Random.Range(0f, 1f) * cycleDir;
+
+		if (stockValue >= maxValue - cycleDepth) {
+			stockValue = maxValue - cycleDepth;
+			cycleDir = -1;
+		}
+		if (stockValue <= minValue + cycleDepth) {
+			stockValue = minValue + cycleDepth;
+			cycleDir = 1;
+		}
+
+		StartCoroutine(UpdateStock());
+			
+		yield return new WaitForSeconds(volatility);
+		StartCoroutine(Cycle());
 	}
 	
 	
