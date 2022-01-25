@@ -257,6 +257,41 @@ public class Betweener: MonoBehaviour {
 		}
 	}
 
+	private IEnumerator Buy2Buy()
+	{
+		// Set the correct input "key" to yell
+		correctKey = 14;
+		
+		// How long are we playing this game for?
+		int holdSeconds = 5;
+		
+		float duration = Time.time + holdSeconds;
+		
+
+		while (duration > Time.time) {
+			for (int i = 0; i < inputKeys.Length; i++) {
+				if (inputKeys[i] == correctKey) {
+					blip.pitch = 1 + (i / 5);
+					blip.Play();
+					inputTimes[i] += 1;
+					inputDisplay[i].text = inputTimes[i].ToString();
+					inputKeys[i] = 99;
+				}
+			}
+			yield return null;
+		}
+		
+		int highest = inputTimes[0];
+		int winner  = 0;
+		for (int i = 1; i < inputTimes.Length; i++) {
+			if (inputTimes[i] > highest) {
+				highest = inputTimes[i];
+				winner = i;
+			}
+		}
+		StartCoroutine(AnnounceBonusWinner(winner));
+	}
+
 	private IEnumerator ScoreCalculation() {
 		scoreCalculators[scoresCalculated].transform.localPosition = new Vector3(-100, 200, 0);
 		StartCoroutine(scoreCalculators[scoresCalculated].CalculateScore());
@@ -274,8 +309,8 @@ public class Betweener: MonoBehaviour {
 
 		scoresCalculated++;
 		if (scoresCalculated == GlobalVariables.S.numTraders) {
-			
-			FundManager.S.SaveWorth();
+			//Save to the web if we are doing that
+			//FundManager.S.SaveWorth();
 			if (GameManager.S.gameRound == GlobalVariables.S.numRounds - 1) {
 				SceneManager.LoadScene("End");
 			} else {
@@ -292,7 +327,7 @@ public class Betweener: MonoBehaviour {
 	private IEnumerator PrepMinigame() {
 		//minigameChoice = UnityEngine.Random.Range(0, 3);
 		//for testing - force minigame choice
-		minigameChoice = 3;
+		minigameChoice = 4;
 				
 		int blinkTimes = 4;
 		while (blinkTimes >= 0) {
@@ -318,6 +353,7 @@ public class Betweener: MonoBehaviour {
 		if (minigameChoice == 1) StartCoroutine(Maths());
 		if (minigameChoice == 2) StartCoroutine(BugSquasher());
 		if (minigameChoice == 3) StartCoroutine(FastestDraw());
+		if (minigameChoice == 4) StartCoroutine(Buy2Buy());
 		
 		// Play minigame start sound
 		minigame.Play();

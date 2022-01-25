@@ -17,7 +17,7 @@ public class NewsFeed : MonoBehaviour {
     private Text            newsFeedText;
 
     private float            newsUpdateTime = 4f;
-    private int              itemsToDisplay = 3;
+    public int              itemsToDisplay;
     
     private string url = "http://www.mouseandthebillionaire.com/games/gameFiles/buySell/newsFeed.txt";
     

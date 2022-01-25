@@ -75,17 +75,26 @@ public class GlobalVariables : MonoBehaviour {
     }
 
     public void Reset() {
-        gameState = 2;
+        gameState = 0;
+        stockCodeLength = 1;
         for (int i = 0; i < numTraders; i++) {
-            // reset trader money to $0 at the start of every day
-            //FundManager.S.ResetWorth();
+            // reset trader money to $0
+            traderWorth[i] = 0;
             // OR keep their money the same by doing nothing
             // OR pull an amount from an online XML file...
             //FundManager.S.LoadWorth();
-            
+        }
+    }
+
+    // We need to do some management when there's a new day
+    public void NewDay()
+    {
+        gameState = 2;
+        for (int i = 0; i < numTraders; i++) {
+            // Reset the Round Stats for BOUGHT and SOLD
             traderRoundStats[i, 0] = 0;
             traderRoundStats[i, 1] = 0;
-            stockCodeLength = 1;
         }
+       
     }
 }

@@ -26,6 +26,7 @@ public class FundManager : MonoBehaviour {
     }
 
     public void SaveWorth() {
+        // If we are saving the worth to web
         StartCoroutine(UploadWorthToWeb());
     }
 

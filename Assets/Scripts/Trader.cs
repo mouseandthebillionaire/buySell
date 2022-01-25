@@ -26,6 +26,9 @@ public class Trader : MonoBehaviour {
     public int                  stocksBought, stocksSold;
     public Text                 stocksBoughtText, stocksSoldText;
     public Image                earningsMeter;
+
+    // Keep a list of the purchase cost of all 9 stocks
+    private float[] stockHoldings = new float[GlobalVariables.S.totalStocks];
     
     // Dynamically add stocks as they are bought
     public GameObject           holdingsParent;
@@ -116,7 +119,13 @@ public class Trader : MonoBehaviour {
                     PhoneSlammed(inputString);
                     inputString = "-";
                     codeInput.text = "#" + inputString;
-                }                  
+                }   
+                
+                // print out the holdings for each trader
+                for (int i = 0; i < GlobalVariables.S.totalStocks; i++)
+                {
+                    Debug.Log(stockHoldings[i]);
+                }
         } 
     }
 
@@ -153,6 +162,7 @@ public class Trader : MonoBehaviour {
         playerFunds -= purchasePrice;
         stockPrice[_stockNum] = purchasePrice;
         hasStock[_stockNum] = true;
+        stockHoldings[_stockNum] = purchasePrice;
         stocksBought++;
         GlobalVariables.S.traderRoundStats[traderNum, 0]++;
 
@@ -232,6 +242,7 @@ public class Trader : MonoBehaviour {
             }
             
             hasStock[_stockNum] = false;
+            stockHoldings[_stockNum] = 0;
             stocksSold++;
             GlobalVariables.S.traderRoundStats[traderNum, 1]++;
             

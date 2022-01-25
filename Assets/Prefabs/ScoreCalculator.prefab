@@ -66,12 +66,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c6bc92136fd1f40d8a819a18950dfaab, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 50
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -145,12 +145,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c6bc92136fd1f40d8a819a18950dfaab, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 45
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -227,19 +227,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c6bc92136fd1f40d8a819a18950dfaab, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 50
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: stocks bought....$.50 X
+  m_Text: Stocks Bought....$.50 X
 --- !u!1 &1783838534107335071
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,12 +306,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c6bc92136fd1f40d8a819a18950dfaab, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 45
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -386,19 +386,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c6bc92136fd1f40d8a819a18950dfaab, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 45
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: today's profit =
+  m_Text: Today's Profit =
 --- !u!1 &1783838534366923588
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,19 +467,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c6bc92136fd1f40d8a819a18950dfaab, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 45
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: stocks sold...$1.00 X
+  m_Text: Stocks Sold...$1.00 X
 --- !u!1 &1783838534804020131
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,12 +546,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c6bc92136fd1f40d8a819a18950dfaab, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 45
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -634,12 +634,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c6bc92136fd1f40d8a819a18950dfaab, type: 3}
-    m_FontSize: 32
+    m_Font: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8, type: 3}
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -732,12 +732,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c6bc92136fd1f40d8a819a18950dfaab, type: 3}
-    m_FontSize: 32
+    m_Font: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8, type: 3}
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -811,12 +811,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c6bc92136fd1f40d8a819a18950dfaab, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 45
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -890,12 +890,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c6bc92136fd1f40d8a819a18950dfaab, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 45
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -969,12 +969,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c6bc92136fd1f40d8a819a18950dfaab, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 50
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1049,12 +1049,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c6bc92136fd1f40d8a819a18950dfaab, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 45
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1129,19 +1129,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c6bc92136fd1f40d8a819a18950dfaab, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 45
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: total bonus =
+  m_Text: Total Bonus =
 --- !u!1 &3544357043166619780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1209,19 +1209,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c6bc92136fd1f40d8a819a18950dfaab, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 45
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: previous funds =
+  m_Text: Previous Funds =
 --- !u!1 &5116015215914246746
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,12 +1288,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c6bc92136fd1f40d8a819a18950dfaab, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 45
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1367,12 +1367,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c6bc92136fd1f40d8a819a18950dfaab, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 45
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1

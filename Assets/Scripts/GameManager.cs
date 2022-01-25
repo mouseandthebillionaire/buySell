@@ -36,7 +36,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Start() {
-		FundManager.S.LoadWorth();
+		// If we are storing wealth on the cloud
+		//FundManager.S.LoadWorth();
 		Reset();
 	}
 	
@@ -51,6 +52,12 @@ public class GameManager : MonoBehaviour {
 			if (Time.time - resetTime > roundLength && !countingDown) {
 				StartCoroutine("CountDown");	
 			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			Reset();
+			SceneManager.LoadScene("Menu");
 		}
 
 	}
