@@ -2163,6 +2163,11 @@ PrefabInstance:
       propertyPath: m_Text
       value: YU
       objectReference: {fileID: 0}
+    - target: {fileID: 7419459832544413242, guid: adc0feb69b7e9492eb74eff8989e0e4d,
+        type: 3}
+      propertyPath: traderNum
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adc0feb69b7e9492eb74eff8989e0e4d, type: 3}
 --- !u!224 &881199032 stripped
