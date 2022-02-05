@@ -4,9 +4,6 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-using UnityEngine.SceneManagement;
-
 public class GameOver : MonoBehaviour {
     private int         winnerNum;
     public Text         winner, snarkText;
