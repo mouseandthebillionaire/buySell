@@ -33,7 +33,7 @@ public class ScoreCalculator : MonoBehaviour {
 
     // Update is called once per frame
     public IEnumerator CalculateScore() {      
-        traderNum = Betweener.S.scoresCalculated;
+        traderNum = ScoreManager.S.scoresCalculated;
         itemScore = 0;
         
         yield return new WaitForSeconds(0.5f); 
@@ -112,7 +112,7 @@ public class ScoreCalculator : MonoBehaviour {
         GlobalVariables.S.traderWorth[traderNum] = totalProfit;
 
         scorePosted.Play();
-        StartCoroutine(Betweener.S.PostScore(totalProfit));
+        StartCoroutine(ScoreManager.S.PostScore(totalProfit));
         
     }
 }

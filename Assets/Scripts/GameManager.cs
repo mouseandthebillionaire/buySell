@@ -39,9 +39,6 @@ public class GameManager : MonoBehaviour {
 		// If we are storing wealth on the cloud
 		//FundManager.S.LoadWorth();
 		Reset();
-		
-		//delete immediately
-		Debug.Log(Display.displays.Length);
 	}
 	
 	// Update is called once per frame
