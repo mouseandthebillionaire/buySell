@@ -9,7 +9,7 @@ public class BetweenerManager : MonoBehaviour
     
     public GameObject	scoreManager;
     public GameObject   minigameManager;
-    public GameObject	bonusAnnouncement, winner;
+    public GameObject	bonusAnnouncement, winner, loading;
     private int         currSection;
 
     // Announcer
@@ -103,14 +103,29 @@ public class BetweenerManager : MonoBehaviour
             panelSize -= .05f; 
             winner.transform.localScale = new Vector3(panelSize, panelSize);
         }
-        
+
+        StartCoroutine(BackToGame());
     }
 
     public void Next() {
         currSection++;
         StartCoroutine(Control(currSection));
     }
-    
-    
 
+    private IEnumerator BackToGame()
+    {
+        // Start Countdown
+        loading.SetActive(true);
+        blip.pitch = 1;
+        int countdownLength = 5;
+        while (countdownLength > 0)
+        {
+            loading.transform.GetChild(1).GetComponent<Text>().text = countdownLength.ToString();
+            countdownLength -= 1;
+            blip.Play();
+            yield return new WaitForSeconds(1);
+        }
+
+        GameManager.S.NextRound();
+    }
 }
