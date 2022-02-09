@@ -13,6 +13,8 @@ public class BetweenerManager : MonoBehaviour
     private int         currSection;
 
     // Announcer
+    public GameObject announcerSprite;
+    private SpriteRenderer announcer_sr;
     public AudioSource  announcer;
     public AudioClip    intro;
     public AudioClip    bonus;
@@ -27,8 +29,9 @@ public class BetweenerManager : MonoBehaviour
     }
     
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
+        announcer_sr = announcerSprite.GetComponent<SpriteRenderer>();
+        
         if (skipScoring) currSection = 2;
         else currSection = 0;
         StartCoroutine(Control(currSection));
@@ -48,6 +51,7 @@ public class BetweenerManager : MonoBehaviour
             announcer.clip = intro;
             announcer.Play();
             yield return new WaitForSeconds(intro.length);
+            announcer_sr.enabled = true;
             // Launch Score Manager
             scoreManager.SetActive(true);
         }
@@ -57,7 +61,7 @@ public class BetweenerManager : MonoBehaviour
             // Incoming Bonus Opportunity coming
             announcer.clip = bonus;
             announcer.Play();
-            yield return new WaitForSeconds(bonus.length);
+            // yield return new WaitForSeconds(bonus.length);
 
             int blinkTimes = 4;
             while (blinkTimes >= 0)

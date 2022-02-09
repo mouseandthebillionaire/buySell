@@ -38,7 +38,9 @@ public class GlobalVariables : MonoBehaviour {
     // Input Keys
     // 0-9 tied to numbers
     // Star (10), Pound(11), Pickup(12), Hangup(13), Yell(14)
-    
+
+    public string[]        keyNames = new string[]
+        {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "STAR", "POUND", "UP", "SLAM", "YELL!"};
         
     public KeyCode[,]      inputKeys = new KeyCode[,] {
         {KeyCode.X, KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Q,    // 0-4
