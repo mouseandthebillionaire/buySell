@@ -20,7 +20,7 @@ public class BetweenerManager : MonoBehaviour
     public AudioClip    bonus;
     
     // Sound Effects
-    public AudioSource  bonusOpportunity, bonusWon, blip, zilch;
+    public AudioSource  bonusOpportunity, bonusWon, blip, zilch, coin;
 
     public static BetweenerManager	S;
 

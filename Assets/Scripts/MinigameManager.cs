@@ -13,6 +13,7 @@ public class MinigameManager : MonoBehaviour
     public GameObject   traderInput;
     
     public int[]		inputKeys = new int[3];
+    public int[] inputTimes = new int[3];
     public Text[]		inputDisplay;
 
     public static MinigameManager S;
@@ -27,6 +28,7 @@ public class MinigameManager : MonoBehaviour
         // Clear the Keys
         for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
             inputKeys[i] = 99;
+            inputTimes[i] = 0;
         }
         
         StartCoroutine(StartMinigame());
@@ -36,6 +38,14 @@ public class MinigameManager : MonoBehaviour
         GetKeys();
     }
 
+    public void UpdatePlayerScore(int _playerNum)
+    {
+        inputTimes[_playerNum]++;
+        inputDisplay[_playerNum].text = inputTimes[_playerNum].ToString();
+        BetweenerManager.S.coin.Play();
+
+    }
+    
     private IEnumerator StartMinigame() {
         
         // If it's 99 choice a random one, otherwise we're testing a specific one
