@@ -60,8 +60,8 @@ public class DDR : MonoBehaviour {
         }
         // Then stop the game
         gameRunning = false;
-        //  and announce the Winner
-        BetweenerManager.S.AnnounceBonusWinner(1);
+        //  and End the game via the MinigameManager
+        MinigameManager.S.EndGame();
     }
 
     private IEnumerator CreateKeys()

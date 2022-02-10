@@ -59,6 +59,25 @@ public class MinigameManager : MonoBehaviour
 
     }
 
+    public void EndGame()
+    {
+        int winner = CalculateScore();
+        BetweenerManager.S.AnnounceBonusWinner(winner);
+    }
+
+    private int CalculateScore()
+    {
+        int highest = inputTimes[0];
+        int winner  = 0;
+        for (int i = 1; i < inputTimes.Length; i++) {
+            if (inputTimes[i] > highest) {
+                highest = inputTimes[i];
+                winner = i;
+            }
+        }
+        return winner;
+    }
+
     private void GetKeys() {
         for (int i = 0; i < 3; i++) {
             for(int j=0; j < 15; j++){
