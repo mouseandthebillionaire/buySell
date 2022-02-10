@@ -43,8 +43,7 @@ public class BugSquasher : MonoBehaviour
 			
 			for (int i = 0; i < MinigameManager.S.inputKeys.Length; i++) {
 				if (MinigameManager.S.inputKeys[i] == correctKey) {
-					inputTimes[i] += 1;
-					MinigameManager.S.inputDisplay[i].text = inputTimes[i].ToString();
+					MinigameManager.S.UpdatePlayerScore(i);
 					GameObject go = GameObject.Find(bugKeys[correctKey].name + "/bug");
 					go.GetComponent<Image>().color = Color.clear;
 	
@@ -71,14 +70,6 @@ public class BugSquasher : MonoBehaviour
 			yield return null;
 		}
 	
-		int highest = inputTimes[0];
-		int winner = 0;
-		for (int i = 1; i < inputTimes.Length; i++) {
-			if (inputTimes[i] > highest) {
-				highest = inputTimes[i];
-				winner = i;
-			}
-		}
-		BetweenerManager.S.AnnounceBonusWinner(winner);
+		MinigameManager.S.EndGame();
 	}
 }

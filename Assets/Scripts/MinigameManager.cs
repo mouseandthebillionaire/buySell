@@ -67,13 +67,15 @@ public class MinigameManager : MonoBehaviour
 
     private int CalculateScore()
     {
-        int highest = inputTimes[0];
-        int winner  = 0;
-        for (int i = 1; i < inputTimes.Length; i++) {
+        int highest = 0;
+        int winner  = 99;
+        for (int i = 0; i < inputTimes.Length; i++) {
             if (inputTimes[i] > highest) {
                 highest = inputTimes[i];
                 winner = i;
             }
+
+            Debug.Log(winner);
         }
         return winner;
     }

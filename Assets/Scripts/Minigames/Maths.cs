@@ -66,7 +66,7 @@ public class Maths : MonoBehaviour
 						// they all go it wrong
 						if (numAnswered == GlobalVariables.S.numTraders) {
 							// Trader 3 means no one won
-							BetweenerManager.S.AnnounceBonusWinner(3);
+							BetweenerManager.S.AnnounceBonusWinner(99);
 						}
 					}
 				}

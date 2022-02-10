@@ -88,7 +88,7 @@ public class BetweenerManager : MonoBehaviour
     
     public void AnnounceBonusWinner(int traderNum) {
         string winnerText;
-        if (traderNum == 3) {
+        if (traderNum == 99) {
             winner.GetComponent<Image>().color = Color.gray;
             winnerText = "NOBODY WON THE BONUS TODAY!";
         }
@@ -99,7 +99,7 @@ public class BetweenerManager : MonoBehaviour
         
         winner.transform.GetChild(0).GetComponent<Text>().text = winnerText;
         winner.transform.rotation = Quaternion.Euler(0, 0, Random.Range(-10, 10));
-        float panelSize = 1.25f;
+        float panelSize = 1.5f;
         winner.transform.localScale = new Vector3(panelSize, panelSize);
         bonusWon.Play();
         winner.SetActive(true);
