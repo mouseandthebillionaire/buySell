@@ -23,26 +23,14 @@ public class Yell2Buy : MonoBehaviour
 	    while (duration > Time.time) {
 		    for (int i = 0; i < MinigameManager.S.inputKeys.Length; i++) {
 			    if (MinigameManager.S.inputKeys[i] == correctKey) {
-				    BetweenerManager.S.blip.pitch = 1 + (i / 5);
-				    BetweenerManager.S.blip.Play();
-				    inputTimes[i] += 1;
-				    MinigameManager.S.inputDisplay[i].text = inputTimes[i].ToString();
-				    MinigameManager.S.inputKeys[i] = 99;
+					MinigameManager.S.UpdatePlayerScore(i);
+					MinigameManager.S.inputKeys[i] = 99;
 			    }
 		    }
 
 		    yield return null;
 	    }
 
-	    int highest = inputTimes[0];
-	    int winner  = 0;
-	    for (int i = 1; i < inputTimes.Length; i++) {
-		    if (inputTimes[i] > highest) {
-			    highest = inputTimes[i];
-			    winner = i;
-		    }
-	    }
-
-	    BetweenerManager.S.AnnounceBonusWinner(winner);
+		MinigameManager.S.EndGame();
     }
 }

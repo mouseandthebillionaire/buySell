@@ -61,7 +61,6 @@ public class DDR : MonoBehaviour {
         // Then stop the game
         gameRunning = false;
         //  and End the game via the MinigameManager
-        MinigameManager.S.EndGame();
     }
 
     private IEnumerator CreateKeys()
