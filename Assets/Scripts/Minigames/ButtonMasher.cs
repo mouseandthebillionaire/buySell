@@ -9,10 +9,10 @@ public class ButtonMasher : MonoBehaviour {
 	
 	// Start is called before the first frame update
     void Start() {
-		StartCoroutine(StartMiniGame());
+		StartCoroutine(RunGame());
 	}
 
-	private IEnumerator StartMiniGame() {
+	private IEnumerator RunGame() {
 		// How long are we playing this game for?
 		int holdSeconds = 5;
 		int correctKey  = Random.Range(0, 9);

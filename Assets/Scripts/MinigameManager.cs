@@ -31,26 +31,26 @@ public class MinigameManager : MonoBehaviour
             inputTimes[i] = 0;
         }
         
+        // Choose the game
+        // If it's 99 choice a random one, otherwise we're testing a specific one
+        if(minigameChoice == 99) minigameChoice = UnityEngine.Random.Range(0, minigames.Length);
+
+        // Start the game
         StartCoroutine(StartMinigame());
     }
 
     void Update() {
+        // We're constantly looking to see what keys the players are pressing
         GetKeys();
     }
-
-    public void UpdatePlayerScore(int _playerNum)
-    {
-        inputTimes[_playerNum]++;
-        inputDisplay[_playerNum].text = inputTimes[_playerNum].ToString();
-        BetweenerManager.S.coin.Play();
-
-    }
+    
     
     private IEnumerator StartMinigame() {
+        // Announce the game
         
-        // If it's 99 choice a random one, otherwise we're testing a specific one
-        if(minigameChoice == 99) minigameChoice = UnityEngine.Random.Range(0, minigames.Length);
+        // Explain the game
 
+        // Run the game
         minigames[minigameChoice].SetActive(true);
 
         traderInput.SetActive(true);
@@ -58,11 +58,27 @@ public class MinigameManager : MonoBehaviour
         yield return null;
 
     }
+    
+    private IEnumerator AnnounceMinigame() {
+        yield return null;
+    }
+    
+    private IEnumerator ExplainMinigame() {
+        yield return null;
+    }
 
     public void EndGame()
     {
         int winner = CalculateScore();
         BetweenerManager.S.AnnounceBonusWinner(winner);
+    }
+    
+    public void UpdatePlayerScore(int _playerNum)
+    {
+        inputTimes[_playerNum]++;
+        inputDisplay[_playerNum].text = inputTimes[_playerNum].ToString();
+        BetweenerManager.S.coin.Play();
+
     }
 
     private int CalculateScore()
