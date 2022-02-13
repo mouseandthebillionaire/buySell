@@ -81,10 +81,10 @@ public class GlobalVariables : MonoBehaviour {
         stockCodeLength = 1;
         for (int i = 0; i < numTraders; i++) {
             // reset trader money to $0
-            traderWorth[i] = 0;
+            //traderWorth[i] = 0;
             // OR keep their money the same by doing nothing
-            // OR pull an amount from an online XML file...
-            //FundManager.S.LoadWorth();
+            // OR pull an amount from a saved file...
+            FundManager.S.LoadWorth();
         }
     }
 

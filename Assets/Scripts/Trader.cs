@@ -30,10 +30,14 @@ public class Trader : MonoBehaviour {
     // Keep a list of the purchase cost of all 9 stocks
     private float[] stockHoldings = new float[GlobalVariables.S.totalStocks];
     
-    // Dynamically add stocks as they are bought
+    
+    // Old version in which we Dynamically add stocks as they are bought
     public GameObject           holdingsParent;
     public GameObject           holdingPrefab;
     public List<GameObject>     holdings = new List<GameObject>();
+    
+    // New version constantly keeps track of all stocks
+    public GameObject[]         stockHoldingsDisplay = new GameObject[GlobalVariables.S.totalStocks];
         
     // Transaction UI
     public GameObject           t_UI;
@@ -64,9 +68,20 @@ public class Trader : MonoBehaviour {
         for (int i = 0; i < inputKeys.Length; i++) {
             inputKeys[i] = GlobalVariables.S.inputKeys[traderNum, i];
         }
+        
         // Set the length of code
         for (int i = 0; i < GlobalVariables.S.stockCodeLength; i++) {
             inputString += "-";
+        }
+
+        // for (int i = 0; i < 5; i++) {
+        //     Debug.Log(StockManager.S.stockIndexes[i]);
+        // }
+        
+        // Dim the stocks that aren't being traded this round
+        for (int i = 0; i < stockHoldingsDisplay.Length; i++) {
+            // stockIndexes stores the StockNumber for each day's active stocks
+            if (StockManager.S.stockIndexes.Contains(i)) Debug.Log(i);
         }
 
         stocksBought = 0;
@@ -87,10 +102,13 @@ public class Trader : MonoBehaviour {
         roundEarnings = GameManager.S.roundWorth[traderNum];
 
         earnedFunds = 0;
+
+        StartCoroutine(UpdateTodaysStocks());
     }
 
-    void Update() {   
+    void Update() {
         
+
 //        // Can we look for special any-length code entered outside the main loop
 //        for (int i = 0; i < inputKeys.Length-3; i++) {
 //            // Looking for pound
@@ -124,7 +142,7 @@ public class Trader : MonoBehaviour {
                 // print out the holdings for each trader
                 for (int i = 0; i < GlobalVariables.S.totalStocks; i++)
                 {
-                    Debug.Log(stockHoldings[i]);
+                    //Debug.Log(stockHoldings[i]);
                 }
         } 
     }
@@ -139,7 +157,7 @@ public class Trader : MonoBehaviour {
             
                 if (codeEntered == StockManager.S.roundStocks[i].GetComponent<Stock>().stockCode) {
                     stockExists = true;
-                    stockEntered = i;                    
+                    stockEntered = i;
                 }
         }
 
@@ -251,7 +269,7 @@ public class Trader : MonoBehaviour {
     }
     
     private void UpdateDisplay() {		
-        // Ammount earned
+        // Amount earned
         // too low with non inflated stocks
         //earningsMeter.fillAmount = earnedFunds / 200f;
         earningsMeter.fillAmount = earnedFunds / 10f;
@@ -306,8 +324,23 @@ public class Trader : MonoBehaviour {
    
     }
 
-    public void ClearInput() {
+    private IEnumerator UpdateTodaysStocks() {
+        yield return new WaitForSeconds(0.1f);
         
+        for (int i = 0; i < GlobalVariables.S.totalStocks; i++) {
+            // stockIndexes stores the StockNumber for each day's active stocks
+            Text[] t = stockHoldingsDisplay[i].GetComponentsInChildren<Text>();
+            if (StockManager.S.stockIndexes.Contains(i)) {
+                t[0].color = new Color(1, 1, 0, 1);
+                t[1].color = Color.white;
+            }
+            else {
+                t[0].color = new Color(1, 1, 1, .25f);
+                t[1].color = new Color(1, 1, 1, .25f);
+            }
+        }
+
+        yield return null;
     }
     
 }

@@ -616,12 +616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2d85d27e3d54c0381d3445ce6ec762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charts:
-  - {fileID: 32900000, guid: e118531a9bfae4de9b39243739b18f31, type: 3}
-  - {fileID: 32900000, guid: eac5c6711e5244c9c9c0a08802fdf4c0, type: 3}
-  - {fileID: 32900000, guid: 77391928194514ce9a717107f06079b4, type: 3}
-  - {fileID: 32900000, guid: 12394777c73bc4bc393f1f2e660df4b7, type: 3}
-  vp: {fileID: 0}
 --- !u!4 &308487628
 Transform:
   m_ObjectHideFlags: 0
@@ -1726,7 +1720,7 @@ PrefabInstance:
     - target: {fileID: 1560515137174706192, guid: adc0feb69b7e9492eb74eff8989e0e4d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1560515137174706192, guid: adc0feb69b7e9492eb74eff8989e0e4d,
         type: 3}
@@ -4173,7 +4167,7 @@ PrefabInstance:
     - target: {fileID: 1560515137174706192, guid: adc0feb69b7e9492eb74eff8989e0e4d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1560515137174706192, guid: adc0feb69b7e9492eb74eff8989e0e4d,
         type: 3}
@@ -4903,7 +4897,7 @@ PrefabInstance:
     - target: {fileID: 1560515137174706192, guid: adc0feb69b7e9492eb74eff8989e0e4d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1560515137174706192, guid: adc0feb69b7e9492eb74eff8989e0e4d,
         type: 3}

@@ -9,6 +9,7 @@ public class StockManager : MonoBehaviour {
     private GameObject      stockParent;
     public GameObject[]     roundStocks;
     public bool[]           stocksActive;
+    // the stockIndexes keeps track of what stockNumbers are actually alive each day
     public List<int>        stockIndexes;
 
     public static StockManager S;

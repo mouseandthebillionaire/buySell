@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour {
 	public int			gameRound;
 	public float[]      roundWorth = new float[3];
 	public int			roundLength;
-	//public GameObject	minigame;
 	public GameObject	countdown;
 	public Text			countdownText;
 	private int			countdownLength = 3;
@@ -36,8 +35,6 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Start() {
-		// If we are storing wealth on the cloud
-		//FundManager.S.LoadWorth();
 		Reset();
 	}
 	
@@ -69,7 +66,7 @@ public class GameManager : MonoBehaviour {
 		for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
 			roundWorth[i] = 0;
 		}
-		GlobalVariables.S.Reset();	
+		GlobalVariables.S.Reset();
 	}
 
 	public void StartGame() {
@@ -89,6 +86,11 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void PrepForRound() {
+		// Get Trader's Worths
+		var fundManager = GetComponentInChildren<FundManager>();
+		fundManager.LoadWorth();
+		
+
 		// Reset Trader's Current Worth
 		for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
 			roundWorth[i] = 0;

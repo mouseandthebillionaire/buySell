@@ -24,7 +24,7 @@ public class ScoreCalculator : MonoBehaviour {
     }
 
     public void Start() {
-        itemDisplayed = GameObject.Find("ItemDisplayed").GetComponent<AudioSource>();
+        itemDisplayed = GameObject.Find("Coin").GetComponent<AudioSource>();
         counter = GameObject.Find("Counter").GetComponent<AudioSource>();
         zilch = GameObject.Find("Zilch").GetComponent<AudioSource>();
         scorePosted = GameObject.Find("ScorePosted").GetComponent<AudioSource>();

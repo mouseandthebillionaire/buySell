@@ -17,17 +17,27 @@ public class FundManager : MonoBehaviour {
 
     // Start is called before the first frame update
     void Awake() {
-        S = this;
+        if (S == null) {
+            S = this;
+        }
+        else {
+            DestroyObject(gameObject);
+        }
 
     }
 
     public void LoadWorth() {
-        StartCoroutine(GetWorthFromWeb());
+        // From the Web
+        //StartCoroutine(GetWorthFromWeb());
+        // From a file
+        StartCoroutine(GetWorthFromFile());
     }
 
     public void SaveWorth() {
-        // If we are saving the worth to web
-        StartCoroutine(UploadWorthToWeb());
+        // If we are saving the worth to the web
+        //StartCoroutine(UploadWorthToWeb());
+        // Or from a file
+        StartCoroutine(SaveWorthToFile());
     }
 
     public IEnumerator GetWorthFromWeb() {
@@ -55,9 +65,17 @@ public class FundManager : MonoBehaviour {
         }
 
         UnityWebRequest.Delete(url + fileName);
+    }
 
+    private IEnumerator GetWorthFromFile() {
+        TextAsset fundsFile = Resources.Load("traderFunds") as TextAsset;
+        string[] traderFunds = fundsFile.text.Split ('#');
+        
+        for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
+            GlobalVariables.S.traderWorth[i] = float.Parse(traderFunds[i]);
+        }
 
-
+        yield return null;
     }
 
     IEnumerator UploadWorthToWeb() {
@@ -105,6 +123,18 @@ public class FundManager : MonoBehaviour {
             }
         }
 
+    }
+
+    private IEnumerator SaveWorthToFile() {
+        string file = "Assets/Resources/traderFunds.txt";
+        string text = "";
+        
+        for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
+            string tempNum = GlobalVariables.S.traderWorth[i].ToString("#.00");
+            text += tempNum.ToString() + "#";
+        }
+        File.WriteAllText(file, text);
+        yield return null;
     }
     
 

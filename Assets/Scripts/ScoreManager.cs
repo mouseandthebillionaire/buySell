@@ -48,10 +48,10 @@ public class ScoreManager : MonoBehaviour
 
         scoresCalculated++;
         if (scoresCalculated == GlobalVariables.S.numTraders) {
-            //Save to the web if we are doing that
-            //FundManager.S.SaveWorth();
+            //Save to a file if we are doing that
+            FundManager.S.SaveWorth();
             if (GameManager.S.gameRound == GlobalVariables.S.numRounds - 1) {
-                // SceneManager.LoadScene("End");
+                //SceneManager.LoadScene("End");
             } else {
                 BetweenerManager.S.Next();
             }
