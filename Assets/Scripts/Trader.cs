@@ -27,10 +27,6 @@ public class Trader : MonoBehaviour {
     public Text                 stocksBoughtText, stocksSoldText;
     public Image                earningsMeter;
 
-    // Keep a list of the purchase cost of all 9 stocks
-    private float[] stockHoldings = new float[GlobalVariables.S.totalStocks];
-    
-    
     // Old version in which we Dynamically add stocks as they are bought
     public GameObject           holdingsParent;
     public GameObject           holdingPrefab;
@@ -38,6 +34,9 @@ public class Trader : MonoBehaviour {
     
     // New version constantly keeps track of all stocks
     public GameObject[]         stockHoldingsDisplay = new GameObject[GlobalVariables.S.totalStocks];
+    // Keep a list of the purchase cost of all 9 stocks
+    private float[]             stockHoldings = new float[GlobalVariables.S.totalStocks];
+    public Image[]              diffDisplays;
         
     // Transaction UI
     public GameObject           t_UI;
@@ -145,6 +144,24 @@ public class Trader : MonoBehaviour {
                     //Debug.Log(stockHoldings[i]);
                 }
         } 
+        
+        // Keep Track of the Difference between each stocks purchasePrice and current price
+        for (int i = 0; i < GlobalVariables.S.totalStocks; i++) {
+            if (StockManager.S.stockIndexes.Contains(i)) {
+                if (GlobalVariables.S.traderHoldings[traderNum, i] != 0)
+                {
+                    float f = StockManager.S.stockValues[i] - GlobalVariables.S.traderHoldings[traderNum, i];
+                    // Then show that visually
+                    if (f > 0) diffDisplays[i].color = Color.green;
+                    else diffDisplays[i].color = Color.red;
+                    diffDisplays[i].fillAmount = Mathf.Abs(f / 5f);
+                }
+                else
+                {
+                    diffDisplays[i].fillAmount = 0;
+                }
+            }
+        }
     }
 
     // version of PhoneSlam that takes an inputString
@@ -152,6 +169,7 @@ public class Trader : MonoBehaviour {
                 
         bool stockExists = false;
         int stockEntered = 99;
+        int stockNum = 99;
 
         for(int i=0; i < GlobalVariables.S.roundStocks; i++){
             
@@ -195,18 +213,25 @@ public class Trader : MonoBehaviour {
             StockManager.S.EffectStock("down", _stockNum);
         }
         
-        // Add the stock to the list of owned stocks
-
-        GameObject go = GameObject.Instantiate(holdingPrefab) as GameObject;
-        go.transform.parent = holdingsParent.transform;
-        Text name = go.transform.Find("stockName").GetComponent<Text>();
-        name.text = s.stockName;
-        Text value = go.transform.Find("stockAMT").GetComponent<Text>();
-        float displayPrice = purchasePrice;
-        value.text = " AT $"+ displayPrice.ToString("F1");
-  
-        holdings.Add(go);
+        // Dynamically add the stock to the list of owned stocks
+        // GameObject go = GameObject.Instantiate(holdingPrefab) as GameObject;
+        // go.transform.parent = holdingsParent.transform;
+        // Text name = go.transform.Find("stockName").GetComponent<Text>();
+        // name.text = s.stockName;
+        // Text value = go.transform.Find("stockAMT").GetComponent<Text>();
+        // float displayPrice = purchasePrice;
+        // value.text = " AT $"+ displayPrice.ToString("F1");
+        //holdings.Add(go);
         
+        
+        // Get the global Stock Number
+        int globalStockNum = StockManager.S.roundStocks[_stockNum].GetComponent<Stock>().stockNumber;
+
+        Text[] t = stockHoldingsDisplay[globalStockNum-1].GetComponentsInChildren<Text>();
+        // Update Price in the UI
+        t[1].text = "@"+purchasePrice.ToString("F1");
+        // And save to the Global Variable
+        GlobalVariables.S.traderHoldings[traderNum, globalStockNum - 1] = purchasePrice;
         UpdateDisplay();
         buy_sound.Play();
 
@@ -229,14 +254,15 @@ public class Trader : MonoBehaviour {
             earnedFunds += netGain;
             GameManager.S.roundWorth[traderNum] += earnedFunds;
             
-            int holdingsLocation = 0;
-            for(int i=0; i<holdings.Count; i++) {
-                if(holdings[i].transform.Find("stockName").GetComponent<Text>().text == stockName){
-                    holdingsLocation = i;
-                }
-            }
-            holdings.RemoveAt(holdingsLocation);
-            Destroy (holdingsParent.transform.GetChild (holdingsLocation).gameObject);
+            // Dynamically remove
+            // int holdingsLocation = 0;
+            // for(int i=0; i<holdings.Count; i++) {
+            //     if(holdings[i].transform.Find("stockName").GetComponent<Text>().text == stockName){
+            //         holdingsLocation = i;
+            //     }
+            // }
+            // holdings.RemoveAt(holdingsLocation);
+            // Destroy (holdingsParent.transform.GetChild (holdingsLocation).gameObject);
             
             if (netGain > 0) {
                 transactionWheel.GetComponent<Image>().color = transactionColors[1];
@@ -264,6 +290,14 @@ public class Trader : MonoBehaviour {
             stocksSold++;
             GlobalVariables.S.traderRoundStats[traderNum, 1]++;
             
+            // Get the global stock number
+            int globalStockNum = StockManager.S.roundStocks[_stockNum].GetComponent<Stock>().stockNumber;
+            Text[] t = stockHoldingsDisplay[globalStockNum-1].GetComponentsInChildren<Text>();
+            // Update Price in the UI
+            t[1].text = "NONE";
+            // And Save to the Global Variable
+            GlobalVariables.S.traderHoldings[traderNum, globalStockNum - 1] = 0;
+            
             UpdateDisplay();
         } 
     }
@@ -276,11 +310,12 @@ public class Trader : MonoBehaviour {
 
         int holdingIndex = 0;
 
-        foreach (GameObject go in holdings) {
-            go.transform.localPosition = new Vector3(90, -40 * holdingIndex, 0);
-            go.transform.localScale = new Vector3(1, 1, 1);
-            holdingIndex++;
-        }
+        // Dynamically adding stocks to the UI
+        // foreach (GameObject go in holdings) {
+        //     go.transform.localPosition = new Vector3(90, -40 * holdingIndex, 0);
+        //     go.transform.localScale = new Vector3(1, 1, 1);
+        //     holdingIndex++;
+        // }
         
         stocksBoughtText.text = "BOUGHT: " + stocksBought.ToString();
         stocksSoldText.text = "| SOLD: " + stocksSold.ToString();
@@ -321,7 +356,6 @@ public class Trader : MonoBehaviour {
         yield return new WaitForSeconds(1);
         if(action == "buy") Buy(_stockNum);
         if(action == "sell") Sell(_stockNum);
-   
     }
 
     private IEnumerator UpdateTodaysStocks() {
@@ -331,13 +365,20 @@ public class Trader : MonoBehaviour {
             // stockIndexes stores the StockNumber for each day's active stocks
             Text[] t = stockHoldingsDisplay[i].GetComponentsInChildren<Text>();
             if (StockManager.S.stockIndexes.Contains(i)) {
+                // Name
                 t[0].color = new Color(1, 1, 0, 1);
+                // Price
                 t[1].color = Color.white;
             }
             else {
+                // Name
                 t[0].color = new Color(1, 1, 1, .25f);
+                // Price
                 t[1].color = new Color(1, 1, 1, .25f);
             }
+            // Make sure price is current
+            if (GlobalVariables.S.traderHoldings[traderNum, i] != 0) t[1].text = "@" + GlobalVariables.S.traderHoldings[traderNum, i];
+            else t[1].text = "NONE";
         }
 
         yield return null;

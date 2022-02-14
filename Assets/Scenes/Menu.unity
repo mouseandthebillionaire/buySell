@@ -618,7 +618,7 @@ LightingSettings:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Settings.lighting
-  serializedVersion: 2
+  serializedVersion: 3
   m_GIWorkflowMode: 1
   m_EnableBakedLightmaps: 0
   m_EnableRealtimeLightmaps: 0
@@ -657,7 +657,7 @@ LightingSettings:
   m_PVREnvironmentReferencePointCount: 2048
   m_LightProbeSampleCountMultiplier: 4
   m_PVRBounces: 2
-  m_PVRRussianRouletteStartBounce: 2
+  m_PVRMinBounces: 1
   m_PVREnvironmentMIS: 0
   m_PVRFilteringMode: 2
   m_PVRDenoiserTypeDirect: 0
@@ -986,6 +986,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!95 &1116528713
 Animator:
   serializedVersion: 3
@@ -1647,10 +1648,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2765198513233102894, guid: 4fcbc13fd7aba405abe13c098fe3a175,
+        type: 3}
+      propertyPath: roundLength
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 2765198513233102895, guid: 4fcbc13fd7aba405abe13c098fe3a175,
         type: 3}
       propertyPath: m_Name
       value: Game Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2765198513233102929, guid: 4fcbc13fd7aba405abe13c098fe3a175,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2765198513233102929, guid: 4fcbc13fd7aba405abe13c098fe3a175,
         type: 3}
@@ -1669,6 +1680,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2765198513233102929, guid: 4fcbc13fd7aba405abe13c098fe3a175,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2765198513233102929, guid: 4fcbc13fd7aba405abe13c098fe3a175,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -1680,16 +1696,6 @@ PrefabInstance:
     - target: {fileID: 2765198513233102929, guid: 4fcbc13fd7aba405abe13c098fe3a175,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2765198513233102929, guid: 4fcbc13fd7aba405abe13c098fe3a175,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2765198513233102929, guid: 4fcbc13fd7aba405abe13c098fe3a175,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2765198513233102929, guid: 4fcbc13fd7aba405abe13c098fe3a175,

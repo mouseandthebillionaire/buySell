@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour {
 		for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
 			roundWorth[i] = 0;
 		}
-		GlobalVariables.S.Reset();
+		GlobalVariables.S.NewGame();
 	}
 
 	public void StartGame() {

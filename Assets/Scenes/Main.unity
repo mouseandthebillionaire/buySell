@@ -920,7 +920,7 @@ PrefabInstance:
     - target: {fileID: 6061917219769650371, guid: 34f15784964c1449ab68b25538c5cdff,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7929088217924555025, guid: 34f15784964c1449ab68b25538c5cdff,
         type: 3}
@@ -1339,6 +1339,16 @@ MonoBehaviour:
   roundStocks: []
   stocksActive: 
   stockIndexes: 
+  stockValues:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!114 &574289782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1832,6 +1842,21 @@ PrefabInstance:
       propertyPath: m_Text
       value: YU
       objectReference: {fileID: 0}
+    - target: {fileID: 7419459832544413242, guid: adc0feb69b7e9492eb74eff8989e0e4d,
+        type: 3}
+      propertyPath: sL_sound
+      value: 
+      objectReference: {fileID: 711807758}
+    - target: {fileID: 7419459832544413242, guid: adc0feb69b7e9492eb74eff8989e0e4d,
+        type: 3}
+      propertyPath: sP_sound
+      value: 
+      objectReference: {fileID: 1697307057}
+    - target: {fileID: 7419459832544413242, guid: adc0feb69b7e9492eb74eff8989e0e4d,
+        type: 3}
+      propertyPath: buy_sound
+      value: 
+      objectReference: {fileID: 1086731471}
     - target: {fileID: 7419459832544413242, guid: adc0feb69b7e9492eb74eff8989e0e4d,
         type: 3}
       propertyPath: traderNum
@@ -2762,6 +2787,16 @@ MonoBehaviour:
   roundStocks: []
   stocksActive: 
   stockIndexes: 
+  stockValues:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!4 &1264517181
 Transform:
   m_ObjectHideFlags: 0
@@ -2889,6 +2924,11 @@ PrefabInstance:
       propertyPath: tickerItems.Array.data[4]
       value: WSHS $9.0
       objectReference: {fileID: 0}
+    - target: {fileID: 1218683692313256454, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1274312865911646129, guid: 34f15784964c1449ab68b25538c5cdff,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -2913,7 +2953,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_Font
       value: 
-      objectReference: {fileID: 12800000, guid: e56cb0cee347e48c58d9038ce0021a06,
+      objectReference: {fileID: 12800000, guid: 7baedce67932d492dbf5554df7681b90,
         type: 3}
     - target: {fileID: 6059905228421292147, guid: 34f15784964c1449ab68b25538c5cdff,
         type: 3}
@@ -2935,6 +2975,12 @@ PrefabInstance:
       propertyPath: m_Text
       value: STOCKS
       objectReference: {fileID: 0}
+    - target: {fileID: 7929088217924555025, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8,
+        type: 3}
     - target: {fileID: 8898986758358076685, guid: 34f15784964c1449ab68b25538c5cdff,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3354,7 +3400,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1421377943}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9efff18057244150bfb1597a1b7a64c, type: 3}
+  m_Script: {fileID: 11500000, guid: f1584cfe2e0ea4246aacb275ecac9d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1427893456
@@ -4685,6 +4731,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1897964335}
     m_Modifications:
+    - target: {fileID: 1901151415528475387, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901151415528475387, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 55.1688
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901151415528475387, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901151415528475387, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.0844
+      objectReference: {fileID: 0}
     - target: {fileID: 6061917219769650371, guid: 34f15784964c1449ab68b25538c5cdff,
         type: 3}
       propertyPath: m_Name
@@ -4693,7 +4759,18 @@ PrefabInstance:
     - target: {fileID: 6061917219769650371, guid: 34f15784964c1449ab68b25538c5cdff,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929088217924555025, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8,
+        type: 3}
+    - target: {fileID: 7929088217924555025, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8898986758358076685, guid: 34f15784964c1449ab68b25538c5cdff,
         type: 3}
@@ -4994,6 +5071,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: NNF_updated
       objectReference: {fileID: 0}
+    - target: {fileID: 7419459832544413242, guid: adc0feb69b7e9492eb74eff8989e0e4d,
+        type: 3}
+      propertyPath: sL_sound
+      value: 
+      objectReference: {fileID: 711807758}
+    - target: {fileID: 7419459832544413242, guid: adc0feb69b7e9492eb74eff8989e0e4d,
+        type: 3}
+      propertyPath: sP_sound
+      value: 
+      objectReference: {fileID: 1697307057}
+    - target: {fileID: 7419459832544413242, guid: adc0feb69b7e9492eb74eff8989e0e4d,
+        type: 3}
+      propertyPath: buy_sound
+      value: 
+      objectReference: {fileID: 1086731471}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adc0feb69b7e9492eb74eff8989e0e4d, type: 3}
 --- !u!224 &3899888577504090460 stripped

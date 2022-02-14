@@ -14,6 +14,8 @@ public class GlobalVariables : MonoBehaviour {
     
     // Hold Round specific variables [stocksBought / stocksSold]
     public int[,]          traderRoundStats = new int[3, 2];
+    // Keep track of Trader Holdings
+    public float[,]        traderHoldings = new float[3, 9];
 
     [Header("Set Dynamically")] 
     public int             stockCodeLength; // Set by round #
@@ -73,10 +75,22 @@ public class GlobalVariables : MonoBehaviour {
     }
 
     void Start() {
-        Reset();
+        CompleteReset();
+        NewGame();
     }
 
-    public void Reset() {
+    private void CompleteReset()
+    {
+        for (int i = 0; i < numTraders; i++)
+        {
+            for (int j = 0; j < totalStocks; j++)
+            {
+                traderHoldings[i, j] = 0;
+            }
+        }
+    }
+
+    public void NewGame() {
         gameState = 0;
         stockCodeLength = 1;
         for (int i = 0; i < numTraders; i++) {

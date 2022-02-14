@@ -11,6 +11,9 @@ public class StockManager : MonoBehaviour {
     public bool[]           stocksActive;
     // the stockIndexes keeps track of what stockNumbers are actually alive each day
     public List<int>        stockIndexes;
+    
+    // Keep Track of all the stock values
+    public float[]          stockValues = new float[9];
 
     public static StockManager S;
 
@@ -19,10 +22,20 @@ public class StockManager : MonoBehaviour {
     }
 
     // Start is called before the first frame update
-    void Start() {
+    void Start()
+    {
+        ResetStockValues();
         LoadStocks();
         //SetStockCodes(GameManager.S.gameRound);
 
+    }
+
+    private void ResetStockValues()
+    {
+        for (int i = 0; i < GlobalVariables.S.totalStocks; i++)
+        {
+            stockValues[i] = 0;
+        }
     }
 
     private void LoadStocks() {

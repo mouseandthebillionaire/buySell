@@ -147,6 +147,10 @@ public class Stock : MonoBehaviour {
 		// Draw the Line
 		MakeLine();
 		hotness = 0;
+		
+		// Update the StockManager with the current value;
+		StockManager.S.stockValues[stockNumber - 1] = stockValue;
+		
 		yield return new WaitForSeconds(volatility);
 	
 	}
@@ -184,6 +188,7 @@ public class Stock : MonoBehaviour {
 		//float dp = value * 100f;
 		float dp = value;
 		displayPrice.text = "$" + dp.ToString("0.0");
+		
 	}
 	
 	private IEnumerator Fluctuate() {
