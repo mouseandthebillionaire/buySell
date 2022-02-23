@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class ScoreManager : MonoBehaviour
@@ -51,7 +52,7 @@ public class ScoreManager : MonoBehaviour
             //Save to a file if we are doing that
             FundManager.S.SaveWorth();
             if (GameManager.S.gameRound == GlobalVariables.S.numRounds - 1) {
-                //SceneManager.LoadScene("End");
+                SceneManager.LoadScene("End");
             } else {
                 BetweenerManager.S.Next();
             }
