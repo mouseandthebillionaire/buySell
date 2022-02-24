@@ -83,11 +83,10 @@ public class DDR : MonoBehaviour {
 
     private void GetNextKey(int _playerNum)
     {
-        Debug.Log(_playerNum);
         int    r    = Random.Range(0, 14);
         // Assign it the right name
         string name = GlobalVariables.S.keyNames[r];
-        int xLoc = 620 + (_playerNum * 203);
+        int xLoc = 400 + (_playerNum * 400);
         GameObject go = GameObject.Instantiate(key, new Vector2(xLoc, 1000), Quaternion.identity) as GameObject;
         go.GetComponent<DDR_key>().myKey = r;
         go.GetComponent<DDR_key>().playerNum = _playerNum;

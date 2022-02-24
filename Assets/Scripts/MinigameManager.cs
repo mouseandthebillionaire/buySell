@@ -16,6 +16,10 @@ public class MinigameManager : MonoBehaviour
     public int[] inputTimes = new int[3];
     public Text[]		inputDisplay;
 
+    // Minigame Components
+    private Image       logo, background;
+    private Text        description;
+
     public static MinigameManager S;
 
     void Awake() {
@@ -34,9 +38,16 @@ public class MinigameManager : MonoBehaviour
         // Choose the game
         // If it's 99 choice a random one, otherwise we're testing a specific one
         if(minigameChoice == 99) minigameChoice = UnityEngine.Random.Range(0, minigames.Length);
+        
+        // Activate the minigame GameObject
+        minigames[minigameChoice].SetActive(true);
+        
+        // Get all the Minigame Components
+        Image[] ims = minigames[minigameChoice].GetComponentsInChildren<Image>();
+        Debug.Log(ims.Length);
 
-        // Start the game
-        StartCoroutine(StartMinigame());
+        // Announce the game
+        StartCoroutine(AnnounceMinigame());
     }
 
     void Update() {
@@ -51,7 +62,6 @@ public class MinigameManager : MonoBehaviour
         // Explain the game
 
         // Run the game
-        minigames[minigameChoice].SetActive(true);
 
         traderInput.SetActive(true);
 
@@ -60,6 +70,9 @@ public class MinigameManager : MonoBehaviour
     }
     
     private IEnumerator AnnounceMinigame() {
+        
+        // Start the game
+        StartCoroutine(StartMinigame());
         yield return null;
     }
     

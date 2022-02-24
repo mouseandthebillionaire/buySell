@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BetweenerManager : MonoBehaviour
 {
     public bool skipScoring;
+    public bool announcerLive;
     
     public GameObject	scoreManager;
     public GameObject   minigameManager;
@@ -30,7 +31,7 @@ public class BetweenerManager : MonoBehaviour
     
     // Start is called before the first frame update
     void Start() {
-        announcer_sr = announcerSprite.GetComponent<SpriteRenderer>();
+        if(announcerLive) announcer_sr = announcerSprite.GetComponent<SpriteRenderer>();
         
         if (skipScoring) currSection = 2;
         else currSection = 0;
@@ -47,11 +48,13 @@ public class BetweenerManager : MonoBehaviour
     private IEnumerator Control(int _section) {
         
         if (_section == 0) {
-            // Great work, let's see how we did
-            announcer.clip = intro;
-            announcer.Play();
-            yield return new WaitForSeconds(intro.length);
-            announcer_sr.enabled = true;
+            if (announcerLive) {
+                // Great work, let's see how we did
+                announcer.clip = intro;
+                announcer.Play();
+                yield return new WaitForSeconds(intro.length);
+                announcer_sr.enabled = true;
+            }
             // Launch Score Manager
             scoreManager.SetActive(true);
         }
@@ -59,13 +62,14 @@ public class BetweenerManager : MonoBehaviour
         if (_section == 1)
         {
             // Incoming Bonus Opportunity coming
-            announcer.clip = bonus;
-            announcer.Play();
-            // yield return new WaitForSeconds(bonus.length);
+            if(announcerLive){
+                announcer.clip = bonus;
+                announcer.Play();
+                // yield return new WaitForSeconds(bonus.length);
+            }
 
             int blinkTimes = 4;
-            while (blinkTimes >= 0)
-            {
+            while (blinkTimes >= 0) {
                 bonusAnnouncement.SetActive(true);
                 bonusOpportunity.Play();
                 yield return new WaitForSeconds(0.75f);

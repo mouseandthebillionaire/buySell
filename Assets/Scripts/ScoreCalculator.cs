@@ -13,7 +13,7 @@ public class ScoreCalculator : MonoBehaviour {
     public GameObject      totalBonus;
     public Text            profit, previousEarnings, score;
 
-    private AudioSource    itemDisplayed, counter, zilch, scorePosted;
+    private AudioSource    itemDisplayed, blip_1, counter, zilch, scorePosted;
 
     private int            traderNum;
 
@@ -25,14 +25,14 @@ public class ScoreCalculator : MonoBehaviour {
 
     public void Start() {
         itemDisplayed = GameObject.Find("Coin").GetComponent<AudioSource>();
+        blip_1 = GameObject.Find("Blip_1").GetComponent<AudioSource>();
         counter = GameObject.Find("Counter").GetComponent<AudioSource>();
         zilch = GameObject.Find("Zilch").GetComponent<AudioSource>();
         scorePosted = GameObject.Find("ScorePosted").GetComponent<AudioSource>();
     }
-    
 
-    // Update is called once per frame
-    public IEnumerator CalculateScore() {      
+    public IEnumerator CalculateScore() {
+        blip_1.Play();
         traderNum = ScoreManager.S.scoresCalculated;
         itemScore = 0;
         
