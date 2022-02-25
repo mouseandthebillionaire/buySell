@@ -114,7 +114,6 @@ public class MinigameManager : MonoBehaviour
             for(int j=0; j < 15; j++){
                 if (Input.GetKeyDown(GlobalVariables.S.inputKeys[i, j])) {
                     inputKeys[i] = j;
-                    Debug.Log(inputKeys[i]);
                 }
             }
         }
