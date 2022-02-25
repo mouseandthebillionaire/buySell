@@ -2371,7 +2371,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601774147}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -400, z: 0}
+  m_LocalPosition: {x: 0, y: -450, z: 0}
   m_LocalScale: {x: 0.91666996, y: 0.91666996, z: 0}
   m_Children:
   - {fileID: 935670861}
@@ -2981,6 +2981,11 @@ PrefabInstance:
     - target: {fileID: 2765198513233102929, guid: 4fcbc13fd7aba405abe13c098fe3a175,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2765198513916529928, guid: 4fcbc13fd7aba405abe13c098fe3a175,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7954,7 +7959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40fc3433b6b34503a754e796b9230dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minigameChoice: 3
+  minigameChoice: 5
   minigames:
   - {fileID: 1089424731}
   - {fileID: 1213065092}

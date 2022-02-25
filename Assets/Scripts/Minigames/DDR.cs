@@ -62,9 +62,13 @@ public class DDR : MonoBehaviour {
         {
             Destroy(key.gameObject);
         }
+        // And the target boxes
+        goalBoxes.SetActive(false);
+        
         // Then stop the game
         gameRunning = false;
         //  and End the game via the MinigameManager
+        MinigameManager.S.EndGame();
     }
 
     private IEnumerator CreateKeys()

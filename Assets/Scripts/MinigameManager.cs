@@ -53,6 +53,7 @@ public class MinigameManager : MonoBehaviour
     void Update() {
         // We're constantly looking to see what keys the players are pressing
         GetKeys();
+
     }
     
     
