@@ -18,6 +18,16 @@ public class BugSquasher : MonoBehaviour
 	    StartCoroutine(RunGame());
     }
 
+	private IEnumerator MoveBug(GameObject _bug) {
+		while (_bug.GetComponent<Image>().color == Color.white) {
+			_bug.transform.position = new Vector3(
+				_bug.transform.position.x + Random.Range(-2f, 2f),
+				_bug.transform.position.y + Random.Range(-2f, 2f), 0);
+			yield return new WaitForSeconds(0.1f);
+		}
+		
+	}
+
     private IEnumerator RunGame() {
 		// overall time based
 		int minigameLength = 20;
@@ -33,11 +43,12 @@ public class BugSquasher : MonoBehaviour
 	
 		while (duration > Time.time) {
 			if (!bugPresent) {
-				Debug.Log("We're bugging");
 				correctKey = Random.Range(0, bugKeys.Length);
 				Debug.Log(correctKey);
 				GameObject go = GameObject.Find(bugKeys[correctKey].name + "/bug");
 				go.GetComponent<Image>().color = Color.white;
+				// Move the bug around
+				StartCoroutine(MoveBug(go));
 				bugPresent = true;
 			}
 			
