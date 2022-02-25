@@ -14,7 +14,7 @@ public class GlobalFeed : MonoBehaviour {
     private Text            newsFeedText;
 
     private float            newsUpdateTime = 1.5f;
-    private int              itemsToDisplay = 5;
+    private int              itemsToDisplay = 16;
     
     
 
