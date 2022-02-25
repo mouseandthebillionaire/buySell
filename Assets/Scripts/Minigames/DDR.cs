@@ -86,6 +86,7 @@ public class DDR : MonoBehaviour {
         int    r    = Random.Range(0, 14);
         // Assign it the right name
         string name = GlobalVariables.S.keyNames[r];
+        Debug.Log(name);
         int xLoc = 400 + (_playerNum * 400);
         GameObject go = GameObject.Instantiate(key, new Vector2(xLoc, 1000), Quaternion.identity) as GameObject;
         go.GetComponent<DDR_key>().myKey = r;
