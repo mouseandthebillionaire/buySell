@@ -947,7 +947,7 @@ PrefabInstance:
     - target: {fileID: 8898986758358076685, guid: 34f15784964c1449ab68b25538c5cdff,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8898986758358076685, guid: 34f15784964c1449ab68b25538c5cdff,
         type: 3}
@@ -1717,6 +1717,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &872017730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 872017731}
+  m_Layer: 0
+  m_Name: RoseanneBarrChart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &872017731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872017730}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -819.72876, y: -527.39954, z: -0.28658745}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1897964335}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &881199031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3012,7 +3042,7 @@ PrefabInstance:
     - target: {fileID: 8898986758358076685, guid: 34f15784964c1449ab68b25538c5cdff,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8898986758358076685, guid: 34f15784964c1449ab68b25538c5cdff,
         type: 3}
@@ -3087,7 +3117,7 @@ PrefabInstance:
     - target: {fileID: 8898986758358076685, guid: 34f15784964c1449ab68b25538c5cdff,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 580
+      value: 570
       objectReference: {fileID: 0}
     - target: {fileID: 8898986758358076685, guid: 34f15784964c1449ab68b25538c5cdff,
         type: 3}
@@ -4830,6 +4860,7 @@ RectTransform:
   - {fileID: 134493184}
   - {fileID: 1620692103}
   - {fileID: 1421377944}
+  - {fileID: 872017731}
   - {fileID: 525878878}
   - {fileID: 1288484156}
   - {fileID: 2112296385}
@@ -4934,7 +4965,7 @@ PrefabInstance:
     - target: {fileID: 8898986758358076685, guid: 34f15784964c1449ab68b25538c5cdff,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8898986758358076685, guid: 34f15784964c1449ab68b25538c5cdff,
         type: 3}
