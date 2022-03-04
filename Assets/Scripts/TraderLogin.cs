@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
-using Image = UnityEngine.UI.Image;
+using UnityEngine.UI;
 
 public class TraderLogin : MonoBehaviour {
     public KeyCode enter;
-    public Image panel;
+    private Image panel;
     public Color logged_onColor;
 
     private bool entered;
@@ -16,6 +15,12 @@ public class TraderLogin : MonoBehaviour {
     void Start() {
         panel = GetComponentInChildren<Image>();
         panel.color = new Color(1, 1, 1, 0.5f);
+        int traderNum = int.Parse(this.name);
+        Debug.Log(traderNum);
+
+        GameObject funds = GameObject.Find("CurrentFunds_" + traderNum);
+        Text fundsDisplay = funds.GetComponent<Text>();
+        fundsDisplay.text = "Current Funds: \n$" + GlobalVariables.S.traderWorth[traderNum];        
         entered = false;
     }
 

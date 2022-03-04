@@ -221,6 +221,11 @@ PrefabInstance:
       propertyPath: logged_onColor.r
       value: 0.0786757
       objectReference: {fileID: 0}
+    - target: {fileID: 1288611151119535775, guid: 18ca300594dcd49bf95ffb4584f3ac07,
+        type: 3}
+      propertyPath: m_Name
+      value: CurrentFunds_2
+      objectReference: {fileID: 0}
     - target: {fileID: 1662363911777523581, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
       propertyPath: m_FontData.m_Font
@@ -231,6 +236,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868766146402334453, guid: 18ca300594dcd49bf95ffb4584f3ac07,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -160
       objectReference: {fileID: 0}
     - target: {fileID: 3868766146402334458, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
@@ -271,7 +281,7 @@ PrefabInstance:
     - target: {fileID: 3868766147738739649, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
       propertyPath: m_Name
-      value: TraderLogin_2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3868766147738739649, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
@@ -356,13 +366,13 @@ PrefabInstance:
     - target: {fileID: 8656854886038995780, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
       propertyPath: m_Text
-      value: (Rose and Rosen Rose)
+      value: Rose & Rosen Rose
       objectReference: {fileID: 0}
     - target: {fileID: 8656854886038995780, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
       propertyPath: m_FontData.m_Font
       value: 
-      objectReference: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8,
+      objectReference: {fileID: 12800000, guid: 81740b229d8214ae7b89d010fef0f969,
         type: 3}
     - target: {fileID: 8656854886038995780, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
@@ -536,7 +546,7 @@ SpriteRenderer:
   m_Size: {x: 27.86, y: 11.576592}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &392989146
@@ -551,7 +561,7 @@ GameObject:
   - component: {fileID: 392989149}
   - component: {fileID: 392989148}
   m_Layer: 0
-  m_Name: Text
+  m_Name: Instructional Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -574,7 +584,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -250}
-  m_SizeDelta: {x: 500, y: 30}
+  m_SizeDelta: {x: 1200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &392989148
 MonoBehaviour:
@@ -609,7 +619,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PRESS *9 FOR INSTRUCTIONS
+  m_Text: PRESS #3 TO LOG IN   |   PRESS *9 FOR INSTRUCTIONS
 --- !u!222 &392989149
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -653,7 +663,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -31.999878, y: -125}
+  m_AnchoredPosition: {x: -32, y: -125}
   m_SizeDelta: {x: 106, y: 125}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &553345197
@@ -1457,12 +1467,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cd60ee5e366884fd7bfcb8527c02ba3d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 90332596c017343089370a7cadb19a4b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 33.88, y: 7.2623644}
+  m_Size: {x: 34.579998, y: 7.4124117}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1651,6 +1661,11 @@ PrefabInstance:
       propertyPath: logged_onColor.r
       value: 0.9716981
       objectReference: {fileID: 0}
+    - target: {fileID: 1288611151119535775, guid: 18ca300594dcd49bf95ffb4584f3ac07,
+        type: 3}
+      propertyPath: m_Name
+      value: CurrentFunds_1
+      objectReference: {fileID: 0}
     - target: {fileID: 1662363911777523581, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
       propertyPath: m_FontData.m_Font
@@ -1661,6 +1676,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868766146402334453, guid: 18ca300594dcd49bf95ffb4584f3ac07,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -160
       objectReference: {fileID: 0}
     - target: {fileID: 3868766146402334458, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
@@ -1701,7 +1721,7 @@ PrefabInstance:
     - target: {fileID: 3868766147738739649, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
       propertyPath: m_Name
-      value: TraderLogin_1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3868766147738739649, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
@@ -1786,13 +1806,13 @@ PrefabInstance:
     - target: {fileID: 8656854886038995780, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
       propertyPath: m_Text
-      value: (Young Upstars)
+      value: Young Upstarts
       objectReference: {fileID: 0}
     - target: {fileID: 8656854886038995780, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
       propertyPath: m_FontData.m_Font
       value: 
-      objectReference: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8,
+      objectReference: {fileID: 12800000, guid: 81740b229d8214ae7b89d010fef0f969,
         type: 3}
     - target: {fileID: 8656854886038995780, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
@@ -1934,11 +1954,6 @@ PrefabInstance:
     - target: {fileID: 2765198513233102894, guid: 4fcbc13fd7aba405abe13c098fe3a175,
         type: 3}
       propertyPath: roundLength
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 2765198513233102894, guid: 4fcbc13fd7aba405abe13c098fe3a175,
-        type: 3}
-      propertyPath: roundLength
       value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 2765198513233102895, guid: 4fcbc13fd7aba405abe13c098fe3a175,
@@ -2026,6 +2041,11 @@ PrefabInstance:
       propertyPath: logged_onColor.r
       value: 0.9137255
       objectReference: {fileID: 0}
+    - target: {fileID: 1288611151119535775, guid: 18ca300594dcd49bf95ffb4584f3ac07,
+        type: 3}
+      propertyPath: m_Name
+      value: CurrentFunds_0
+      objectReference: {fileID: 0}
     - target: {fileID: 1662363911777523581, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
       propertyPath: m_FontData.m_Font
@@ -2042,6 +2062,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3868766146402334453, guid: 18ca300594dcd49bf95ffb4584f3ac07,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -160
+      objectReference: {fileID: 0}
     - target: {fileID: 3868766146402334458, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
       propertyPath: m_FontData.m_Font
@@ -2056,7 +2081,7 @@ PrefabInstance:
     - target: {fileID: 3868766147738739649, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
       propertyPath: m_Name
-      value: TraderLogin_0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3868766147738739654, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
@@ -2135,9 +2160,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8656854886038995780, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
+      propertyPath: m_Text
+      value: Necktie, Necktie & Fleece
+      objectReference: {fileID: 0}
+    - target: {fileID: 8656854886038995780, guid: 18ca300594dcd49bf95ffb4584f3ac07,
+        type: 3}
       propertyPath: m_FontData.m_Font
       value: 
-      objectReference: {fileID: 12800000, guid: 66a199433ca11434fbe95d020bfbd8d8,
+      objectReference: {fileID: 12800000, guid: 81740b229d8214ae7b89d010fef0f969,
         type: 3}
     - target: {fileID: 8656854886038995780, guid: 18ca300594dcd49bf95ffb4584f3ac07,
         type: 3}
