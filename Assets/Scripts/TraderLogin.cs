@@ -15,12 +15,9 @@ public class TraderLogin : MonoBehaviour {
     void Start() {
         panel = GetComponentInChildren<Image>();
         panel.color = new Color(1, 1, 1, 0.5f);
-        int traderNum = int.Parse(this.name);
-        Debug.Log(traderNum);
 
-        GameObject funds = GameObject.Find("CurrentFunds_" + traderNum);
-        Text fundsDisplay = funds.GetComponent<Text>();
-        fundsDisplay.text = "Current Funds: \n$" + GlobalVariables.S.traderWorth[traderNum];        
+        StartCoroutine(DisplayWorth());
+        
         entered = false;
     }
 
@@ -34,5 +31,16 @@ public class TraderLogin : MonoBehaviour {
                 entered = true;
             }
         }
+    }
+
+    public IEnumerator DisplayWorth() {
+        yield return new WaitForSeconds(0.05f);
+        int traderNum = int.Parse(this.name);
+
+        // Finding the Text to display funds based on its name
+        GameObject funds        = GameObject.Find("CurrentFunds_" + traderNum);
+        Text       fundsDisplay = funds.GetComponent<Text>();
+        fundsDisplay.text = "Current Funds: \n$" + GlobalVariables.S.traderWorth[traderNum];
+        yield return null;
     }
 }

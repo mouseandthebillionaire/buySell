@@ -80,7 +80,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Current Funds:
 
-    $45'
+    $0'
 --- !u!1 &3062291206129621678
 GameObject:
   m_ObjectHideFlags: 0

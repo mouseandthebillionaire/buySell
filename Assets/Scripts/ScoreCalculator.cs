@@ -9,7 +9,7 @@ public class ScoreCalculator : MonoBehaviour {
     
     public GameObject[]    scoreItems;
 
-    private float           itemScore;
+    private float          bonusProfit;
     public GameObject      totalBonus;
     public Text            profit, previousEarnings, score;
 
@@ -32,21 +32,21 @@ public class ScoreCalculator : MonoBehaviour {
     }
 
     public IEnumerator CalculateScore() {
-        blip_1.Play();
+        if(blip_1) blip_1.Play(); // sometimes it can't find this?
         traderNum = ScoreManager.S.scoresCalculated;
-        itemScore = 0;
+        bonusProfit = 0;
         
         yield return new WaitForSeconds(0.5f); 
 
-        
+        // Award "Bonus" profit for #bought and #sold
         for (int i = 0; i < scoreItems.Length; i++) {
             Text item = scoreItems[i].transform.GetChild(0).GetComponent<Text>();
             item.text = GlobalVariables.S.traderRoundStats[traderNum, i].ToString() + " =";
             float sum = GlobalVariables.S.traderRoundStats[traderNum, i] * (0.5f * (i + 1));
-            itemScore += sum;
+            bonusProfit += sum;
             Text value = scoreItems[i].transform.GetChild(1).GetComponent<Text>();
             value.text = "$" + sum.ToString("f2");
-            if(itemScore > 0) itemDisplayed.Play();
+            if(bonusProfit > 0) itemDisplayed.Play();
             else zilch.Play();
             scoreItems[i].SetActive(true);   
             yield return new WaitForSeconds(0.5f); 
@@ -55,11 +55,10 @@ public class ScoreCalculator : MonoBehaviour {
                 
         // total Bonus profit
         Text itemTotal = totalBonus.transform.GetChild(0).GetComponent<Text>();
-        itemTotal.text = "$" + itemScore.ToString("F2");
-        if(itemScore > 0) itemDisplayed.Play();
+        itemTotal.text = "$" + bonusProfit.ToString("F2");
+        if(bonusProfit > 0) itemDisplayed.Play();
         else zilch.Play();
         totalBonus.SetActive(true);
-        
         yield return new WaitForSeconds(0.5f); 
         
         // Round Profit
@@ -90,12 +89,13 @@ public class ScoreCalculator : MonoBehaviour {
         
         previousEarnings.text = "$" + previousProfit.ToString("F2");
         if (previousProfit <= 0) zilch.Play();
+        Debug.Log("previous:" + previousProfit);
         yield return new WaitForSeconds(0.5f);
         
 
 
         // Get Final Score
-        float totalProfit = roundProfit + itemScore + previousProfit;
+        float totalProfit = (roundProfit + bonusProfit + previousProfit);
         displayProfit = 0;
         increment = totalProfit / Random.Range(9.25f, 10f);
         while (displayProfit < totalProfit){
@@ -107,9 +107,14 @@ public class ScoreCalculator : MonoBehaviour {
     
         score.text = "$" + totalProfit.ToString("F2");
         if(totalProfit <= 0) zilch.Play();
+        Debug.Log("total: " + totalProfit);
         yield return new WaitForSeconds(0.5f);
 
+        // Add to the weekly profit
+        GlobalVariables.S.weeklyEarnings[traderNum] += roundProfit;
+        // Add to the overall profit
         GlobalVariables.S.traderWorth[traderNum] = totalProfit;
+        Debug.Log(totalProfit);
 
         scorePosted.Play();
         StartCoroutine(ScoreManager.S.PostScore(totalProfit));

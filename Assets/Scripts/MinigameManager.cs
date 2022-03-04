@@ -44,7 +44,6 @@ public class MinigameManager : MonoBehaviour
         
         // Get all the Minigame Components
         Image[] ims = minigames[minigameChoice].GetComponentsInChildren<Image>();
-        Debug.Log(ims.Length);
 
         // Announce the game
         StartCoroutine(AnnounceMinigame());
@@ -104,8 +103,6 @@ public class MinigameManager : MonoBehaviour
                 highest = inputTimes[i];
                 winner = i;
             }
-
-            Debug.Log(winner);
         }
         return winner;
     }

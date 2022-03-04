@@ -44,7 +44,6 @@ public class BugSquasher : MonoBehaviour
 		while (duration > Time.time) {
 			if (!bugPresent) {
 				correctKey = Random.Range(0, bugKeys.Length);
-				Debug.Log(correctKey);
 				GameObject go = GameObject.Find(bugKeys[correctKey].name + "/bug");
 				go.GetComponent<Image>().color = Color.white;
 				// Move the bug around

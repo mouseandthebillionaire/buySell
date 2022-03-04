@@ -8,6 +8,8 @@ using UnityEngine.Networking;
 using System.Text;
 
 public class FundManager : MonoBehaviour {
+    public bool            fundsLoaded;
+    
     private string         url = "http://mouseandthebillionaire.com/buySell/www/";
     private string         fileName = "traderFunds.xml";
 
@@ -27,6 +29,7 @@ public class FundManager : MonoBehaviour {
     }
 
     public void LoadWorth() {
+        fundsLoaded = false;
         // From the Web
         //StartCoroutine(GetWorthFromWeb());
         // From a file
@@ -75,6 +78,7 @@ public class FundManager : MonoBehaviour {
             GlobalVariables.S.traderWorth[i] = float.Parse(traderFunds[i]);
         }
 
+        fundsLoaded = true;
         yield return null;
     }
 
@@ -137,7 +141,7 @@ public class FundManager : MonoBehaviour {
         yield return null;
     }
 
-    public void ResetAllWorth() {
+    public void CompleteResetOfAllWorth() {
         string file = "Assets/Resources/traderFunds.txt";
         string text = "";
         
@@ -147,6 +151,7 @@ public class FundManager : MonoBehaviour {
             text += tempNum.ToString() + "#";
         }
         File.WriteAllText(file, text);
+        Debug.Log("Funds Reset");
     }
     
 

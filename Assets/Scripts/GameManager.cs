@@ -56,11 +56,6 @@ public class GameManager : MonoBehaviour {
 			Reset();
 			SceneManager.LoadScene("Menu");
 		}
-
-		if (Input.GetKeyDown(KeyCode.Alpha1) && Input.GetKey(KeyCode.LeftControl)) {
-			FundManager.S.ResetAllWorth();
-		}
-
 	}
 
 	public void Reset() {
@@ -74,7 +69,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void StartGame() {
-		PrepForRound();
+		if(FundManager.S.fundsLoaded) PrepForRound();
 	}
 
 
@@ -99,6 +94,7 @@ public class GameManager : MonoBehaviour {
 		for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
 			roundWorth[i] = 0;
 			for(int j=0; j < 2; j++){
+				// Reset the round stats
 				GlobalVariables.S.traderRoundStats[i, j] = 0;
 			}
 		}

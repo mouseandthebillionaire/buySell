@@ -21,6 +21,16 @@ public class Login : MonoBehaviour {
         S = this;
     }
 
+    public void Update() {
+        // Only on the load screen, we have an option to completely reset all Trader Worth
+        if (Input.GetKeyDown(KeyCode.Alpha1) && Input.GetKey(KeyCode.LeftControl)) {
+            FundManager.S.CompleteResetOfAllWorth();
+            for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
+                GameObject.Find(i.ToString()).GetComponent<TraderLogin>().DisplayWorth();
+            }
+        }
+    }
+
     public IEnumerator CountDown() {
         yield return new WaitForSeconds(1);
         loading.SetActive(true);

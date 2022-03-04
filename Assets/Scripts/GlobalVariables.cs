@@ -16,6 +16,8 @@ public class GlobalVariables : MonoBehaviour {
     public int[,]          traderRoundStats = new int[3, 2];
     // Keep track of Trader Holdings
     public float[,]        traderHoldings = new float[3, 9];
+    // Keep track of each playthrough's earnings
+    public float[]        weeklyEarnings = new float[3];
 
     [Header("Set Dynamically")] 
     public int             stockCodeLength; // Set by round #
@@ -74,32 +76,21 @@ public class GlobalVariables : MonoBehaviour {
        }
     }
 
-    void Start() {
-        CompleteReset();
-        NewGame();
-    }
-
-    public void CompleteReset()
-    {
-        for (int i = 0; i < numTraders; i++)
-        {
-            for (int j = 0; j < totalStocks; j++)
-            {
-                traderHoldings[i, j] = 0;
-            }
-        }
-        //FundManager.S.ResetAllWorth();
-    }
-
     public void NewGame() {
         gameState = 0;
         stockCodeLength = 1;
         for (int i = 0; i < numTraders; i++) {
-            // reset trader money to $0
-            //traderWorth[i] = 0;
-            // OR keep their money the same by doing nothing
-            // OR pull an amount from a saved file...
+            // Reset trader's weekly earnings to $0
+            weeklyEarnings[i] = 0;
+            // Pull their overall funds from a saved file...
             FundManager.S.LoadWorth();
+            // And remove all of their holdings
+            for (int j = 0; j < 9; j++){
+                // Reset the HOLDINGS
+                traderHoldings[i, j] = 0;
+            }
+
+            Debug.Log("Trader #" + i + "is worth " + traderWorth[i]);
         }
     }
 

@@ -7311,7 +7311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ced7c5102ca046e29ec957c6e61c444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipScoring: 1
+  skipScoring: 0
   announcerLive: 0
   scoreManager: {fileID: 763481818}
   minigameManager: {fileID: 2122718780}
@@ -7858,7 +7858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2122718781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7959,7 +7959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40fc3433b6b34503a754e796b9230dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minigameChoice: 5
+  minigameChoice: 99
   minigames:
   - {fileID: 1089424731}
   - {fileID: 1213065092}

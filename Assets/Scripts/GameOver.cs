@@ -57,11 +57,11 @@ public class GameOver : MonoBehaviour {
     
         
     public int GetWinner() {
-        float max = GlobalVariables.S.traderWorth[0];
+        float max = GlobalVariables.S.weeklyEarnings[0];
         winnerNum = 0;
-        for (int i = 1; i < GlobalVariables.S.traderWorth.Length; i++) {
-            if (GlobalVariables.S.traderWorth[i] > max) {
-                max = GlobalVariables.S.traderWorth[i];
+        for (int i = 1; i < GlobalVariables.S.weeklyEarnings.Length; i++) {
+            if (GlobalVariables.S.weeklyEarnings[i] > max) {
+                max = GlobalVariables.S.weeklyEarnings[i];
                 winnerNum = i;
             }
         }
