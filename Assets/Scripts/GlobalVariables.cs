@@ -79,7 +79,7 @@ public class GlobalVariables : MonoBehaviour {
         NewGame();
     }
 
-    private void CompleteReset()
+    public void CompleteReset()
     {
         for (int i = 0; i < numTraders; i++)
         {
@@ -88,6 +88,7 @@ public class GlobalVariables : MonoBehaviour {
                 traderHoldings[i, j] = 0;
             }
         }
+        //FundManager.S.ResetAllWorth();
     }
 
     public void NewGame() {

@@ -57,6 +57,10 @@ public class GameManager : MonoBehaviour {
 			SceneManager.LoadScene("Menu");
 		}
 
+		if (Input.GetKeyDown(KeyCode.Alpha1) && Input.GetKey(KeyCode.LeftControl)) {
+			FundManager.S.ResetAllWorth();
+		}
+
 	}
 
 	public void Reset() {
