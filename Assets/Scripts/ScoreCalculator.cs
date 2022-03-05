@@ -89,7 +89,6 @@ public class ScoreCalculator : MonoBehaviour {
         
         previousEarnings.text = "$" + previousProfit.ToString("F2");
         if (previousProfit <= 0) zilch.Play();
-        Debug.Log("previous:" + previousProfit);
         yield return new WaitForSeconds(0.5f);
         
 
@@ -107,15 +106,14 @@ public class ScoreCalculator : MonoBehaviour {
     
         score.text = "$" + totalProfit.ToString("F2");
         if(totalProfit <= 0) zilch.Play();
-        Debug.Log("total: " + totalProfit);
         yield return new WaitForSeconds(0.5f);
 
         // Add to the weekly profit
         GlobalVariables.S.weeklyEarnings[traderNum] += roundProfit;
         // Add to the overall profit
         GlobalVariables.S.traderWorth[traderNum] = totalProfit;
-        Debug.Log(totalProfit);
-
+        // Add a delay to make sure this actually happens
+        yield return new WaitForSeconds(0.5f);
         scorePosted.Play();
         StartCoroutine(ScoreManager.S.PostScore(totalProfit));
         

@@ -76,21 +76,19 @@ public class GlobalVariables : MonoBehaviour {
        }
     }
 
-    public void NewGame() {
+    public void NewWeek() {
         gameState = 0;
         stockCodeLength = 1;
+        // Pull the overall funds from a saved file...
+        FundManager.S.LoadWorth();
         for (int i = 0; i < numTraders; i++) {
             // Reset trader's weekly earnings to $0
             weeklyEarnings[i] = 0;
-            // Pull their overall funds from a saved file...
-            FundManager.S.LoadWorth();
             // And remove all of their holdings
             for (int j = 0; j < 9; j++){
                 // Reset the HOLDINGS
                 traderHoldings[i, j] = 0;
             }
-
-            Debug.Log("Trader #" + i + "is worth " + traderWorth[i]);
         }
     }
 

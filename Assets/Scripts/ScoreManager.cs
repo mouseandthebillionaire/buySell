@@ -49,8 +49,6 @@ public class ScoreManager : MonoBehaviour
 
         scoresCalculated++;
         if (scoresCalculated == GlobalVariables.S.numTraders) {
-            //Save to a file if we are doing that
-            FundManager.S.SaveWorth();
             if (GameManager.S.gameRound == GlobalVariables.S.numRounds - 1) {
                 SceneManager.LoadScene("End");
             } else {

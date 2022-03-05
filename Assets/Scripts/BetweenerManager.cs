@@ -83,6 +83,8 @@ public class BetweenerManager : MonoBehaviour
         }
 
         if (_section == 2) {
+			// Shut down the scorer
+			scoreManager.SetActive(false);
             // Launch the Minigame
             minigameManager.SetActive(true);
         }

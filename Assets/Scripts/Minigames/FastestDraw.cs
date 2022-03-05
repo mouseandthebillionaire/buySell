@@ -19,6 +19,7 @@ public class FastestDraw : MonoBehaviour
 			inThis[i] = true;
 		}
 		int holdSeconds = Random.Range(5, 10);
+		int timeToAnswer = 5;
 		
 		float duration = Time.time + holdSeconds;
 		
@@ -41,14 +42,20 @@ public class FastestDraw : MonoBehaviour
 		while (ringing){
 			for (int i = 0; i < MinigameManager.S.inputKeys.Length; i++) {
 				if (MinigameManager.S.inputKeys[i] == 12 && inThis[i]) {
-					Debug.Log("Answered!");
 					MinigameManager.S.traderInput.transform.GetChild(i).transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
 					ringing = false;
 					ring.Stop();
-					Debug.Log(i);
 					BetweenerManager.S.AnnounceBonusWinner(i);
 				}
 			}
+
+			if (Time.time > (duration + timeToAnswer))
+			{
+				ringing = false;
+				ring.Stop();
+				BetweenerManager.S.AnnounceBonusWinner(99);
+			}
+			
 			yield return null;
 		}
 	}

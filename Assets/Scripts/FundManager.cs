@@ -48,8 +48,6 @@ public class FundManager : MonoBehaviour {
         UnityWebRequest www = UnityWebRequest.Get(url + fileName);
         yield return www.SendWebRequest();
         
-        Debug.Log("uploading");
-        
         if (www.isNetworkError || www.isHttpError) {
             Debug.Log(url);
             Debug.Log(www.error);
@@ -138,7 +136,9 @@ public class FundManager : MonoBehaviour {
             text += tempNum.ToString() + "#";
         }
         File.WriteAllText(file, text);
-        yield return null;
+        // Add a quick delay to make sure this happens
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("File Updated");
     }
 
     public void CompleteResetOfAllWorth() {

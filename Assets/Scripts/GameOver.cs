@@ -16,33 +16,42 @@ public class GameOver : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         StartCoroutine(GetSnarkFromFile());
-     
+        
+        //Save to a file if we are doing that
+        FundManager.S.SaveWorth();
 
-        //Debug
+        // Who won?!
         winner.text = GlobalVariables.S.teamNames[GetWinner()];
         winner.color = GlobalVariables.S.traderColors[winnerNum];
-        
+
         timePassed = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.Period)) {
-            Menu();
+        if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.Period))
+        {
+            StartCoroutine(Restart());
         }
 
         timePassed += Time.deltaTime;
 
-        if (timePassed >= delayTime) {
-            Menu();
+        if (timePassed >= delayTime)
+        {
+            StartCoroutine(Restart());
         }
 
     }
 
-    private void Menu() {
+    private IEnumerator Restart() {
+        // Publish the final scores to the Text file
+        FundManager.S.SaveWorth();
+        yield return new WaitForSeconds(0.5f);
+        // And Go to the Menu
         GameManager.S.Reset();
         SceneManager.LoadScene("Menu");
+        yield return null;
     }
     
     IEnumerator GetSnarkFromFile() {

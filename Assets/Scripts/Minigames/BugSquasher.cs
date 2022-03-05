@@ -9,7 +9,7 @@ public class BugSquasher : MonoBehaviour
 	public GameObject[]	bugKeys = new GameObject[12];
 	public AudioSource splatSound;
 
-	private int correctKey;
+	private int correctKey, tempCorrectKey;
 	private int[] inputTimes = new int[3];
 	
 	// Start is called before the first frame update
@@ -43,7 +43,15 @@ public class BugSquasher : MonoBehaviour
 	
 		while (duration > Time.time) {
 			if (!bugPresent) {
-				correctKey = Random.Range(0, bugKeys.Length);
+				tempCorrectKey = Random.Range(0, bugKeys.Length);
+				// Did we just have that bug
+				if (tempCorrectKey == correctKey)
+				{
+					tempCorrectKey = Random.Range(0, bugKeys.Length);
+					Debug.Log("It hapenned");
+				}
+				correctKey = tempCorrectKey;
+				
 				GameObject go = GameObject.Find(bugKeys[correctKey].name + "/bug");
 				go.GetComponent<Image>().color = Color.white;
 				// Move the bug around

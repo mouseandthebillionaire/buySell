@@ -397,6 +397,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BugKey_4
       objectReference: {fileID: 0}
+    - target: {fileID: 5466526904143966056, guid: 9cbff204064714bd7a02bf24a1cd4093,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5466526904143966059, guid: 9cbff204064714bd7a02bf24a1cd4093,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2307,7 +2312,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 900, y: 200}
+  m_SizeDelta: {x: 1200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &518668141
 MonoBehaviour:
@@ -2719,6 +2724,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BugKey_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466526904143966056, guid: 9cbff204064714bd7a02bf24a1cd4093,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5466526904143966059, guid: 9cbff204064714bd7a02bf24a1cd4093,
         type: 3}
@@ -3349,7 +3359,7 @@ PrefabInstance:
     - target: {fileID: 5466526903959407113, guid: 9cbff204064714bd7a02bf24a1cd4093,
         type: 3}
       propertyPath: m_Text
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5466526904143966056, guid: 9cbff204064714bd7a02bf24a1cd4093,
         type: 3}
@@ -3496,6 +3506,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BugKey_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466526904143966056, guid: 9cbff204064714bd7a02bf24a1cd4093,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5466526904143966059, guid: 9cbff204064714bd7a02bf24a1cd4093,
         type: 3}
@@ -4835,6 +4850,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BugKey_11
       objectReference: {fileID: 0}
+    - target: {fileID: 5466526904143966056, guid: 9cbff204064714bd7a02bf24a1cd4093,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5466526904143966059, guid: 9cbff204064714bd7a02bf24a1cd4093,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4955,6 +4975,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1052031849}
     m_Modifications:
+    - target: {fileID: 5466526903959407113, guid: 9cbff204064714bd7a02bf24a1cd4093,
+        type: 3}
+      propertyPath: m_Text
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5466526904143966056, guid: 9cbff204064714bd7a02bf24a1cd4093,
         type: 3}
       propertyPath: m_Name
@@ -5069,6 +5094,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466526905654998772, guid: 9cbff204064714bd7a02bf24a1cd4093,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cbff204064714bd7a02bf24a1cd4093, type: 3}
@@ -6564,6 +6594,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BugKey_5
       objectReference: {fileID: 0}
+    - target: {fileID: 5466526904143966056, guid: 9cbff204064714bd7a02bf24a1cd4093,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5466526904143966059, guid: 9cbff204064714bd7a02bf24a1cd4093,
         type: 3}
       propertyPath: m_Pivot.x
@@ -6774,6 +6809,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BugKey_6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466526904143966056, guid: 9cbff204064714bd7a02bf24a1cd4093,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5466526904143966059, guid: 9cbff204064714bd7a02bf24a1cd4093,
         type: 3}
@@ -7311,7 +7351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ced7c5102ca046e29ec957c6e61c444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipScoring: 0
+  skipScoring: 1
   announcerLive: 0
   scoreManager: {fileID: 763481818}
   minigameManager: {fileID: 2122718780}
@@ -7959,7 +7999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40fc3433b6b34503a754e796b9230dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minigameChoice: 99
+  minigameChoice: 3
   minigames:
   - {fileID: 1089424731}
   - {fileID: 1213065092}
