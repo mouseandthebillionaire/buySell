@@ -7351,7 +7351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ced7c5102ca046e29ec957c6e61c444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipScoring: 0
+  skipScoring: 1
   announcerLive: 0
   scoreManager: {fileID: 763481818}
   minigameManager: {fileID: 2122718780}
@@ -7999,7 +7999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40fc3433b6b34503a754e796b9230dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minigameChoice: 99
+  minigameChoice: 2
   minigames:
   - {fileID: 1089424731}
   - {fileID: 1213065092}

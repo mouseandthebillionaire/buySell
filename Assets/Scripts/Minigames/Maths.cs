@@ -17,6 +17,8 @@ public class Maths : MonoBehaviour
 		"(1 + 1) x 4",
 		"2 + 2 + 2 + 2 + 1"
 	};
+
+    public float timeToAnswer;
     
     // Start is called before the first frame update
     void Start()
@@ -27,8 +29,8 @@ public class Maths : MonoBehaviour
     private IEnumerator RunGame() {
 	    int correctKey  = Random.Range(0, 9);
 	    Debug.Log(correctKey);
-	    
-		// Unlike the button masher, no timer is used here. Just who answers first.
+
+	    // Unlike the button masher, no timer is used here. Just who answers first.
 		bool unanswered = true;
 		int numAnswered = 0;
 		
@@ -47,6 +49,11 @@ public class Maths : MonoBehaviour
 		equation.text = equations[correctKey];
 		
 		while(unanswered) {
+			// Set a Timer in which the question needs to be answered
+			timeToAnswer = 3f; // 3 seconds
+			float duration = Time.time;
+			Debug.Log(duration);
+			
 			for (int i = 0; i < MinigameManager.S.inputKeys.Length; i++) {
 				if (!answered[i] && MinigameManager.S.inputKeys[i] == correctKey) {
 					unanswered = false;
@@ -62,15 +69,21 @@ public class Maths : MonoBehaviour
 						MinigameManager.S.traderInput.transform.GetChild(i).GetComponent<Image>().color = Color.grey;
 						BetweenerManager.S.zilch.Play();
 						numAnswered++;
-						// they all go it wrong
+						// they all go it wrong or took too long
 						if (numAnswered == GlobalVariables.S.numTraders) {
 							// Trader 3 means no one won
 							BetweenerManager.S.AnnounceBonusWinner(99);
 						}
 					}
 				}
+				// Too slow!
+				if (duration > timeToAnswer)
+				{
+					unanswered = false;
+					BetweenerManager.S.AnnounceBonusWinner(99);
+				}
 			}
-			
+
 			yield return null;
 		}
 	}
