@@ -38,6 +38,9 @@ public class GlobalVariables : MonoBehaviour {
         "Necktie, Necktie and Fleece", "Young Upstarts", "Rose and Rosen Rose"
     };
 
+	// Keep track of which minigames have been played 
+	public List<int>        minigameIndexes;
+
 
     // Input Keys
     // 0-9 tied to numbers

@@ -34,19 +34,18 @@ public class MinigameManager : MonoBehaviour
             inputKeys[i] = 99;
             inputTimes[i] = 0;
         }
-        
-        // Choose the game
-        // If it's 99 choice a random one, otherwise we're testing a specific one
-        if(minigameChoice == 99) minigameChoice = UnityEngine.Random.Range(0, minigames.Length);
-        
-        // Activate the minigame GameObject
-        minigames[minigameChoice].SetActive(true);
-        
-        // Get all the Minigame Components
-        Image[] ims = minigames[minigameChoice].GetComponentsInChildren<Image>();
 
-        // Announce the game
-        StartCoroutine(AnnounceMinigame());
+        if (GlobalVariables.S.minigameIndexes.Count == 0)
+        {
+            // fill with an index of minigames
+            for (int i = 0; i < minigames.Length; i++)
+            {
+                GlobalVariables.S.minigameIndexes.Add(i);
+            }
+        }
+
+        StartCoroutine(ChooseMinigame());
+        
     }
 
     void Update() {
@@ -67,6 +66,30 @@ public class MinigameManager : MonoBehaviour
 
         yield return null;
 
+    }
+
+    private IEnumerator ChooseMinigame()
+    {
+        // Choose the game
+        // If it's 99 choice a random one, otherwise we're testing a specific one
+        if (minigameChoice == 99)
+        {
+            int i = Random.Range(0, GlobalVariables.S.minigameIndexes.Count);
+            // Get the Index Number of the chosen minigame
+            minigameChoice = GlobalVariables.S.minigameIndexes[i];
+            GlobalVariables.S.minigameIndexes.Remove(minigameChoice);
+        }
+        
+        // Activate the minigame GameObject
+        minigames[minigameChoice].SetActive(true);
+        
+        // Get all the Minigame Components
+        Image[] ims = minigames[minigameChoice].GetComponentsInChildren<Image>();
+
+        // Announce the game
+        StartCoroutine(AnnounceMinigame());
+
+        yield return null;
     }
     
     private IEnumerator AnnounceMinigame() {

@@ -49,7 +49,6 @@ public class Maths : MonoBehaviour
 		while(unanswered) {
 			for (int i = 0; i < MinigameManager.S.inputKeys.Length; i++) {
 				if (!answered[i] && MinigameManager.S.inputKeys[i] == correctKey) {
-					Debug.Log("Trader #" + i + " enters the correct answer!");
 					unanswered = false;
 					BetweenerManager.S.AnnounceBonusWinner(i);
 				} else {

@@ -73,10 +73,6 @@ public class Trader : MonoBehaviour {
             inputString += "-";
         }
 
-        // for (int i = 0; i < 5; i++) {
-        //     Debug.Log(StockManager.S.stockIndexes[i]);
-        // }
-        
         // Dim the stocks that aren't being traded this round
         for (int i = 0; i < stockHoldingsDisplay.Length; i++) {
             // stockIndexes stores the StockNumber for each day's active stocks
@@ -90,11 +86,7 @@ public class Trader : MonoBehaviour {
 
         stockSelected = 99;
         UpdateDisplay();
-        for (int i = 0; i < StockManager.S.tradingStocks.Length; i++) {
-            hasStock[i] = false;
-        }
-        
-        
+
 
         // Set up player overall and round funds
         totalEarnings = GlobalVariables.S.traderWorth[traderNum];
@@ -125,7 +117,7 @@ public class Trader : MonoBehaviour {
                 for (int i = 0; i < inputKeys.Length-5; i++) {
                     if (Input.GetKeyDown(inputKeys[i])) {
                         inputString += i.ToString();
-                        // only get the the last two digits the user has entered
+                        // only get the the last few digits the user has entered
                         inputString = inputString.Substring(inputString.Length-GlobalVariables.S.stockCodeLength, GlobalVariables.S.stockCodeLength);
                         codeInput.text = "#" + inputString;
                     }
@@ -136,12 +128,6 @@ public class Trader : MonoBehaviour {
                     PhoneSlammed(inputString);
                     inputString = "-";
                     codeInput.text = "#" + inputString;
-                }   
-                
-                // print out the holdings for each trader
-                for (int i = 0; i < GlobalVariables.S.totalStocks; i++)
-                {
-                    //Debug.Log(stockHoldings[i]);
                 }
         } 
         
@@ -169,6 +155,7 @@ public class Trader : MonoBehaviour {
                 
         bool stockExists = false;
         int stockEntered = 99;
+        int stockNumber = 99;
         int stockNum = 99;
 
         for(int i=0; i < GlobalVariables.S.roundStocks; i++){
@@ -176,12 +163,17 @@ public class Trader : MonoBehaviour {
                 if (codeEntered == StockManager.S.roundStocks[i].GetComponent<Stock>().stockCode) {
                     stockExists = true;
                     stockEntered = i;
+                    stockNumber = StockManager.S.roundStocks[i].GetComponent<Stock>().stockNumber;
                 }
         }
 
         if (stockExists) {
             Transaction(stockEntered);
-            if(hasStock[stockEntered]) {StartCoroutine(TransactionProcessing(stockEntered, "sell"));}
+            if (hasStock[stockNumber-1])
+            {
+                StartCoroutine(TransactionProcessing(stockEntered, "sell"));
+                Debug.Log("Selling");
+            }
             else StartCoroutine(TransactionProcessing(stockEntered, "buy"));         
         } else {
             Debug.Log("Not a valid Stock Code!");
@@ -197,7 +189,6 @@ public class Trader : MonoBehaviour {
 
         playerFunds -= purchasePrice;
         stockPrice[_stockNum] = purchasePrice;
-        hasStock[_stockNum] = true;
         stockHoldings[_stockNum] = purchasePrice;
         stocksBought++;
         GlobalVariables.S.traderRoundStats[traderNum, 0]++;
@@ -232,6 +223,7 @@ public class Trader : MonoBehaviour {
         t[1].text = "@"+purchasePrice.ToString("F1");
         // And save to the Global Variable
         GlobalVariables.S.traderHoldings[traderNum, globalStockNum - 1] = purchasePrice;
+        hasStock[globalStockNum - 1] = true;
         UpdateDisplay();
         buy_sound.Play();
 
@@ -239,8 +231,10 @@ public class Trader : MonoBehaviour {
     
     public void Sell(int stock) {
         int _stockNum = stock;
+        // Get the global stock number
+        int globalStockNum = StockManager.S.roundStocks[_stockNum].GetComponent<Stock>().stockNumber;
         
-        if (hasStock[_stockNum]) {
+        if (hasStock[globalStockNum-1]) {
             
             GameObject _stb = StockManager.S.roundStocks[_stockNum];
             Stock s = _stb.GetComponent<Stock>();
@@ -285,18 +279,18 @@ public class Trader : MonoBehaviour {
                 StockManager.S.EffectStock("down", _stockNum);
             }
             
-            hasStock[_stockNum] = false;
             stockHoldings[_stockNum] = 0;
             stocksSold++;
             GlobalVariables.S.traderRoundStats[traderNum, 1]++;
             
-            // Get the global stock number
-            int globalStockNum = StockManager.S.roundStocks[_stockNum].GetComponent<Stock>().stockNumber;
+            
             Text[] t = stockHoldingsDisplay[globalStockNum-1].GetComponentsInChildren<Text>();
             // Update Price in the UI
             t[1].text = "NONE";
             // And Save to the Global Variable
             GlobalVariables.S.traderHoldings[traderNum, globalStockNum - 1] = 0;
+            hasStock[globalStockNum - 1] = false;
+
             
             UpdateDisplay();
         } 
@@ -334,11 +328,12 @@ public class Trader : MonoBehaviour {
     private void Transaction(int _numSelected) {
                 
         int stockToProcess = _numSelected;
+        int globalStockNumber = StockManager.S.roundStocks[_numSelected].GetComponent<Stock>().stockNumber;
         GameObject _stb = StockManager.S.roundStocks[_numSelected];
         Stock s = _stb.GetComponent<Stock>();
         t_UI.SetActive(true);
         transactionUI[0].text = s.stockName;
-        if (hasStock[stockToProcess]) {
+        if (hasStock[globalStockNumber-1]) {
             transactionUI[1].text = "$" + s.stockValue.ToString("F1");
             transactionUI[2].text = "$" + stockPrice[stockToProcess].ToString("F1");
         }
@@ -362,7 +357,11 @@ public class Trader : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
         
         for (int i = 0; i < GlobalVariables.S.totalStocks; i++) {
-            // stockIndexes stores the StockNumber for each day's active stocks
+            // Do we already have this stock?
+            if (GlobalVariables.S.traderHoldings[traderNum, i] != 0) hasStock[i] = true;
+            else hasStock[i] = false;
+            
+            // Does it even exist in the list of today's active stocks
             Text[] t = stockHoldingsDisplay[i].GetComponentsInChildren<Text>();
             if (StockManager.S.stockIndexes.Contains(i)) {
                 // Name
