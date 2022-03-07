@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using UnityEngine;
-using UnityEngine.IO;
+using UnityEditor;
 using UnityEngine.Networking;
 using System.Text;
 
@@ -69,6 +68,8 @@ public class FundManager : MonoBehaviour {
     }
 
     private IEnumerator GetWorthFromFile() {
+        // Refresh the file
+        AssetDatabase.Refresh();
         TextAsset fundsFile = Resources.Load("traderFunds") as TextAsset;
         string[] traderFunds = fundsFile.text.Split ('#');
         
@@ -132,6 +133,7 @@ public class FundManager : MonoBehaviour {
         string text = "";
         
         for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
+            Debug.Log("Player 1: $" + GlobalVariables.S.traderWorth[i] + "saved");
             string tempNum = GlobalVariables.S.traderWorth[i].ToString("#.00");
             text += tempNum.ToString() + "#";
         }

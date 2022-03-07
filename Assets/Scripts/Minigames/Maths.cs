@@ -48,11 +48,22 @@ public class Maths : MonoBehaviour
 		directions.text = "EQUATION SENT: SOLVE THE FOLLOWING. IT MAY UNCOVER AN INVESTMENT OPPORTUNITY \n\n";
 		equation.text = equations[correctKey];
 		
+		// Get the time this launched
+		float startTime = Time.time;
+		
 		while(unanswered) {
 			// Set a Timer in which the question needs to be answered
 			timeToAnswer = 3f; // 3 seconds
-			float duration = Time.time;
+			
+			float duration  = Time.time - startTime;
 			Debug.Log(duration);
+			
+			// Too slow!
+			if (duration > timeToAnswer)
+			{
+				unanswered = false;
+				BetweenerManager.S.AnnounceBonusWinner(99);
+			}
 			
 			for (int i = 0; i < MinigameManager.S.inputKeys.Length; i++) {
 				if (!answered[i] && MinigameManager.S.inputKeys[i] == correctKey) {
@@ -75,12 +86,7 @@ public class Maths : MonoBehaviour
 							BetweenerManager.S.AnnounceBonusWinner(99);
 						}
 					}
-				}
-				// Too slow!
-				if (duration > timeToAnswer)
-				{
-					unanswered = false;
-					BetweenerManager.S.AnnounceBonusWinner(99);
+					
 				}
 			}
 

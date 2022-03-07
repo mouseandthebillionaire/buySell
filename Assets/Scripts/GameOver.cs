@@ -45,8 +45,7 @@ public class GameOver : MonoBehaviour {
     }
 
     private IEnumerator Restart() {
-        // Publish the final scores to the Text file
-        FundManager.S.SaveWorth();
+
         yield return new WaitForSeconds(0.5f);
         // And Go to the Menu
         GameManager.S.Reset();

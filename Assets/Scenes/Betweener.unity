@@ -3171,6 +3171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d578d45403544a0be7bce83ae5e60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToAnswer: 0
 --- !u!1 &810422507
 GameObject:
   m_ObjectHideFlags: 0
@@ -7351,7 +7352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ced7c5102ca046e29ec957c6e61c444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipScoring: 1
+  skipScoring: 0
   announcerLive: 0
   scoreManager: {fileID: 763481818}
   minigameManager: {fileID: 2122718780}
