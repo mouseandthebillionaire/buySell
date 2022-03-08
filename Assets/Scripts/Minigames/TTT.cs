@@ -55,6 +55,8 @@ public class TTT : MonoBehaviour {
 
     // Update is called once per frame
     private IEnumerator RunGame() {
+        int numOut = 0;
+        
         // Get the time this launched
         float startTime = Time.time;
 
@@ -81,11 +83,18 @@ public class TTT : MonoBehaviour {
                         erred[i] = true;
                         MinigameManager.S.traderInput.transform.GetChild(i).GetComponent<Image>().color = Color.grey;
                         BetweenerManager.S.zilch.Play();
+                        numOut++;
                     }
 
                     if (currChar[i] == wordLength) {
                         BetweenerManager.S.AnnounceBonusWinner(i);
                     }    
+                }
+
+                if (numOut >= 3)
+                {
+                    timer = timeLimit;
+                    BetweenerManager.S.AnnounceBonusWinner(99);
                 }
             }
 
