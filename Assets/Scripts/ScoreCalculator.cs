@@ -75,9 +75,11 @@ public class ScoreCalculator : MonoBehaviour {
         if(roundProfit <= 0) zilch.Play();
         yield return new WaitForSeconds(0.5f);
         
+        // Today's Profit
+        float todaysProfit = (bonusProfit + roundProfit);
         
-        // Previous profit
-        float previousProfit = GlobalVariables.S.traderWorth[traderNum];
+        // Previous Week's profit
+        float previousProfit = GlobalVariables.S.weeklyEarnings[traderNum];
         displayProfit = 0;
         increment = previousProfit / Random.Range(9.25f, 10f);
         while (displayProfit < previousProfit){
@@ -90,11 +92,9 @@ public class ScoreCalculator : MonoBehaviour {
         previousEarnings.text = "$" + previousProfit.ToString("F2");
         if (previousProfit <= 0) zilch.Play();
         yield return new WaitForSeconds(0.5f);
-        
-
 
         // Get Final Score
-        float totalProfit = (roundProfit + bonusProfit + previousProfit);
+        float totalProfit = (todaysProfit + previousProfit);
         displayProfit = 0;
         increment = totalProfit / Random.Range(9.25f, 10f);
         while (displayProfit < totalProfit){
@@ -109,12 +109,12 @@ public class ScoreCalculator : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
 
         // Add to the weekly profit
-        GlobalVariables.S.weeklyEarnings[traderNum] += roundProfit;
+        GlobalVariables.S.weeklyEarnings[traderNum] = totalProfit;
         // Add to the overall profit
-        GlobalVariables.S.traderWorth[traderNum] = totalProfit;
+        GlobalVariables.S.traderWorth[traderNum] += todaysProfit;
         // Add a delay to make sure this actually happens
-        yield return new WaitForSeconds(0.5f);
         scorePosted.Play();
+        // Post the profit for this week
         StartCoroutine(ScoreManager.S.PostScore(totalProfit));
         
     }

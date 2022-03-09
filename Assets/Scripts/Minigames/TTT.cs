@@ -16,6 +16,7 @@ public class TTT : MonoBehaviour {
     private int[] wordNumbers = new int[6];
     private int[,] wordCodeInputs = new int[3,6];
     private GameObject[] displayLetters = new GameObject[6];
+    private bool spelling;
     
     
     // Start is called before the first frame update
@@ -32,7 +33,6 @@ public class TTT : MonoBehaviour {
         for (int i = 0; i<wordLength; i++) {
             wordLetters[i] = word[i].ToString();
             wordNumbers[i] = int.Parse(code[i].ToString());
-            Debug.Log(wordNumbers[i]);
         }
         
         // Reset everyone
@@ -41,6 +41,8 @@ public class TTT : MonoBehaviour {
             currChar[i] = 0;
             erred[i] = false;
         }
+
+        spelling = true;
         
         // Display the letters
         for (int i = 0; i < wordLength; i++)
@@ -56,21 +58,21 @@ public class TTT : MonoBehaviour {
     // Update is called once per frame
     private IEnumerator RunGame() {
         int numOut = 0;
-        
+
         // Get the time this launched
         float startTime = Time.time;
 
-        while (timer < timeLimit) {
+        while (timer < timeLimit && spelling){
+
             timer  = Time.time - startTime;
-            
+
             for (int i = 0; i < MinigameManager.S.inputKeys.Length; i++) {
                 if (!erred[i] && MinigameManager.S.inputKeys[i] != 99) {
-                    
+
                     if (MinigameManager.S.inputKeys[i] == wordNumbers[currChar[i]]) {
-                        Debug.Log("Correct Letter");
                         // Display that they got it
-                        string obj_loc = "Word/letter_" + currChar[i] + "/p" + i;
-                        GameObject p = GameObject.Find(obj_loc);
+                        string     obj_loc = "Word/letter_" + currChar[i] + "/p" + i;
+                        GameObject p       = GameObject.Find(obj_loc);
                         p.GetComponent<Image>().color = GlobalVariables.S.traderColors[i];
                         // Reset the key
                         MinigameManager.S.inputKeys[i] = 99;
@@ -81,25 +83,28 @@ public class TTT : MonoBehaviour {
                     else {
                         // They typed the wrong letter! Kick 'em out!
                         erred[i] = true;
-                        MinigameManager.S.traderInput.transform.GetChild(i).GetComponent<Image>().color = Color.grey;
+                        MinigameManager.S.traderInput.transform.GetChild(i).GetComponent<Image>().color =
+                            Color.grey;
                         BetweenerManager.S.zilch.Play();
                         numOut++;
                     }
 
                     if (currChar[i] == wordLength) {
+                        spelling = false;
                         BetweenerManager.S.AnnounceBonusWinner(i);
-                    }    
+                        
+                    }
                 }
 
-                if (numOut >= 3)
-                {
-                    timer = timeLimit;
+            }
+
+            if (numOut >= 3 || timer > timeLimit) {
+                    spelling = false;
                     BetweenerManager.S.AnnounceBonusWinner(99);
-                }
             }
 
             yield return null;
         }
-        BetweenerManager.S.AnnounceBonusWinner(99);
+
     }
 }
