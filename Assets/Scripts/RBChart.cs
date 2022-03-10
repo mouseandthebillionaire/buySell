@@ -25,7 +25,6 @@ public class RBChart : MonoBehaviour {
         StartCoroutine(UpdateChart());
     }
 
-    // Update is called once per frame
     private IEnumerator UpdateChart()
     {
         for (int i = 0; i < numBars; i++) {
