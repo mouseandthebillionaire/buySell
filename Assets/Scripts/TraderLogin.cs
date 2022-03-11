@@ -38,9 +38,14 @@ public class TraderLogin : MonoBehaviour {
         int traderNum = int.Parse(this.name);
 
         // Finding the Text to display funds based on its name
-        GameObject funds        = GameObject.Find("CurrentFunds_" + traderNum);
+        GameObject funds        = GameObject.Find(traderNum + "/CurrentFunds");
         Text       fundsDisplay = funds.GetComponent<Text>();
-        fundsDisplay.text = "Current Funds: \n$" + GlobalVariables.S.traderWorth[traderNum];
+        fundsDisplay.text = "TOTAL FUND VALUE: $" + GlobalVariables.S.traderWorth[traderNum];
+        
+        // Finding the Text to display last weeks earnings
+        GameObject lastWeek        = GameObject.Find(traderNum + "/LastWeek$");
+        Text       lastWeekText = lastWeek.GetComponent<Text>();
+        lastWeekText.text = "$" + GlobalVariables.S.lastWeeksEarnings[traderNum];
         yield return null;
     }
 }

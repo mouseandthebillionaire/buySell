@@ -18,6 +18,7 @@ public class GlobalVariables : MonoBehaviour {
     public float[,]        traderHoldings = new float[3, 9];
     // Keep track of each playthrough's earnings
     public float[]        weeklyEarnings = new float[3];
+    public float[]        lastWeeksEarnings = new float[3];
 
     [Header("Set Dynamically")] 
     public int             stockCodeLength; // Set by round #
@@ -85,6 +86,8 @@ public class GlobalVariables : MonoBehaviour {
         // Pull the overall funds from a saved file...
         FundManager.S.LoadWorth();
         for (int i = 0; i < numTraders; i++) {
+            // Show last week's earnings
+            lastWeeksEarnings[i] = weeklyEarnings[i];
             // Reset trader's weekly earnings to $0
             weeklyEarnings[i] = 0;
             // And remove all of their holdings
