@@ -172,12 +172,9 @@ public class Trader : MonoBehaviour {
             if (hasStock[stockNumber-1])
             {
                 StartCoroutine(TransactionProcessing(stockEntered, "sell"));
-                Debug.Log("Selling");
             }
             else StartCoroutine(TransactionProcessing(stockEntered, "buy"));         
-        } else {
-            Debug.Log("Not a valid Stock Code!");
-        }
+        } 
     }
     
     public void Buy(int stock) {
@@ -192,6 +189,7 @@ public class Trader : MonoBehaviour {
         stockHoldings[_stockNum] = purchasePrice;
         stocksBought++;
         GlobalVariables.S.traderRoundStats[traderNum, 0]++;
+        GlobalVariables.S.traderWeekStats[traderNum, 0]++;
 
         // Stock is influenced by...
         // a) traderLuck
@@ -282,6 +280,7 @@ public class Trader : MonoBehaviour {
             stockHoldings[_stockNum] = 0;
             stocksSold++;
             GlobalVariables.S.traderRoundStats[traderNum, 1]++;
+            GlobalVariables.S.traderWeekStats[traderNum, 1]++;
             
             
             Text[] t = stockHoldingsDisplay[globalStockNum-1].GetComponentsInChildren<Text>();

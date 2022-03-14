@@ -30,6 +30,11 @@ public class Login : MonoBehaviour {
                 GameObject.Find(i.ToString() +"/CurrentFunds_" + i).GetComponent<Text>().text = "Current Funds: \n$0";
             }
         }
+        // Also To See the Walkthrough
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.L))
+        {
+            SceneManager.LoadScene("Walkthrough");
+        }
     }
 
     public IEnumerator CountDown() {

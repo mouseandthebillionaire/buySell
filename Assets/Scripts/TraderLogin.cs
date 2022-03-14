@@ -45,7 +45,27 @@ public class TraderLogin : MonoBehaviour {
         // Finding the Text to display last weeks earnings
         GameObject lastWeek        = GameObject.Find(traderNum + "/LastWeek$");
         Text       lastWeekText = lastWeek.GetComponent<Text>();
-        lastWeekText.text = "$" + GlobalVariables.S.lastWeeksEarnings[traderNum];
+        float LWE = GlobalVariables.S.lastWeeksEarnings[traderNum];
+        if (LWE >= 0) lastWeekText.text = "+" + LWE.ToString(".0##");
+        else lastWeekText.text = LWE.ToString(".0##");
+        
+        // Stocks Bought
+        GameObject b        = GameObject.Find(traderNum + "/Bought$");
+        Text       bDisplay = b.GetComponent<Text>();
+        bDisplay.text = GlobalVariables.S.lastWeekStats[traderNum, 0].ToString();
+        Debug.Log(GlobalVariables.S.lastWeekStats[traderNum, 0].ToString());
+        
+        // Stocks Sold
+        GameObject s        = GameObject.Find(traderNum + "/Sold$");
+        Text       sDisplay = s.GetComponent<Text>();
+        sDisplay.text = GlobalVariables.S.lastWeekStats[traderNum, 1].ToString();
+        
+        // Random "Volume" Number
+        GameObject volume        = GameObject.Find(traderNum + "/Volume$");
+        Text       volumeDisplay = volume.GetComponent<Text>();
+        float vol = Random.Range(1000000, 9999999);
+        volumeDisplay.text = vol.ToString("#,###0");
+
         yield return null;
     }
 }

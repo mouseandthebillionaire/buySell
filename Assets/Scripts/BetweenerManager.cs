@@ -68,7 +68,7 @@ public class BetweenerManager : MonoBehaviour
                 // yield return new WaitForSeconds(bonus.length);
             }
 
-            int blinkTimes = 4;
+            int blinkTimes = 3;
             while (blinkTimes >= 0) {
                 bonusAnnouncement.SetActive(true);
                 bonusOpportunity.Play();

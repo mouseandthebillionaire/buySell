@@ -28,7 +28,6 @@ public class TTT : MonoBehaviour {
         int wordIndex = Random.Range(0, wordList.Length);
         string word = wordList[wordIndex];
         string code = codeList[wordIndex];
-        Debug.Log(code);
         // Split the word
         for (int i = 0; i<wordLength; i++) {
             wordLetters[i] = word[i].ToString();

@@ -50,7 +50,8 @@ public class ScoreManager : MonoBehaviour
         scoresCalculated++;
         if (scoresCalculated == GlobalVariables.S.numTraders) {
             if (GameManager.S.gameRound == GlobalVariables.S.numRounds - 1) {
-                SceneManager.LoadScene("End");
+                //SceneManager.LoadScene("End");
+                GameManager.S.WeekEnd();
             } else {
                 BetweenerManager.S.Next();
             }

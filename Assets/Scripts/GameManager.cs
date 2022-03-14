@@ -108,4 +108,9 @@ public class GameManager : MonoBehaviour {
 		}
 		countdownLength -= 1;
 	}
+
+	// End of the Week - Announce Winner and Reset
+	public void WeekEnd(){
+		GameEnd.S.EndGame();
+	}
 }

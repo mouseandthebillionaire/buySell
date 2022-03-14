@@ -133,14 +133,12 @@ public class FundManager : MonoBehaviour {
         string text = "";
         
         for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
-            Debug.Log("Player 1: $" + GlobalVariables.S.traderWorth[i] + "saved");
             string tempNum = GlobalVariables.S.traderWorth[i].ToString("#.00");
             text += tempNum.ToString() + "#";
         }
         File.WriteAllText(file, text);
         // Add a quick delay to make sure this happens
         yield return new WaitForSeconds(0.5f);
-        Debug.Log("File Updated");
     }
 
     public void CompleteResetOfAllWorth() {

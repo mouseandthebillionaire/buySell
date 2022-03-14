@@ -14,6 +14,10 @@ public class GlobalVariables : MonoBehaviour {
     
     // Hold Round specific variables [stocksBought / stocksSold]
     public int[,]          traderRoundStats = new int[3, 2];
+	// Hold Weekly Record of [stocksBought / stocksSold]
+	public int[,]          traderWeekStats = new int[3, 2];
+	// Hold LastWeeks Record of [stocksBought / stocksSold]
+	public int[,]          lastWeekStats = new int[3, 2];
     // Keep track of Trader Holdings
     public float[,]        traderHoldings = new float[3, 9];
     // Keep track of each playthrough's earnings
@@ -80,6 +84,13 @@ public class GlobalVariables : MonoBehaviour {
        }
     }
 
+	void Update(){
+		for (int i = 0; i < numTraders; i++) {
+			// Save to Last Week's Stats
+			Debug.Log(traderWeekStats[i,0] + ":" + traderWeekStats[i,1]);
+		}
+	}
+
     public void NewWeek() {
         gameState = 0;
         stockCodeLength = 1;
@@ -88,6 +99,15 @@ public class GlobalVariables : MonoBehaviour {
         for (int i = 0; i < numTraders; i++) {
             // Show last week's earnings
             lastWeeksEarnings[i] = weeklyEarnings[i];
+
+			// Save to Last Week's Stats
+			lastWeekStats[i,0] = traderWeekStats[i,0];
+			lastWeekStats[i,1] = traderWeekStats[i,1];
+
+			// Reset the Week's STATS
+			traderWeekStats[i,0] = 0;
+			traderWeekStats[i,1] = 0;
+
             // Reset trader's weekly earnings to $0
             weeklyEarnings[i] = 0;
             // And remove all of their holdings
@@ -103,7 +123,7 @@ public class GlobalVariables : MonoBehaviour {
     {
         gameState = 2;
         for (int i = 0; i < numTraders; i++) {
-            // Reset the Round Stats for BOUGHT and SOLD
+            // Reset for the Day the Round Stats for BOUGHT and SOLD
             traderRoundStats[i, 0] = 0;
             traderRoundStats[i, 1] = 0;
         }
