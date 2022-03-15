@@ -68,13 +68,19 @@ public class FundManager : MonoBehaviour {
     }
 
     private IEnumerator GetWorthFromFile() {
+        // Save to a Text File
         // Refresh the file
-        AssetDatabase.Refresh();
-        TextAsset fundsFile = Resources.Load("traderFunds") as TextAsset;
-        string[] traderFunds = fundsFile.text.Split ('#');
+        // AssetDatabase.Refresh();
+        // TextAsset fundsFile = Resources.Load("traderFunds") as TextAsset;
+        // string[] traderFunds = fundsFile.text.Split ('#');
+        //
+        // for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
+        //     GlobalVariables.S.traderWorth[i] = float.Parse(traderFunds[i]);
+        // }
         
+        // Get via Player Prefs
         for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
-            GlobalVariables.S.traderWorth[i] = float.Parse(traderFunds[i]);
+            GlobalVariables.S.traderWorth[i] = PlayerPrefs.GetFloat("trader_" + i);
         }
 
         fundsLoaded = true;
@@ -129,16 +135,25 @@ public class FundManager : MonoBehaviour {
     }
 
     private IEnumerator SaveWorthToFile() {
-        string file = "Assets/Resources/traderFunds.txt";
-        string text = "";
+        // Saving to A Text File
+        // string file = "Assets/Resources/traderFunds.txt";
+        // string text = "";
+        //
+        // for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
+        //     string tempNum = GlobalVariables.S.traderWorth[i].ToString("#.00");
+        //     text += tempNum.ToString() + "#";
+        // }
+        // File.WriteAllText(file, text);
         
-        for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
-            string tempNum = GlobalVariables.S.traderWorth[i].ToString("#.00");
-            text += tempNum.ToString() + "#";
+        // Save via Player Prefs
+        for (int i = 0; i < GlobalVariables.S.numTraders; i++)
+        {
+            float tempNum = GlobalVariables.S.traderWorth[i];
+                PlayerPrefs.SetFloat("trader_" + i, tempNum);
         }
-        File.WriteAllText(file, text);
-        // Add a quick delay to make sure this happens
-        yield return new WaitForSeconds(0.5f);
+
+        yield return null;
+
     }
 
     public void CompleteResetOfAllWorth() {
