@@ -34,7 +34,9 @@ public class GameManager : MonoBehaviour {
        
 	}
 
-	void Start() {
+	void Start()
+	{
+		Screen.showCursor = false;
 		Reset();
 	}
 	
