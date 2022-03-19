@@ -53,7 +53,7 @@ public class Maths : MonoBehaviour
 		
 		while(unanswered) {
 			// Set a Timer in which the question needs to be answered
-			timeToAnswer = 3f; // 3 seconds
+			timeToAnswer = 10f; // 10 seconds
 			
 			float duration  = Time.time - startTime;
 			Debug.Log(duration);

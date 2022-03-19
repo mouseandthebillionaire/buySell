@@ -700,7 +700,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -75}
+  m_AnchoredPosition: {x: 0, y: 20}
   m_SizeDelta: {x: 600, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &186749048
@@ -736,8 +736,14 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "BROKER CALL EXPECTED. \nFIRST ONE TO TAKE THE CALL GETS THE DEAL. BE ON
-    ALERT."
+  m_Text: 'BROKER CALL EXPECTED WITHIN THE NEXT 45 SECONDS.
+
+
+    FIRST ONE TO PICK
+    UP THE HANDSET AFTER THE PHONE RINGS GETS THE DEAL!
+
+
+    DON''T JUMP THE GUN!'
 --- !u!222 &186749049
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3811,7 +3817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d578d45403544a0be7bce83ae5e60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToAnswer: 0
+  timeToAnswer: 20
 --- !u!1 &810422507
 GameObject:
   m_ObjectHideFlags: 0

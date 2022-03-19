@@ -1993,8 +1993,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -262, y: 74.7}
-  m_SizeDelta: {x: 174.5, y: 29.299}
+  m_AnchoredPosition: {x: -250, y: 74.7}
+  m_SizeDelta: {x: 190, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &966040900
 MonoBehaviour:
@@ -2009,7 +2009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+  m_Color: {r: 1, g: 0.6509804, b: 0.18039216, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3483,8 +3483,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -12}
-  m_SizeDelta: {x: 175, y: 39.100006}
+  m_AnchoredPosition: {x: 5, y: -20}
+  m_SizeDelta: {x: 180, y: 39.100006}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1427893458
 MonoBehaviour:
@@ -3499,7 +3499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3519,7 +3519,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Latest News
+  m_Text: LATEST NEWS
 --- !u!222 &1427893459
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4870,6 +4870,225 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 100.059326
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.size
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[0]
+      value: RECENT POLL SUGGESTS THAT MOUNTAIN DEW IS BETTER THAN SURGE IS BETTER
+        THAN MELLO YELLO. SCIENTISTS BAFFLED THAT ANY OF THEM EXIST AT ALL.
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[1]
+      value: WHAAAT.IO
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[2]
+      value: TRADE WARS ESCALATING      ......     EXCALACTING?    .....     EXALATING....?
+        NO, I THINK I WAS RIGHT THE FIRST TIME. ESCALATING.
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[3]
+      value: MOUSEANDTHEBILLIONAIRE.COM
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[5]
+      value: WHAAAT.IO
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[6]
+      value: "SAN FRANCISCO CLEAR THROUGHOUT THE DAY - LOW 51\xB0 HIGH 63\xB0 "
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[7]
+      value: MOUSEANDTHEBILLIONAIRE.COM
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[8]
+      value: DUDE, I HAD THE CRAZIEST DREAM LAST NIGHT. YOU WERE IN IT BUT WE WERE
+        BOTH SQUIRRELS? BUT WE ALSO COULD DRIVE? AND WE HAD THIS SUPER COOL WHITE
+        JEEP WRANGLER LIKE YOU'VE ALWAYS WANTED? AND WE DROVE TO DISNEYLAND? BUT
+        INSTEAD OF, LIKE, NORMAL DISNEYLAND, IT WAS SONIC THE HEDGEHOG DISNEYLAND!
+        AND ALL THE RIDES WERE LIKE GREEN HILL ZONE EXCEPT THEN YOU TURNED INTO A
+        TALKING BACKPACK AND YOU REFUSED TO CARRY ANY OF THE COINS THAT WE WERE COLLECTING?
+        IT WAS TOTALY WEIRD!
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[9]
+      value: WHAAAT.IO
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[10]
+      value: SUZY TOLD BILLY WHO TOLD TOMMY WHO TOLD STACY WHO TOLD STEVE WHO TOLD
+        MRS. GUNDERSON WHO TOLD DANNY WHO TOLD DANI WHO TOLD CALVIN WHO TOLD KEVIN
+        WHO TOLD LITTLE KEVIN WHO TOLD OTHER KEVIN WHO TOLD THE FOREIGN EXCHANGE
+        STUDENT NAMED KEVIN WHO TOLD ME THAT SOMEONE THINKS YOU'RE CUTE
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[11]
+      value: MOUSEANDTHEBILLIONAIRE.COM
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[12]
+      value: WEATHER IS GREAT, NO PROBLEMS ON THE WEEKEND TRAVEL. YOU WANNA GO TO
+        THE ZOO AND SEE THE NEW SNAKE EXHIBIT?
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[13]
+      value: WHAAAT.IO
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[14]
+      value: HEY. DID YOU SEE THAT NEW COMMERCIAL WITH THE THING AND THE GUY!? HAHA.
+        CLASSIC.
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[15]
+      value: MOUSEANDTHEBILLIONAIRE.COM
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[16]
+      value: ALL AMERICAN STOCKS APPEAR TO BE IN GOOD STANDING
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[17]
+      value: WHAAAT.IO
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[18]
+      value: 8 YEAR-OLD TIFFANI FELDMAN WINS NATIONAL SPELLING BEE AFTER CORRECTLY
+        SPELLING "SLUMGULLION"
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[19]
+      value: MOUSEANDTHEBILLIONAIRE.COM
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[20]
+      value: TOYS R US AND NICKELODEAN CANCEL ANNUAL SUPER TOY RUN AFTER 7 YEAR-OLD
+        JIMMY DE LA TOUR FOUND TO HAVE CREATED COUNTERFEIT SWEEPSTAKES WINNING POSTCARD
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[21]
+      value: WHAAAT.IO
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[22]
+      value: YO, I'LL TELL YOU WHAT I WANT, WHAT I REALLY REALLY WANT. SO TELL ME
+        WHAT YOU WANT, WHAT YOU REALLY REALLY WANT. I'LL TELL YOU WHAT I WANT, WHAT
+        I REALLY REALLY WANT. I WANNA-, I WANNA-, I WANNA-, I WANNA-, I WANNY REALLY,
+        REALLY, REALLY WANNA... NAP
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[23]
+      value: MOUSEANDTHEBILLIONAIRE.COM
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[24]
+      value: MCDONALDS ADDS NEW MCNUGGET SHAPED LIKE A DINOSAUR IN HONOR OF JURASSIC
+        PARK. CROWDS DISAPPOINTED THAT IT IS NOT MADE OUT OF ACTUAL DINOSAUR
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[25]
+      value: WHAAAT.IO
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[26]
+      value: TUNE INTO 98.1 THE BREEZE FOR NONSTOP CHILL VIBEZZZZZ
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[27]
+      value: MOUSEANDTHEBILLIONAIRE.COM
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[28]
+      value: RARE 'SUBMARINE CAPTAIN' BEANIE BABY FOUND AT A GARAGE SALE IN OLD SAYBROOK,
+        CONECTICUT. SAYS SELLER JAKOB KLEINMAN, "WAIT? IT'S WORTH HOW MUCH? ........
+        MY WIFE IS GOING TO KILL ME."
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[29]
+      value: WHAAAT.IO
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[30]
+      value: KILLER BEES FOUND IN SHIPMENT OF BURT'S BEES LIP BALM.           I SWEAR!
+        YOU THINK I'M MAKING THIS UP!? I HEARD IT FROM STEVE!
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[31]
+      value: MOUSEANDTHEBILLIONAIRE.COM
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[32]
+      value: UP UP DOWN DOWN LEFT RIGHT LEFT RIGHT B A B A SELECT START
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[33]
+      value: WHAAAT.IO
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[34]
+      value: NATION MOURNS AFTER 9 YEAR-OLD DAVEY FREEMAN SUCCESSFULLY SHOOTS THE
+        DOG IN DUCK HUNT
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[35]
+      value: MOUSEANDTHEBILLIONAIRE.COM
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[36]
+      value: GIRLS GO TO COLLEGE TO GET MORE KNOWLEDGE. BOYS GO TO JUPITER TO GET
+        MORE STUPIDER
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[37]
+      value: WHAAAT.IO
+      objectReference: {fileID: 0}
+    - target: {fileID: 637597880634374888, guid: 34f15784964c1449ab68b25538c5cdff,
+        type: 3}
+      propertyPath: tickerItems.Array.data[38]
+      value: WHAAAT.IO
       objectReference: {fileID: 0}
     - target: {fileID: 1901151415528475387, guid: 34f15784964c1449ab68b25538c5cdff,
         type: 3}

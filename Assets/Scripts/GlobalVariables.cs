@@ -94,6 +94,7 @@ public class GlobalVariables : MonoBehaviour {
     public void NewWeek() {
         gameState = 0;
         stockCodeLength = 1;
+        GlobalVariables.S.trading = false;
         // Pull the overall funds from a saved file...
         FundManager.S.LoadWorth();
         for (int i = 0; i < numTraders; i++) {

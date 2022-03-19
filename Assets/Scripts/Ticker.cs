@@ -11,18 +11,21 @@ public class Ticker : MonoBehaviour {
     private float                width;
     private float                pixelsPerSecond;
     private TickerContent        currentItem;
+	private int					 currentItemNumber; 
     
     // Start is called before the first frame update
     void Start() {
         width = GetComponent<RectTransform>().rect.width;
         pixelsPerSecond = width / contentDuration;
-        AddTickerItem(tickerItems[0]);
+		currentItemNumber = Random.Range(0, tickerItems.Length);
+        AddTickerItem(tickerItems[currentItemNumber]);
     }
 
     // Update is called once per frame
     void Update(){
         if (currentItem.GetXPosition <= -currentItem.GetWidth) {
-            AddTickerItem(tickerItems[Random.Range(0, tickerItems.Length)]);
+			currentItemNumber = (currentItemNumber + 1) % tickerItems.Length;
+            AddTickerItem(tickerItems[currentItemNumber]);
         }
     }
 

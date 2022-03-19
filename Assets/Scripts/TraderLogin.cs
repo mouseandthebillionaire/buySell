@@ -40,7 +40,7 @@ public class TraderLogin : MonoBehaviour {
         // Finding the Text to display funds based on its name
         GameObject funds        = GameObject.Find(traderNum + "/CurrentFunds");
         Text       fundsDisplay = funds.GetComponent<Text>();
-        fundsDisplay.text = "TOTAL FUND VALUE: $" + GlobalVariables.S.traderWorth[traderNum];
+        fundsDisplay.text = "TOTAL FUND VALUE: $" + GlobalVariables.S.traderWorth[traderNum].ToString(".0##");
         
         // Finding the Text to display last weeks earnings
         GameObject lastWeek        = GameObject.Find(traderNum + "/LastWeek$");
