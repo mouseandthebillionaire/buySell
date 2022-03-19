@@ -40,7 +40,7 @@ public class GlobalVariables : MonoBehaviour {
     public string[]        shortTeamNames = new string[3]{"NNF", "YU", "RRR"};
 
     public string[]        teamNames = new string[3]{
-        "Necktie, Necktie and Fleece", "Young Upstarts", "Rose and Rosen Rose"
+        "Necktie, Necktie & Fleece", "Young Upstarts", "Rose & Rosen Rose"
     };
 
 	// Keep track of which minigames have been played 

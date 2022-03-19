@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour {
 
 	void Start()
 	{
-		Screen.showCursor = false;
+		UnityEngine.Cursor.visible = false;
 		Reset();
 	}
 	
