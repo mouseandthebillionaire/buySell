@@ -22,6 +22,9 @@ public class Login : MonoBehaviour {
     }
 
     public void Update() {
+        // Don't process menu shortcuts while admin settings are open
+        if (AdminSettings.isOpen) return;
+
         // Only on the load screen, we have an option to completely reset all Trader Worth
         if (Input.GetKeyDown(KeyCode.Alpha1) && Input.GetKey(KeyCode.LeftControl)) {
             FundManager.S.CompleteResetOfAllWorth();

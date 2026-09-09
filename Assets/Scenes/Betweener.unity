@@ -5747,7 +5747,7 @@ GameObject:
   - component: {fileID: 1173054360}
   - component: {fileID: 1173054359}
   m_Layer: 8
-  m_Name: Directions
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7074,7 +7074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1402832812
 Transform:
   m_ObjectHideFlags: 0
@@ -9258,7 +9258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1922460296}
   m_Layer: 0
-  m_Name: Background
+  m_Name: Directions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9887,7 +9887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40fc3433b6b34503a754e796b9230dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minigameChoice: 5
+  minigameChoice: 99
   minigames:
   - {fileID: 1089424731}
   - {fileID: 1213065092}

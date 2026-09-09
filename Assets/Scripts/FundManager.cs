@@ -157,15 +157,19 @@ public class FundManager : MonoBehaviour {
     }
 
     public void CompleteResetOfAllWorth() {
-        string file = "Assets/Resources/traderFunds.txt";
-        string text = "";
-        
         for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
             GlobalVariables.S.traderWorth[i] = 0;
-            string tempNum = "0";
-            text += tempNum.ToString() + "#";
+            PlayerPrefs.SetFloat("trader_" + i, 0f);
         }
+        PlayerPrefs.Save();
+
+        // Legacy text file used by older builds
+        string file = "Assets/Resources/traderFunds.txt";
+        string text = "";
+        for (int i = 0; i < GlobalVariables.S.numTraders; i++)
+            text += "0#";
         File.WriteAllText(file, text);
+
         Debug.Log("Funds Reset");
     }
     

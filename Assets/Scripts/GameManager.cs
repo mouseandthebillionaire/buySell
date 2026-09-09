@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour {
 	public float		tradingSpeed;
 	public int			gameRound;
 	public float[]      roundWorth = new float[3];
-	public int			roundLength;
 	public GameObject	countdown;
 	public Text			countdownText;
 	private int			countdownLength = 3;
@@ -43,7 +42,7 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (GlobalVariables.S.trading) {
-			if (Time.time - resetTime > roundLength && !countingDown) {
+			if (Time.time - resetTime > GlobalVariables.S.roundLength && !countingDown) {
 				StartCoroutine("CountDown");	
 			}
 		}

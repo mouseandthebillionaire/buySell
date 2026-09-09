@@ -7,6 +7,7 @@ public class GlobalVariables : MonoBehaviour {
     public int             winner;
     public bool            trading = true;
     public int             numRounds = 3;
+    public int             roundLength = 60;
     public int             totalStocks = 9;
     public int             roundStocks = 5;
     public int             numTraders = 3;
@@ -90,6 +91,7 @@ public class GlobalVariables : MonoBehaviour {
     {
        if (S == null) {
            S = this;
+           AdminSettings.ApplySavedPrefsToGlobals();
        } else {
            DestroyObject(gameObject);
        }
@@ -98,7 +100,6 @@ public class GlobalVariables : MonoBehaviour {
 	void Update(){
 		for (int i = 0; i < numTraders; i++) {
 			// Save to Last Week's Stats
-			Debug.Log(traderWeekStats[i,0] + ":" + traderWeekStats[i,1]);
 		}
 	}
 

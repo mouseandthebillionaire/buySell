@@ -27,6 +27,8 @@ public class TraderLogin : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (AdminSettings.isOpen) return;
+
         if (Input.GetKeyDown(enter)) {
             if (!entered) {
                 panel.color = logged_onColor;
