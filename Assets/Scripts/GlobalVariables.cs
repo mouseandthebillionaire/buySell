@@ -10,7 +10,18 @@ public class GlobalVariables : MonoBehaviour {
     public int             totalStocks = 9;
     public int             roundStocks = 5;
     public int             numTraders = 3;
+    
     public Color[]         traderColors;
+    
+    /*
+    Red - #E90000
+    Yellow - #F8F61D
+    Blue - #145AFA
+    Orange - #ed7423
+    Green - #64804f
+    Black - #000
+    */
+
     
     // Hold Round specific variables [stocksBought / stocksSold]
     public int[,]          traderRoundStats = new int[3, 2];

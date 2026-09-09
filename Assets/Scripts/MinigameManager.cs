@@ -14,6 +14,7 @@ public class MinigameManager : MonoBehaviour
     
     public int[]		inputKeys = new int[3];
     public int[] inputTimes = new int[3];
+    public GameObject[] inputDisplayObjects;
     public Text[]		inputDisplay;
 
     // Minigame Components
@@ -33,6 +34,11 @@ public class MinigameManager : MonoBehaviour
         for (int i = 0; i < GlobalVariables.S.numTraders; i++) {
             inputKeys[i] = 99;
             inputTimes[i] = 0;
+        }
+
+        // Set the inputDisplay Box colors
+        for (int i = 0; i < inputDisplayObjects.Length; i++) {
+            inputDisplayObjects[i].GetComponent<Image>().color = GlobalVariables.S.traderColors[i];
         }
 
         if (GlobalVariables.S.minigameIndexes.Count == 0)

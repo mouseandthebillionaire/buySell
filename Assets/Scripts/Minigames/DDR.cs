@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class DDR : MonoBehaviour {
     private KeyCode[] correctKeys = new KeyCode[3];
     public GameObject[] nextKeys = new GameObject[3];
-    public Sprite[] keyImages = new Sprite[14];
+    // 4 possible Animal Sounds
+    public Sprite[] keyImages = new Sprite[3];
     public GameObject goalBoxes;
 
     private bool gameRunning;
@@ -83,20 +84,30 @@ public class DDR : MonoBehaviour {
                 }
             }
 
-            yield return new WaitForSeconds(1);
+            // Allow for 8 notes (0.5 seconds)
+            int beat = Random.Range(0, 100);
+            if(beat > 40) {
+                // Quarter Note
+                yield return new WaitForSeconds(1);
+            } else {
+                // Eighth Note
+                yield return new WaitForSeconds(0.5f);
+            }
             StartCoroutine(CreateKeys());
         }
     }
 
     private void GetNextKey(int _playerNum)
     {
-        int    r    = Random.Range(0, 14);
+        int    r    = Random.Range(0, keyImages.Length);
         // Assign it the right name
-        string name = GlobalVariables.S.keyNames[r];
+        // string name = GlobalVariables.S.keyNames[r];
         int xLoc = 420 + (_playerNum * 400);
         GameObject go = GameObject.Instantiate(key, new Vector2(xLoc, 1000), Quaternion.identity) as GameObject;
         go.GetComponent<Image>().sprite = keyImages[r];
-        go.GetComponent<DDR_key>().myKey = r;
+
+        // It doesn't matter which animal. All we're looking for is the yell (which is 14)
+        go.GetComponent<DDR_key>().myKey = 14;
         go.GetComponent<DDR_key>().playerNum = _playerNum;
         go.transform.parent = DDR_keys.transform;
     }

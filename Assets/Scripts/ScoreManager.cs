@@ -24,6 +24,11 @@ public class ScoreManager : MonoBehaviour
     {
         scoresCalculated = 0;
         StartCoroutine(ScoreCalculation());
+
+        // Set the color of the traderWorthDisplay
+        for (int i = 0; i < traderWorthDisplay.Length; i++) {
+            traderWorthDisplay[i].GetComponent<Image>().color = GlobalVariables.S.traderColors[i];
+        }
     }
 
     // Update is called once per frame

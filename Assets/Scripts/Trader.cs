@@ -62,6 +62,11 @@ public class Trader : MonoBehaviour {
     }
     
     public void Start() {
+        // Set the color of the trader
+        traderColor = GlobalVariables.S.traderColors[traderNum];
+        // Get the background
+        GameObject background = transform.Find("Background").gameObject;
+        background.GetComponent<Image>().color = traderColor;
 
         // Set the stockKeys
         for (int i = 0; i < inputKeys.Length; i++) {

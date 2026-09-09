@@ -73,7 +73,7 @@ public class BugSquasher : MonoBehaviour
 					
 					MinigameManager.S.inputKeys[i] = 99;
 	
-					// Only show splay for half a second
+					// Only show splat for half a second
 					yield return new WaitForSeconds(0.5f);
 					splat.GetComponent<Image>().color = Color.clear;
 					

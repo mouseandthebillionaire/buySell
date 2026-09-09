@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class ScoreCalculator : MonoBehaviour {
     
+    public int             traderNum;
+    public Text            traderNameDisplay;
+    
     public GameObject[]    scoreItems;
 
     private float          bonusProfit;
@@ -15,8 +18,6 @@ public class ScoreCalculator : MonoBehaviour {
 
     private AudioSource    itemDisplayed, blip_1, counter, zilch, scorePosted;
 
-    private int            traderNum;
-
     public static ScoreCalculator S;
 
     public void Awake() {
@@ -24,6 +25,8 @@ public class ScoreCalculator : MonoBehaviour {
     }
 
     public void Start() {
+        traderNameDisplay.color = GlobalVariables.S.traderColors[traderNum];
+        
         itemDisplayed = GameObject.Find("Coin").GetComponent<AudioSource>();
         blip_1 = GameObject.Find("Blip_1").GetComponent<AudioSource>();
         counter = GameObject.Find("Counter").GetComponent<AudioSource>();

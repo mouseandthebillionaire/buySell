@@ -16,6 +16,9 @@ public class TraderLogin : MonoBehaviour {
         panel = GetComponentInChildren<Image>();
         panel.color = new Color(1, 1, 1, 0.5f);
 
+        // Get the Color from the GlobalVariables
+        logged_onColor = GlobalVariables.S.traderColors[int.Parse(this.name)];
+
         StartCoroutine(DisplayWorth());
         
         entered = false;
